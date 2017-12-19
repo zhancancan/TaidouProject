@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Cloud_Cumulus
+  m_Shader: {fileID: 4800000, guid: 233b91540c0754a64be0c0c30a8ff09f, type: 3}
+  m_ShaderKeywords: USKY_MAPPING_RECTANGULAR
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - CloudSampler:
+        m_Texture: {fileID: 2800000, guid: 84c5dbfc2ff0040bb9303c508028a27a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - AlphaSaturation: 1
+    - Attenuation: 0.6
+    - Mask: 0
+    - RotateSpeed: 0.2
+    - SkyColorMultiplier: 1.5
+    - StepSize: 0.003
+    - SunColorMultiplier: 4
+    - USKY_MAPPING: 0
+    m_Colors: []

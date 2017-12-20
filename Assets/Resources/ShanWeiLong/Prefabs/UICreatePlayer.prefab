@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 223482367281210702}
   - component: {fileID: 114111445051059292}
   - component: {fileID: 114962151586902752}
+  - component: {fileID: 114550978902427442}
   m_Layer: 5
   m_Name: UICreatePlayer
   m_TagString: Untagged
@@ -1492,6 +1493,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114550978902427442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839343699069194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfb5a223bd10294eb6fdfba16375607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114558143881391342
 MonoBehaviour:
   m_ObjectHideFlags: 1

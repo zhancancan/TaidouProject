@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 223777519645944546}
   - component: {fileID: 114251649452271978}
   - component: {fileID: 114076468150343056}
+  - component: {fileID: 114090219531337968}
   m_Layer: 5
   m_Name: UISelectPlayer
   m_TagString: Untagged
@@ -681,6 +682,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114090219531337968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784775639508498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c322360119d3d7244977211d9bb5928d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114090542774851662
 MonoBehaviour:
   m_ObjectHideFlags: 1

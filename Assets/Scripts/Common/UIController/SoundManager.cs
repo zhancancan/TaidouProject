@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-
-    #region 单例
+    //单例
     private static SoundManager _instance;
     public static SoundManager Instance
     {
@@ -14,9 +13,10 @@ public class SoundManager : MonoBehaviour
             return _instance;
         }
     }
-    #endregion
+
     [HideInInspector]
     public AudioSource audioMgr;
+
     private void Awake()
     {
         _instance = this;
@@ -25,7 +25,6 @@ public class SoundManager : MonoBehaviour
         audioMgr.loop = true;
         //关闭自动播放
         audioMgr.playOnAwake = false;
-
     }
 
     //设置静音
@@ -40,6 +39,7 @@ public class SoundManager : MonoBehaviour
             audioMgr.mute = value;
         }
     }
+
     //设置背景声音大小
     public float BGSound
     {
@@ -52,10 +52,23 @@ public class SoundManager : MonoBehaviour
             audioMgr.volume = value;
         }
     }
+
     //播放背景音
-    public void PlayBGSound(string name)
+    //public void PlayBGSound(string name)
+    //{
+    //    string path = ConstDates.ResourceAudiosDir + "/" + name;
+    //    AudioClip ac = Resources.Load<AudioClip>(path);
+
+    //    //设置播放音频的片段
+    //    audioMgr.clip = ac;
+
+    //    //播放音频
+    //    audioMgr.Play();
+    //}
+
+    public void PlayBGSound(string selfPath,string name)
     {
-        string path = ConstDates.ResourceAudiosDir + "/" + name;
+        string path = selfPath + "/" + name;
         AudioClip ac = Resources.Load<AudioClip>(path);
 
         //设置播放音频的片段
@@ -63,20 +76,26 @@ public class SoundManager : MonoBehaviour
 
         //播放音频
         audioMgr.Play();
-
-
-
     }
+
     //停止播放
     public void StopBGSound()
     {
         audioMgr.clip = null;
         audioMgr.Stop();
     }
+
     //播放音频
-    public void PlayAudio(string name)
+    //public void PlayAudio(string name)
+    //{
+    //    string path = ConstDates.ResourceAudiosDir + "/" + name;
+    //    AudioClip ac = Resources.Load<AudioClip>(path);
+    //    AudioSource.PlayClipAtPoint(ac, Vector2.zero);
+    //}
+
+    public void PlayAudio(string selfPath,string name)
     {
-        string path = ConstDates.ResourceAudiosDir + "/" + name;
+        string path = selfPath + "/" + name;
         AudioClip ac = Resources.Load<AudioClip>(path);
         AudioSource.PlayClipAtPoint(ac, Vector2.zero);
     }

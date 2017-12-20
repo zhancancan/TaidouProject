@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//该类管理所有UI界面
+
+/// <summary>
+/// 该类管理所有UI界面
+/// </summary>
 public class UIManager : MonoBehaviour
 {
-    #region 单例
+    //单例
     private static UIManager _instance;
     public static UIManager Instance
     {
-        get
-        {
-            return _instance;
-        }
+        get{ return _instance;}
     }
-    #endregion
+
     //管理所有的页面显示
     Stack<UIBase> UIStack = new Stack<UIBase>();
 
@@ -28,22 +28,48 @@ public class UIManager : MonoBehaviour
         //引用单例
         _instance = this;
         //加载资源
-        AddUIPrefabs(ConstDates.UIStart);
-        AddUIPrefabs(ConstDates.UILogin);
-        AddUIPrefabs(ConstDates.UIRegister);
-        AddUIPrefabs(ConstDates.UISelectSever);
-        AddUIPrefabs(ConstDates.UISelectRole);
+        //AddUIPrefabs(ConstDates.UIStart);
+        //AddUIPrefabs(ConstDates.UILogin);
+        //AddUIPrefabs(ConstDates.UIRegister);
+        //AddUIPrefabs(ConstDates.UISelectSever);
+        //AddUIPrefabs(ConstDates.UISelectRole);        
+        
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIStart);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UILogin);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIRegister);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UISelectSever);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UISelectRole);
+
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
     }
-    #region 加载所有的预支体界面
-    //获取预支体存到字典中
-    void AddUIPrefabs(string UIname)
+
+    /// <summary>
+    /// 加载所有的预支体界面
+    /// </summary>
+    /// <param name="UIname">UI界面的名字</param>
+    //void AddUIPrefabsHj(string UIname)
+    //{
+    //    string path = ConstDates.ResourcePrefabDirHj + "/" + UIname;
+    //    GameObject obj = Resources.Load<GameObject>(path);
+    //    if (obj) UIObject.Add(UIname, obj);
+    //}
+
+    /// <summary>
+    /// 加载所有的预支体界面
+    /// </summary>
+    /// <param name="selfPath">自己定义自己的预设体路径</param>
+    /// <param name="UIname">UI界面的名字</param>
+    void AddUIPrefabs(string selfPath,string UIname)
     {
-        string path = ConstDates.ResourcePrefabDir + "/" + UIname;
+        string path = selfPath + "/" + UIname;
         GameObject obj = Resources.Load<GameObject>(path);
         if (obj) UIObject.Add(UIname, obj);
     }
-    #endregion
-    #region 界面入栈
+
+    /// <summary>
+    /// 界面入栈
+    /// </summary>
+    /// <param name="UIname">UI界面的名字</param>
     public void PushUIPanel(string UIname)
     {
         //说明栈内存在界面
@@ -52,16 +78,18 @@ public class UIManager : MonoBehaviour
             //返回栈顶界面不移除
             UIBase old_pop = UIStack.Peek();
             old_pop.OnPausing();//暂时停用
-
         }
         //创建界面
         UIBase new_pop = GetUIBase(UIname);
         new_pop.OnEntering();
         UIStack.Push(new_pop);
-
     }
-    #endregion
-    #region 创建界面
+
+    /// <summary>
+    /// 创建界面
+    /// </summary>
+    /// <param name="UIname">UI界面的名字</param>
+    /// <returns></returns>
     UIBase GetUIBase(string UIname)
     {
         foreach (var name in currentUI.Keys)
@@ -79,10 +107,11 @@ public class UIManager : MonoBehaviour
         UIBase uibase = objUI.GetComponent<UIBase>();
         currentUI.Add(UIname, uibase);
         return uibase;
-
     }
-    #endregion
-    #region 界面出栈
+
+    /// <summary>
+    /// 界面出栈
+    /// </summary>
     public void PopUIPanel()
     {
         if (UIStack.Count == 0) return;
@@ -93,9 +122,7 @@ public class UIManager : MonoBehaviour
         {
             UIBase new_pop = UIStack.Peek();
             new_pop.OnEntering();
-
         }
     }
-    #endregion
 
 }

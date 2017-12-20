@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UIStart :UIBase
 {    
@@ -12,7 +13,8 @@ public class UIStart :UIBase
         
         gameObject.SetActive(true);
         //播放声音
-        SoundManager.Instance.PlayBGSound(ConstDates.Bgm_1);
+        //SoundManager.Instance.PlayBGSound(ConstDates.Bgm_1);
+        SoundManager.Instance.PlayBGSound(ConstDates.ResourceAudiosDirHj,ConstDates.Bgm_1);
         pleaseLoginbg = GameObject.Find("PleaseLoginBG").GetComponent<Image>();
         loginBtn = pleaseLoginbg.transform.Find("PleaseLoginBtn").GetComponent<Button>();
         pleaseLoginbg.gameObject.SetActive(false);
@@ -52,7 +54,7 @@ public class UIStart :UIBase
     {
         //if (PlayerLogin.isLogin)
         //{            
-            //UIManager.Instance.PushUIPanel(ConstDates.UISelectRole);
+        //UIManager.Instance.PushUIPanel(ConstDates.UISelectRole);
         //}
         //else
         //{

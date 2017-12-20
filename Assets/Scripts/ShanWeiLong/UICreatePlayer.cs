@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UICreatePlayer : UIBase {
 
@@ -22,5 +23,13 @@ public class UICreatePlayer : UIBase {
     public override void OnExiting()
     {
 
+    }
+
+    /// <summary>
+    /// 切换到旋转角色场景
+    /// </summary>
+    public void ChangerToSelectPlayerScene()
+    {
+        SceneManager.LoadSceneAsync(ConstDates.SelectPlayerSceneIndex);
     }
 }

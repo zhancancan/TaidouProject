@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 该类管理所有UI界面
@@ -14,14 +15,14 @@ public class UIManager : MonoBehaviour
         get{ return _instance;}
     }
 
-    //管理所有的页面显示
-    Stack<UIBase> UIStack = new Stack<UIBase>();
+    //控制界面的显示与隐藏
+    public Stack<UIBase> currentUIStack = new Stack<UIBase>();
 
-    //根据名字保存所有进栈的界面
-    Dictionary<string, UIBase> currentUI = new Dictionary<string, UIBase>();
+    //根据名字保存所有已经显示过的页面
+    public Dictionary<string, UIBase> uiHaveLoaded = new Dictionary<string, UIBase>();
 
     //保存所有的预支体
-    Dictionary<string, GameObject> UIObject = new Dictionary<string, GameObject>();
+    Dictionary<string, GameObject> uiObject = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
@@ -34,12 +35,16 @@ public class UIManager : MonoBehaviour
         //AddUIPrefabs(ConstDates.UISelectSever);
         //AddUIPrefabs(ConstDates.UISelectRole);        
         
+        //hj
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIStart);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UILogin);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIRegister);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UISelectSever);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UISelectRole);
-
+        //swl
+        AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISelectPlayer);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UICreatePlayer);
+        //zcc
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
     }
 
@@ -63,7 +68,7 @@ public class UIManager : MonoBehaviour
     {
         string path = selfPath + "/" + UIname;
         GameObject obj = Resources.Load<GameObject>(path);
-        if (obj) UIObject.Add(UIname, obj);
+        if (obj) uiObject.Add(UIname, obj);
     }
 
     /// <summary>
@@ -73,16 +78,16 @@ public class UIManager : MonoBehaviour
     public void PushUIPanel(string UIname)
     {
         //说明栈内存在界面
-        if (UIStack.Count > 0)
+        if (currentUIStack.Count > 0)
         {
             //返回栈顶界面不移除
-            UIBase old_pop = UIStack.Peek();
+            UIBase old_pop = currentUIStack.Peek();
             old_pop.OnPausing();//暂时停用
         }
         //创建界面
         UIBase new_pop = GetUIBase(UIname);
         new_pop.OnEntering();
-        UIStack.Push(new_pop);
+        currentUIStack.Push(new_pop);
     }
 
     /// <summary>
@@ -92,20 +97,21 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     UIBase GetUIBase(string UIname)
     {
-        foreach (var name in currentUI.Keys)
+        //currentUI已经有该UI界面
+        foreach (var name in uiHaveLoaded.Keys)
         {
             if (name == UIname)
             {
-                return currentUI[UIname];
+                return uiHaveLoaded[UIname];
             }
         }
         //如果currentUI没有界面，那么应该根据预支体实例化界面并保存在其中
-        GameObject UIPrefab = UIObject[UIname];
-        GameObject objUI = Instantiate(UIPrefab);
+        GameObject uiPrefab = uiObject[UIname];
+        GameObject objUI = Instantiate(uiPrefab);
         objUI.name = UIname;
 
         UIBase uibase = objUI.GetComponent<UIBase>();
-        currentUI.Add(UIname, uibase);
+        uiHaveLoaded.Add(UIname, uibase);
         return uibase;
     }
 
@@ -114,13 +120,13 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void PopUIPanel()
     {
-        if (UIStack.Count == 0) return;
-        UIBase old_pop = UIStack.Pop();
+        if (currentUIStack.Count == 0) return;
+        UIBase old_pop = currentUIStack.Pop();
         old_pop.OnExiting();
 
-        if (UIStack.Count > 0)
+        if (currentUIStack.Count > 0)
         {
-            UIBase new_pop = UIStack.Peek();
+            UIBase new_pop = currentUIStack.Peek();
             new_pop.OnEntering();
         }
     }

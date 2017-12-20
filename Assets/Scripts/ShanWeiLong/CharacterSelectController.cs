@@ -21,11 +21,15 @@ public class CharacterSelectController : MonoBehaviour {
     GameObject assassinTXT;
 
     //战士，刺客模型
-    public GameObject soldierObj;
-    public GameObject assassinObj;
+    private GameObject soldierObj;
+    private GameObject assassinObj;
 
     private void Awake()
     {
+        //需要修改
+        soldierObj = Instantiate(Resources.Load<GameObject>(ConstDates.ResourcePrefabDirSwl + "/BoyCreateModel"));
+        assassinObj = Instantiate(Resources.Load<GameObject>(ConstDates.ResourcePrefabDirSwl + "/GirlCreateModel"));
+
         returnBtn = transform.Find("ReturnBTN").GetComponent<Button>();
         createPersonBtn=transform.Find("CreatePersonBTN").GetComponent<Button>();
         soldierBtn = transform.Find("SoldierBTN").GetComponent<Button>();

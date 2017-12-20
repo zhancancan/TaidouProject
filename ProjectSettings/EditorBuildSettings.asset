@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HuJian/StartScene/StartScene.unity
+    guid: 8e3ac717aa41b4e42a4e73e9b21baaa9
+  - enabled: 1
+    path: Assets/Scenes/ShanWeiLong/SelectScene/SelectPlayerScene.unity
+    guid: 539c193e703bb954ba8245a3ab48d51f
+  - enabled: 1
+    path: Assets/Scenes/ShanWeiLong/SelectScene/CreatePlayerScene.unity
+    guid: 22bbeaa885ade5a429d36ca2f4bdc5ac
+  - enabled: 1
+    path: Assets/Scenes/ZhangCanCan/MianScene/MainScene.unity
+    guid: f58de7fbb4342c94baa59b8628ca68d5

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
-
-public class InventoryItemUI : MonoBehaviour {
+public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
     Image image;
     Text txt;
     Image Image
@@ -30,7 +31,7 @@ public class InventoryItemUI : MonoBehaviour {
             return txt;
         }
     }
-     public  InventoryItem it;
+    public InventoryItem it;
     public void SetInventoryItem(InventoryItem it)
     {
         this.it = it;
@@ -54,8 +55,8 @@ public class InventoryItemUI : MonoBehaviour {
     private void Awake()
     {
         btn = GetComponent<Button>();
-        
-        btn.onClick.AddListener(delegate() {
+        eq = new EquipPopup();
+        btn.onClick.AddListener(delegate () {
             if (it != null)
             {
                 object[] objectArray = new object[3];
@@ -67,11 +68,57 @@ public class InventoryItemUI : MonoBehaviour {
             }
         });
     }
+    EquipPopup eq;
+
+
+    public float Interval = 0.5f;
+
+    private float firstClicked = 0;
+    private float secondClicked = 0;
+    bool isclick = false;
+
+
+    bool isenter = false;
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && isenter == true)
         {
-           
+            secondClicked = Time.realtimeSinceStartup;
+
+            if (secondClicked - firstClicked < Interval && isclick == false)
+            {
+                if (it != null && it.Inventory.InventoryType == InventoryType.Equip)
+                {
+
+
+                    eq.Onequip(it);
+                    Clear();
+
+
+                }
+
+                isclick = true;
+            }
+            else
+            {
+                firstClicked = secondClicked;
+                isclick = false;
+            }
         }
+
+    }
+
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isenter = true;
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isenter = false;
     }
 }

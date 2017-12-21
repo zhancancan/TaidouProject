@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HeadMask
-  m_Shader: {fileID: 4800000, guid: 9ccc0bfdfbda4074cb0c2e8d959c7046, type: 3}
+  m_Name: PetCameraBG1
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,13 +39,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 530fec82c171db046930dc66a1433720, type: 3}
+        m_Texture: {fileID: 2800000, guid: 75d653a9eaf618749823dd241eadf2da, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0.04, y: 0.12}
-    - _Mask:
-        m_Texture: {fileID: 2800000, guid: da64c479707f605459fde16a7bb2be0e, type: 3}
-        m_Scale: {x: 1.5, y: 1.5}
-        m_Offset: {x: -0.25, y: -0.25}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}

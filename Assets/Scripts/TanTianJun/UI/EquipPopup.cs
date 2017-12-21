@@ -7,6 +7,7 @@ public class EquipPopup : MonoBehaviour {
 
     InventoryItem it;
     InventoryItemUI itUI;
+    KnapsackRoleEquip roleEquip;
     Image equipimg;
     Text equipText, qualityText, damageText, hpText, desText, powerText,levelText;
     Button closebtn;
@@ -34,21 +35,22 @@ public class EquipPopup : MonoBehaviour {
         equipbtn.onClick.AddListener(onequip);
 
     }
-    public void Show(InventoryItem it,InventoryItemUI itUI,bool isleft=true)
+    public void Show(InventoryItem it,InventoryItemUI itUI,KnapsackRoleEquip roleEquip,bool isleft=true)
     {
         gameObject.SetActive(true);
         this.it = it;
         this.itUI = itUI;
+        this.roleEquip = roleEquip;
         this.isleft = isleft;
         Vector3 pos = transform.localPosition;
         if (isleft)
         {
-            transform.localPosition = new Vector3(-480, pos.y, pos.z);
+            transform.localPosition = new Vector3(-Mathf.Abs(pos.x), pos.y, pos.z);
             btntxt.text = "装备";
         }
         else
         {
-            transform.localPosition = new Vector3(-145, pos.y, pos.z);
+            transform.localPosition = new Vector3(Mathf.Abs(pos.x), pos.y, pos.z);
             btntxt.text = "卸下";
         }
         
@@ -69,17 +71,40 @@ public class EquipPopup : MonoBehaviour {
         gameObject.SetActive(false);
     }
   
-    void onequip()
+     void onequip()
     {
         
-        itUI.Clear();
-     
-        PlayInfo._instance.Dresson(it);
-        
-        ClearObject();
-      
-
+       
+        if (isleft)
+        {
+            itUI.Clear();//清空装备身上的各种
+            PlayInfo._instance.DressOn(it);
+        }
+        else
+        {
+            roleEquip.Clear();
+            PlayInfo._instance.DressOff(it);
+        }
+       
         gameObject.SetActive(false);
+    }
+    public void Onequip(InventoryItem it)
+    {
+        this.it = it;
+       
+
+            PlayInfo._instance.DressOn(it);
+
+        
+      
+          
+        
+        
+    }
+    public void Offequip(InventoryItem it)
+    {
+        this.it = it;
+        PlayInfo._instance.DressOff(it);
     }
     void ClearObject()
     {

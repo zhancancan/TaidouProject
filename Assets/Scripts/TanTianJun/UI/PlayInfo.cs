@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayInfo : MonoBehaviour {
+
+public class PlayInfo : MonoBehaviour
+{
     public static PlayInfo _instance;
     public InventoryItem helmet, clothes, weapon, ring, wing, necklace, bracelet, shoes;
-   
+
     //int helmetID, clothesID, weaponID, ringID, wingID, necklaceID, braceletID, shoesID;
     //public int HelmetID
     //{
@@ -33,10 +35,10 @@ public class PlayInfo : MonoBehaviour {
         _instance = this;
     }
 
-    public void Dresson(InventoryItem it)
+    public void DressOn(InventoryItem it)
     {
         it.Isdressed = true;
-        
+
         bool isdressed = false;
         InventoryItem inventoryItemDressed = null;
         switch (it.Inventory.EquipType)
@@ -114,4 +116,63 @@ public class PlayInfo : MonoBehaviour {
         }
         OnPlayInfoChanged(InfoType.Equip);
     }
+    public void DressOff(InventoryItem it)
+    {
+
+        switch (it.Inventory.EquipType)
+        {
+            case EquipType.Bracelet:
+                if (bracelet != null)
+                {
+                    bracelet = null;
+                }
+                break;
+            case EquipType.Clothes:
+                if (clothes != null)
+                {
+                    clothes = null;
+                }
+                break;
+            case EquipType.Helmet:
+                if (helmet != null)
+                {
+                    helmet = null;
+                }
+                break;
+            case EquipType.Necklace:
+                if (necklace != null)
+                {
+                    necklace = null;
+                }
+                break;
+            case EquipType.Ring:
+                if (ring != null)
+                {
+                    ring = null;
+                }
+                break;
+            case EquipType.Shoes:
+                if (shoes != null)
+                {
+                    shoes = null;
+                }
+                break;
+            case EquipType.Weapon:
+                if (weapon != null)
+                {
+                    weapon = null;
+                }
+                break;
+            case EquipType.Wing:
+                if (wing != null)
+                {
+                    wing = null;
+                }
+                break;
+        }
+        it.Isdressed = false;
+        InventoryUI._instance.AddInventoryItem(it);
+        OnPlayInfoChanged(InfoType.Equip);
+    }
+
 }

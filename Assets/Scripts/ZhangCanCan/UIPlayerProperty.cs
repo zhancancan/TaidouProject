@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIMain:UIBase{
-    private Button playerPropertyBtn;
+public class UIPlayerProperty : UIBase
+{
+    private Button exitBtn;
 
     void Awake()
     {
-        playerPropertyBtn = transform.Find("FunctionBar/SettingBtn").GetComponent<Button>();
+        exitBtn = transform.Find("PlayerPropertyBg/Exit").GetComponent<Button>();
     }
 
     void Start()
     {
-        playerPropertyBtn.onClick.AddListener(OnPlayerPropertyBtnClick);
+        exitBtn.onClick.AddListener(OnExitBtnClick);
     }
 
     public override void OnEntering()
@@ -23,7 +25,7 @@ public class UIMain:UIBase{
 
     public override void OnPausing()
     {
-       
+
     }
 
     public override void OnResuming()
@@ -33,14 +35,15 @@ public class UIMain:UIBase{
 
     public override void OnExiting()
     {
-       
+        gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// 点击人物属性按钮
+    /// 退出button点击
     /// </summary>
-    void OnPlayerPropertyBtnClick()
+    void OnExitBtnClick()
     {
-        UIManager.Instance.PushUIPanel(ConstDates.UIPlayerProperty);
+        UIManager.Instance.PopUIPanel();
     }
+
 }

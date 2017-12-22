@@ -32,6 +32,7 @@ public class ConstDates {
     public const string UICreatePlayer = "UICreatePlayer";
     //zcc
     public const string UIMain = "UIMain";
+    public const string UIPlayerProperty = "UIPlayerProperty";
 
     //当前运行场景的名字
     //hj

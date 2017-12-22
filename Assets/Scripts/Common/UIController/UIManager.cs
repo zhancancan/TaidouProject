@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
         AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UICreatePlayer);
         //zcc
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIPlayerProperty);
     }
 
     /// <summary>

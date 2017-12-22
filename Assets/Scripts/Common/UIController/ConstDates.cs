@@ -16,9 +16,18 @@ public class ConstDates {
     //hj
     public const string ResourceAudiosDirHj = "HuJian/Audios";
 
+    //定义图片路径
+    public const string ResourceTexturesDirHj = "ZhuPengFei/Textures";
+
     //背景音频
     //hj
     public const string Bgm_1 = "UIStartBGM";
+
+    //图片
+    //zpf
+    public const string Head_Lion = "Head_Lion";
+    public const string Head_Fairy = "Head_Fairy";
+    public const string Head_Elf = "Head_Elf";
 
     //UI具体界面
     //hj

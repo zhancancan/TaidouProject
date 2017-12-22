@@ -8,7 +8,7 @@ using System;
 public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     Image image;
-    Text txt;
+    Text txt;//物品的数量
     Image Image
     {
         get
@@ -52,6 +52,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Image.sprite = Resources.Load("TanTianJun/Image/bg_道具", typeof(Sprite)) as Sprite;
     }
     Button btn;
+    EquipPopup eq;
     private void Awake()
     {
         btn = GetComponent<Button>();
@@ -68,11 +69,8 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             }
         });
     }
-    EquipPopup eq;
-
 
     public float Interval = 0.5f;
-
     private float firstClicked = 0;
     private float secondClicked = 0;
     bool isclick = false;
@@ -90,14 +88,23 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 if (it != null && it.Inventory.InventoryType == InventoryType.Equip)
                 {
-
-
                     eq.Onequip(it);
                     Clear();
-
-
                 }
+                else if(it!=null &&it.Inventory.InventoryType==InventoryType.Drug|it.Inventory.InventoryType==InventoryType.Box)
+                {
+                   
+                    it.Count -= 1;
+                    
+                    if (it.Count == 1) { Txt.text = ""; }
+                    else  if (it.Count<=0)
+                    {
+                        InventoryManager._instance.inventoryItemList.Remove(it);
+                        Clear();
 
+                    }
+                    else { Txt.text = it.Count.ToString(); }
+                }
                 isclick = true;
             }
             else
@@ -116,9 +123,14 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         isenter = true;
 
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         isenter = false;
+    }
+    public void ChangeCount(int count)//物品数量的改变
+    {
+        if(it.Count-count<=0) {  Clear(); }
+        else if (it.Count - count == 1) { Txt.text = ""; }
+        else { Txt.text = (it.Count - count).ToString(); }
     }
 }

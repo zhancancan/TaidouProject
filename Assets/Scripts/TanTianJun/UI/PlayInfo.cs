@@ -115,7 +115,7 @@ public class PlayInfo : MonoBehaviour
             InventoryUI._instance.AddInventoryItem(inventoryItemDressed);
         }
         OnPlayInfoChanged(InfoType.Equip);
-    }
+    }    //穿装备
     public void DressOff(InventoryItem it)
     {
 
@@ -173,6 +173,15 @@ public class PlayInfo : MonoBehaviour
         it.Isdressed = false;
         InventoryUI._instance.AddInventoryItem(it);
         OnPlayInfoChanged(InfoType.Equip);
-    }
+    }   //脱装备
+    public void InventoryUse(InventoryItem it,int count)
+    {    //使用效果
 
+        //使用完是否存在
+        it.Count -= count;
+        if (it.Count <= 0)
+        {
+            InventoryManager._instance.inventoryItemList.Remove(it);
+        }
+    }
 }

@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour {
     public static InventoryUI _instance;
-  public   List<InventoryItemUI> itemUIList = new List<InventoryItemUI>();//所有物品格子
-
+    public   List<InventoryItemUI> itemUIList = new List<InventoryItemUI>();//所有物品格子
+    Button tidybtn;
     private void Awake()
     {
         _instance = this;
+        tidybtn = GameObject.Find("BagDetails/tidybtn").GetComponent<Button>();
+        tidybtn.onClick.AddListener(UpdateShow);
         InventoryManager._instance.OnInventoryChange += this.OnInventoryChange;
     }
    
@@ -20,14 +23,19 @@ public class InventoryUI : MonoBehaviour {
     {
         UpdateShow();
     }
-    void UpdateShow()
+     public void UpdateShow()
     {
+        int temp = 0;
         for (int i = 0; i < InventoryManager._instance.inventoryItemList.Count; i++)
         {
             InventoryItem it = InventoryManager._instance.inventoryItemList[i];
-            itemUIList[i].SetInventoryItem(it);
+            if (it.Isdressed == false)
+            {
+                itemUIList[temp].SetInventoryItem(it);
+                temp++;
+            }
         }
-        for (int i = InventoryManager._instance.inventoryItemList.Count; i < itemUIList.Count; i++)
+        for (int i = temp; i < itemUIList.Count; i++)
         {
             
             itemUIList[i].Clear();

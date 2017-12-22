@@ -9,24 +9,53 @@ public class InventoryPopup : MonoBehaviour {
     Image img;
     Text nametxt, destxt, btntxt;
     Button closebtn;
+    Button usebtn, useallbtn;
+    InventoryItemUI itUI;
     private void Awake()
     {
         img = transform.Find("Bg/Introduction/Img").GetComponent<Image>();
         nametxt = transform.Find("Bg/Introduction/NameText").GetComponent<Text>();
         destxt = transform.Find("Bg/Introduction/DesText").GetComponent<Text>();
-        btntxt = transform.Find("Bg/usetenbtn/Text/Text").GetComponent<Text>();
+        btntxt = transform.Find("Bg/useallbtn/Text/Text").GetComponent<Text>();
         closebtn = transform.Find("Bg/Close").GetComponent<Button>();
-        closebtn.onClick.AddListener(() => {it=null; gameObject.SetActive(false); });
+        closebtn.onClick.AddListener(Close);
+        usebtn = transform.Find("Bg/usebtn").GetComponent<Button>();
+        useallbtn = transform.Find("Bg/useallbtn").GetComponent<Button>();
+        usebtn.onClick.AddListener(OnUse);
+        useallbtn.onClick.AddListener(OnUseall);
     }
-    public void Show(InventoryItem it)
+    public void Show(InventoryItem it,InventoryItemUI itUI)
     {
         gameObject.SetActive(true);
         this.it = it;
-
+        this.itUI = itUI;
         img.sprite = it.Inventory.Icon;
      
         nametxt.text = it.Inventory.Name;
         destxt.text = it.Inventory.Des;
         btntxt.text = "(" + it.Count.ToString() + ")";
     } 
+    public void OnUse()  //左击使用
+    {
+        itUI.ChangeCount(1);
+        PlayInfo._instance.InventoryUse(it, 1);
+        Close();
+    }
+    public void OnUseall()
+    {
+        itUI.ChangeCount(it.Count);
+        PlayInfo._instance.InventoryUse(it, it.Count);
+        Close();
+    }
+   
+    void Clear()
+    {
+        this.it = null;
+       this.itUI = null;
+    }
+    public void Close()
+    {
+        Clear(); gameObject.SetActive(false);
+    }
 }
+

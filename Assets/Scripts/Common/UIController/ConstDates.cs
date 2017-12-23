@@ -11,6 +11,8 @@ public class ConstDates {
     public const string ResourcePrefabDirSwl = "ShanWeiLong/Prefabs";
     //zcc
     public const string ResourcePrefabDirZcc = "ZhangCanCan/Prefabs";
+    //ttj
+    public const string ResourcePrefabDirTtj = "TanTianJun/Prefabs";
 
     //定义音频路径
     //hj
@@ -42,6 +44,8 @@ public class ConstDates {
     //zcc
     public const string UIMain = "UIMain";
     public const string UIPlayerProperty = "UIPlayerProperty";
+    //Ttj
+    public const string UIBag = "UIBag";
 
     //当前运行场景的名字
     //hj

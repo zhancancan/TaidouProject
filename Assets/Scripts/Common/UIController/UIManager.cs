@@ -47,6 +47,8 @@ public class UIManager : MonoBehaviour
         //zcc
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIPlayerProperty);
+        //Ttj
+        AddUIPrefabs(ConstDates.ResourcePrefabDirTtj, ConstDates.UIBag);
     }
 
     /// <summary>
@@ -109,6 +111,7 @@ public class UIManager : MonoBehaviour
         //如果currentUI没有界面，那么应该根据预支体实例化界面并保存在其中
         GameObject uiPrefab = uiObject[UIname];
         GameObject objUI = Instantiate(uiPrefab);
+        print(objUI.name);
         objUI.name = UIname;
 
         UIBase uibase = objUI.GetComponent<UIBase>();

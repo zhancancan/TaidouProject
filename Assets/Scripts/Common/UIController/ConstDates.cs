@@ -19,7 +19,7 @@ public class ConstDates {
     public const string ResourceAudiosDirHj = "HuJian/Audios";
 
     //定义图片路径
-    public const string ResourceTexturesDirHj = "ZhuPengFei/Textures";
+    public const string ResourceTexturesDirZpf = "ZhuPengFei/Textures";
 
     //背景音频
     //hj

@@ -2,6 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public enum PetInfoType
+{
+    PetName,
+    PetHead,
+    PetHP,
+    StarLevel,
+    PetAtk,
+    PetDef,
+    PetCombat,
+    PetSkill,
+    PetEnergy,
+    All
+}
 public class PetInfo : MonoBehaviour {
 
     //宠物信息单例
@@ -18,10 +33,12 @@ public class PetInfo : MonoBehaviour {
      * 体力数
      */
     #endregion
+
+    #region 宠物拥有的属性
     private string petName;           //宠物名
     private string petHead;           //宠物头像
     private float petHP;              //宠物生命值
-    private int starLevel;            //宠物星阶等级
+    private int starLevelNum;            //宠物星阶等级
     private int petAtk;               //宠物攻击力
     private int petDef;               //宠物防御力
     private int petCombat;            //宠物战斗力
@@ -29,8 +46,21 @@ public class PetInfo : MonoBehaviour {
     private int petEnergy;            //宠物活力值
 
 
+    private int petWeaponID;            //宠物武器
+    private int petEquipID;             //宠物装备
+    #endregion
 
-    private float energyTimer;          //活力计时器
+
+    public float petEnergyTimer;          //活力计时器
+
+    //创建委托时间监听宠物属性面板是否有更改
+    public delegate void OnPetInfoChangedEvent(PetInfoType type);
+    public event OnPetInfoChangedEvent OnPetInfoChanged;
+
+
+
+
+
     #region  get/set
     public string PetName
     {
@@ -47,10 +77,10 @@ public class PetInfo : MonoBehaviour {
         get { return petHP; }
         set { petHP = value; }
     }
-    public int StarLevel
+    public int StarLevelNum
     {
-        get { return starLevel; }
-        set { starLevel = value; }
+        get { return starLevelNum; }
+        set { starLevelNum = value; }
     }
     public int PetAtk
     {
@@ -77,6 +107,16 @@ public class PetInfo : MonoBehaviour {
         get { return petEnergy; }
         set { petEnergy = value; }
     }
+    public int PetWeaponID
+    {
+        get { return petWeaponID; }
+        set { petWeaponID = value; }
+    }
+    public int PetEquipID
+    {
+        get { return petEquipID; }
+        set { petEquipID = value; }
+    }
     #endregion
 
 
@@ -85,38 +125,45 @@ public class PetInfo : MonoBehaviour {
         _petInstance = this;
     }
 
-
+    void Start()
+    {
+        PetInit();
+    }
     void Update()
     {
         //活力值的自动增长
-        if (this.energyTimer<100)
+        if (this.petEnergyTimer < 100)
         {
-            energyTimer += Time.deltaTime;
+            petEnergyTimer += Time.deltaTime;
             //60s增长一个活力值
-            if (this.energyTimer>=60)
+            if (this.petEnergyTimer >= 60)
             {
                 petEnergy++;
-                energyTimer -= 60;
+                petEnergyTimer -= 60;
+                OnPetInfoChanged(PetInfoType.PetEnergy);
             }
         }
         //活力值如果满了，就不增长，一直保持计时器为0
         else
         {
-            this.energyTimer = 0;
+            this.petEnergyTimer = 0;
         }
     }
 
-    void petInit()
+    void PetInit()
     {
         this.petName = "烈焰狂狮";
-        this.petHead = "Head_Lion";
+        //头像直接在需要调用时在Resources中获取
         this.petHP = 90;
-        this.starLevel = 1;
+        this.starLevelNum = 1;
         this.petAtk = 110;
         this.PetDef = 95;
         this.petCombat = 1125;
         this.petSkill = "狮吼";
         this.petEnergy = 95;
+        
+
+        OnPetInfoChanged(PetInfoType.All);
     }
 
 

@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 222335508001588476}
   - component: {fileID: 114083291346128324}
   m_Layer: 5
-  m_Name: PetDefNumber
+  m_Name: PetDefNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 222372688309498432}
   - component: {fileID: 114526899584223988}
   m_Layer: 5
-  m_Name: Head
+  m_Name: PetHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 223397322068751808}
   - component: {fileID: 114737727902592274}
   - component: {fileID: 114786525717593804}
+  - component: {fileID: 114942396307274044}
   m_Layer: 5
   m_Name: UIPet
   m_TagString: Untagged
@@ -550,6 +551,7 @@ GameObject:
   - component: {fileID: 223422772836567222}
   - component: {fileID: 114646482259585384}
   - component: {fileID: 114239385120295568}
+  - component: {fileID: 114499692355293934}
   m_Layer: 5
   m_Name: PetTopBG
   m_TagString: Untagged
@@ -654,7 +656,7 @@ GameObject:
   - component: {fileID: 222813430136536518}
   - component: {fileID: 114981965084176576}
   m_Layer: 5
-  m_Name: PetCombatNumber
+  m_Name: PetCombatNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,7 +740,7 @@ GameObject:
   - component: {fileID: 222924372971683906}
   - component: {fileID: 114539333910790280}
   m_Layer: 5
-  m_Name: PetAtkNumber
+  m_Name: PetAtkNum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1808,6 +1810,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114499692355293934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1559731372396284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda7fcae830530c47b9f1b383984e6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114515691502049812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1860,7 +1873,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: bfa4ba2a86373c04f928727387c30a39, type: 3}
+  m_Texture: {fileID: 2800000, guid: 9f0074efe93ac604ebd0b73a8fab3ac4, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2131,7 +2144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5168\u90E8\u6D3B\u529B\u56DE\u590D\uFF1A\n"
+  m_Text: "\u5168\u90E8\u6D3B\u529B\u6062\u590D\uFF1A\n"
 --- !u!114 &114793354204628080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2279,6 +2292,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114942396307274044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379508686167582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ce12cbb544e354c900f55ae6ad947d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114981965084176576
 MonoBehaviour:
   m_ObjectHideFlags: 1

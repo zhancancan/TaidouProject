@@ -27,14 +27,6 @@ public class KnapsackRole : MonoBehaviour {
     void UpdateShow()
     {
         PlayInfo info = PlayInfo._instance;
-        //helmet.SetId(info.HelmetID);
-        //wing.SetId(info.WingID);
-        //ring.SetId(info.RingID);
-        //necklace.SetId(info.NecklaceID);
-        //shoes.SetId(info.ShoesID);
-        //clothes.SetId(info.ClothesID);
-        //bracelet.SetId(info.BraceletID);
-        //weapon.SetId(info.WeaponID);
         helmet.SetInventoryItem(info.helmet);
         clothes.SetInventoryItem(info.clothes);
         shoes.SetInventoryItem(info.shoes);

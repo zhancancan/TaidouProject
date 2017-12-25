@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum PlayerType
+{
+    Warrior,
+    FemaleAssassion
+} 
 
 public class PlayInfo : MonoBehaviour
 {
@@ -16,6 +21,7 @@ public class PlayInfo : MonoBehaviour
     int _coin;      //金币
     int _energy;    //体力
     int _toughen;   //历练
+    PlayerType playertype;
     #endregion
     public static PlayInfo _instance;
     public InventoryItem helmet, clothes, weapon, ring, wing, necklace, bracelet, shoes;
@@ -137,8 +143,21 @@ public class PlayInfo : MonoBehaviour
             _toughen = value;
         }
     }
+
+    public PlayerType Playertype
+    {
+        get
+        {
+            return playertype;
+        }
+
+        set
+        {
+            playertype = value;
+        }
+    }
     #endregion
-  
+
     public delegate void OnPlayInfoChangedEvent(InfoType type);
     public event OnPlayInfoChangedEvent OnPlayInfoChanged;
     private void Awake()

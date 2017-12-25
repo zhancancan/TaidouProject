@@ -16,14 +16,17 @@ public class Knapsack : MonoBehaviour {
     
     private void Awake()
     {
+
         inventory = transform.Find("BagDetails/InventoryPopup").GetComponent<InventoryPopup>();
         equip = transform.Find("BagDetails/EquipPopup").GetComponent<EquipPopup>();
         t1 = transform.Find("BagDetails/ToggleGroup/Toggle").GetComponent<Toggle>();               //页数
         t2 = transform.Find("BagDetails/ToggleGroup/Toggle1").GetComponent<Toggle>();
         sc = transform.Find("BagDetails/bagdetails/ScrInventory/Scrollbar").GetComponent<Scrollbar>();   //滚动
         t1.onValueChanged.AddListener(ison);
+        close = transform.Find("BagDetails/Closebtn").GetComponent<Button>();    //关闭
+        close.onClick.AddListener(() =>transform.gameObject.SetActive(false));
+                              //整理
     }
-    //整理
     public void OnInventoryClick(object[] objectArray)
     {
         InventoryItem it = objectArray[0] as InventoryItem;

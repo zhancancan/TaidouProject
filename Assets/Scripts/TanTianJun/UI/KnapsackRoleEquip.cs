@@ -8,7 +8,7 @@ using System;
 public class KnapsackRoleEquip : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     Image img;
-    public  InventoryItem it;
+    public InventoryItem it;
     Image Img
     {
         get
@@ -20,6 +20,7 @@ public class KnapsackRoleEquip : MonoBehaviour,IPointerEnterHandler,IPointerExit
             return img;
         }
     }
+    public PowerShow powershow;
     
    
     public void SetId(int id)
@@ -86,13 +87,12 @@ public class KnapsackRoleEquip : MonoBehaviour,IPointerEnterHandler,IPointerExit
             {   
                 if (it != null && it.Inventory.InventoryType == InventoryType.Equip)
                 {
-                   
+                    int startvalue = PlayInfo._instance.GetOverallPower();
                     eq.Offequip(it);
                     Clear();
-                    
-
-
-
+                    int endvalue = PlayInfo._instance.GetOverallPower();
+                    powershow.ShowPowerChange(startvalue, endvalue);
+                    InventoryUI._instance.SendMessage("UpdateCount");
                 }
 
                 isclick = true;

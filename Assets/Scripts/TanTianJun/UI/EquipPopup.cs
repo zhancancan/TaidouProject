@@ -14,6 +14,7 @@ public class EquipPopup : MonoBehaviour {
     Button equipbtn;
     Text btntxt;
     bool isleft = true;
+    public PowerShow powershow;
     private void Awake()
     {
         equipimg = transform.Find("EquiptInf/EquipBg").GetComponent<Image>();
@@ -73,8 +74,7 @@ public class EquipPopup : MonoBehaviour {
   
      void onequip()
     {
-        
-       
+        int startvalue = PlayInfo._instance.GetOverallPower();
         if (isleft)
         {
             itUI.Clear();//清空装备身上的各种
@@ -87,19 +87,14 @@ public class EquipPopup : MonoBehaviour {
         }
        
         gameObject.SetActive(false);
+        int endvalue = PlayInfo._instance.GetOverallPower();
+        powershow.ShowPowerChange(startvalue, endvalue);
+        InventoryUI._instance.SendMessage("UpdateCount");
     }
     public void Onequip(InventoryItem it)
     {
         this.it = it;
-       
-
-            PlayInfo._instance.DressOn(it);
-
-        
-      
-          
-        
-        
+        PlayInfo._instance.DressOn(it);
     }
     public void Offequip(InventoryItem it)
     {

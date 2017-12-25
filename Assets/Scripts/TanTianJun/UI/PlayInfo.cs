@@ -6,28 +6,139 @@ using UnityEngine;
 
 public class PlayInfo : MonoBehaviour
 {
+    #region property
+    string _name;   //姓名
+    string _headPortrait;  //头像 
+    int _level=1;   //等级
+    int _power = 1;  //战斗力
+    int exp;    //经验
+    int _diamond;   //钻石
+    int _coin;      //金币
+    int _energy;    //体力
+    int _toughen;   //历练
+    #endregion
     public static PlayInfo _instance;
     public InventoryItem helmet, clothes, weapon, ring, wing, necklace, bracelet, shoes;
+    #region set;get
+    
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
 
-    //int helmetID, clothesID, weaponID, ringID, wingID, necklaceID, braceletID, shoesID;
-    //public int HelmetID
-    //{
-    //    get
-    //    {
-    //        return helmetID;
-    //    }
-    //    set
-    //    {
-    //        helmetID = value;
-    //    }
-    //}
-    //public int ClothesID { get { return clothesID; } set { clothesID = value; } }
-    //public int WeaponID { get { return weaponID; } set { weaponID = value; } }
-    //public int RingID { get { return ringID; } set { ringID = value; } }
-    //public int WingID { get { return wingID; }set { wingID = value; } }
-    //public int NecklaceID { get { return necklaceID; } set { necklaceID = value; } }
-    //public int BraceletID { get { return braceletID; }set { braceletID = value; } }
-    //public int ShoesID { get { return shoesID; }set { shoesID = value; } }
+        set
+        {
+            _name = value;
+        }
+    }
+
+    public string HeadPortrait
+    {
+        get
+        {
+            return _headPortrait;
+        }
+
+        set
+        {
+            _headPortrait = value;
+        }
+    }
+
+    public int Level
+    {
+        get
+        {
+            return _level;
+        }
+
+        set
+        {
+            _level = value;
+        }
+    }
+
+    public int Power
+    {
+        get
+        {
+            return _power;
+        }
+
+        set
+        {
+            _power = value;
+        }
+    }
+
+    public int Exp
+    {
+        get
+        {
+            return exp;
+        }
+
+        set
+        {
+            exp = value;
+        }
+    }
+
+    public int Diamond
+    {
+        get
+        {
+            return _diamond;
+        }
+
+        set
+        {
+            _diamond = value;
+        }
+    }
+
+    public int Coin
+    {
+        get
+        {
+            return _coin;
+        }
+
+        set
+        {
+            _coin = value;
+        }
+    }
+
+    public int Energy
+    {
+        get
+        {
+            return _energy;
+        }
+
+        set
+        {
+            _energy = value;
+        }
+    }
+
+    public int Toughen
+    {
+        get
+        {
+            return _toughen;
+        }
+
+        set
+        {
+            _toughen = value;
+        }
+    }
+    #endregion
+  
     public delegate void OnPlayInfoChangedEvent(InfoType type);
     public event OnPlayInfoChangedEvent OnPlayInfoChanged;
     private void Awake()
@@ -176,12 +287,49 @@ public class PlayInfo : MonoBehaviour
     }   //脱装备
     public void InventoryUse(InventoryItem it,int count)
     {    //使用效果
-
+        //TODO
         //使用完是否存在
         it.Count -= count;
         if (it.Count <= 0)
         {
             InventoryManager._instance.inventoryItemList.Remove(it);
         }
+    }
+    public int GetOverallPower()
+    {
+        float power = this.Power;
+        if (helmet != null)
+        {
+            power += helmet.Inventory.Power * (1 + (helmet.Level - 1) / 10f);
+        }
+        if (clothes != null)
+        {
+            power += clothes.Inventory.Power * (1 + (clothes.Level - 1) / 10f);
+        }
+        if (weapon != null)
+        {
+            power += weapon.Inventory.Power * (1 + (weapon.Level - 1) / 10f);
+        }
+        if (ring != null)
+        {
+            power += ring.Inventory.Power * (1 + (ring.Level - 1) / 10f);
+        }
+        if (wing != null)
+        {
+            power += wing.Inventory.Power * (1 + (wing.Level - 1) / 10f);
+        }
+        if (necklace != null)
+        {
+            power += necklace.Inventory.Power * (1 + (necklace.Level - 1) / 10f);
+        }
+        if (bracelet != null)
+        {
+            power += bracelet.Inventory.Power * (1 + (bracelet.Level - 1) / 10f);
+        }
+        if (shoes != null)
+        {
+            power += shoes.Inventory.Power * (1 + (shoes.Level - 1) / 10f);
+        }
+        return (int)power;
     }
 }

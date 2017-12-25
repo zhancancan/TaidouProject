@@ -53,6 +53,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     Button btn;
     EquipPopup eq;
+    public PowerShow powershow;
     private void Awake()
     {
         btn = GetComponent<Button>();
@@ -88,8 +89,12 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
             {
                 if (it != null && it.Inventory.InventoryType == InventoryType.Equip)
                 {
+                    int startvalue = PlayInfo._instance.GetOverallPower();
                     eq.Onequip(it);
                     Clear();
+                    int endvalue = PlayInfo._instance.GetOverallPower();
+                    powershow.ShowPowerChange(startvalue, endvalue);
+                    InventoryUI._instance.SendMessage("UpdateCount");
                 }
                 else if(it!=null &&it.Inventory.InventoryType==InventoryType.Drug|it.Inventory.InventoryType==InventoryType.Box)
                 {
@@ -101,6 +106,7 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
                     {
                         InventoryManager._instance.inventoryItemList.Remove(it);
                         Clear();
+                        InventoryUI._instance.SendMessage("UpdateCount");
 
                     }
                     else { Txt.text = it.Count.ToString(); }

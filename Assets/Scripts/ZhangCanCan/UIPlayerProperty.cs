@@ -25,7 +25,7 @@ public class UIPlayerProperty : UIBase
 
     public override void OnPausing()
     {
-
+        gameObject.SetActive(false);
     }
 
     public override void OnResuming()

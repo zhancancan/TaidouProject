@@ -15,7 +15,6 @@ public class UIBag : UIBase
     void Start()
     {
         exitBtn.onClick.AddListener(OnExitBtnClick);
-        
     }
 
     public override void OnEntering()
@@ -25,7 +24,7 @@ public class UIBag : UIBase
 
     public override void OnPausing()
     {
-
+        gameObject.SetActive(false);
     }
 
     public override void OnResuming()

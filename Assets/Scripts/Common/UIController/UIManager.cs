@@ -47,8 +47,10 @@ public class UIManager : MonoBehaviour
         //zcc
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIPlayerProperty);
-        //Ttj
+        //ttj
         AddUIPrefabs(ConstDates.ResourcePrefabDirTtj, ConstDates.UIBag);
+        //zpf
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UIPet);
     }
 
     /// <summary>
@@ -131,7 +133,7 @@ public class UIManager : MonoBehaviour
         if (currentUIStack.Count > 0)
         {
             UIBase new_pop = currentUIStack.Peek();
-            new_pop.OnEntering();
+            //new_pop.OnEntering();
         }
     }
 

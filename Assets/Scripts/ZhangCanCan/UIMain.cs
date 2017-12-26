@@ -36,6 +36,7 @@ public class UIMain:UIBase{
         petBtn.onClick.AddListener(OnPetBtnClick);
         playerPropertyBtn.onClick.AddListener(OnPlayerPropertyBtnClick);
         bagBtn.onClick.AddListener(OnBagBtnClick);
+        settingBtn.onClick.AddListener(OnSettingBtnClick);
     }
 
     public override void OnEntering()
@@ -80,5 +81,13 @@ public class UIMain:UIBase{
     void OnBagBtnClick()
     {
         UIManager.Instance.PushUIPanel(ConstDates.UIBag);
+    }
+
+    /// <summary>
+    /// 点击系统设定按钮
+    /// </summary>
+    void OnSettingBtnClick()
+    {
+        UIManager.Instance.PushUIPanel(ConstDates.UISystemSetting);
     }
 }

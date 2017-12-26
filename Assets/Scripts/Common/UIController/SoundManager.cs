@@ -53,19 +53,20 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //播放背景音
-    //public void PlayBGSound(string name)
-    //{
-    //    string path = ConstDates.ResourceAudiosDir + "/" + name;
-    //    AudioClip ac = Resources.Load<AudioClip>(path);
+    //播放背景音(共用)
+    public void PlayBGSound(string name)
+    {
+        string path = ConstDates.ResourceAudiosDir + "/" + name;
+        AudioClip ac = Resources.Load<AudioClip>(path);
 
-    //    //设置播放音频的片段
-    //    audioMgr.clip = ac;
+        //设置播放音频的片段
+        audioMgr.clip = ac;
 
-    //    //播放音频
-    //    audioMgr.Play();
-    //}
+        //播放音频
+        audioMgr.Play();
+    }
 
+    //播放背景音(个人)
     public void PlayBGSound(string selfPath,string name)
     {
         string path = selfPath + "/" + name;
@@ -85,14 +86,15 @@ public class SoundManager : MonoBehaviour
         audioMgr.Stop();
     }
 
-    //播放音频
-    //public void PlayAudio(string name)
-    //{
-    //    string path = ConstDates.ResourceAudiosDir + "/" + name;
-    //    AudioClip ac = Resources.Load<AudioClip>(path);
-    //    AudioSource.PlayClipAtPoint(ac, Vector2.zero);
-    //}
+    //播放音频（共用）
+    public void PlayAudio(string name)
+    {
+        string path = ConstDates.ResourceAudiosDir + "/" + name;
+        AudioClip ac = Resources.Load<AudioClip>(path);
+        AudioSource.PlayClipAtPoint(ac, Vector2.zero);
+    }
 
+    //个人（个人）
     public void PlayAudio(string selfPath,string name)
     {
         string path = selfPath + "/" + name;

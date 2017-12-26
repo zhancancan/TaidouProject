@@ -29,12 +29,9 @@ public class UIManager : MonoBehaviour
         //引用单例
         _instance = this;
         //加载资源
-        //AddUIPrefabs(ConstDates.UIStart);
-        //AddUIPrefabs(ConstDates.UILogin);
-        //AddUIPrefabs(ConstDates.UIRegister);
-        //AddUIPrefabs(ConstDates.UISelectSever);
-        //AddUIPrefabs(ConstDates.UISelectRole);        
-        
+
+        //common
+        AddUIPrefabs(ConstDates.ResourcePrefabDirCommon, ConstDates.UISystemSetting);
         //hj
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIStart);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UILogin);
@@ -52,17 +49,6 @@ public class UIManager : MonoBehaviour
         //zpf
         AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UIPet);
     }
-
-    /// <summary>
-    /// 加载所有的预支体界面
-    /// </summary>
-    /// <param name="UIname">UI界面的名字</param>
-    //void AddUIPrefabsHj(string UIname)
-    //{
-    //    string path = ConstDates.ResourcePrefabDirHj + "/" + UIname;
-    //    GameObject obj = Resources.Load<GameObject>(path);
-    //    if (obj) UIObject.Add(UIname, obj);
-    //}
 
     /// <summary>
     /// 加载所有的预支体界面

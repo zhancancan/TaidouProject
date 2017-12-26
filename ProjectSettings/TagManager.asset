@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Equip
+<<<<<<< Updated upstream
   - Hero
+=======
+  - UISystemSetting
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

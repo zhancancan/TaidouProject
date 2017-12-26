@@ -5,6 +5,8 @@ using UnityEngine;
 public class ConstDates {
 
     //定义UI预支体路径
+    //common
+    public const string ResourcePrefabDirCommon = "Common/Prefabs";
     //hj
     public const string ResourcePrefabDirHj = "HuJian/Prefabs";
     //swl
@@ -17,6 +19,8 @@ public class ConstDates {
     public const string ResourcePrefabDirZpf = "ZhuPengFei/Prefabs";
 
     //定义音频路径
+    //public
+    public const string ResourceAudiosDir = "Common/Audios";
     //hj
     public const string ResourceAudiosDirHj = "HuJian/Audios";
 
@@ -34,6 +38,8 @@ public class ConstDates {
     public const string Head_Elf = "Head_Elf";
 
     //UI具体界面
+    //common
+    public const string UISystemSetting = "UISystemSetting";
     //hj
     public const string UIStart = "UIStart";    
     public const string UILogin = "UILogin";

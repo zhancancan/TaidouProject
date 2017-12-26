@@ -1545,6 +1545,60 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 33.472
       objectReference: {fileID: 0}
+    - target: {fileID: 1645222128281792, guid: ab98420d17b3f174881d0a7ce6893599, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 379.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 8.992218
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.9979225
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.2699597
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1.8605117
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.76478934
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224845123672811456, guid: ab98420d17b3f174881d0a7ce6893599,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab98420d17b3f174881d0a7ce6893599, type: 2}
   m_IsPrefabParent: 0

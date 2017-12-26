@@ -63,9 +63,13 @@ public class InventoryPopup : MonoBehaviour {
     }
     public void Close()
     {
+        CloseOn();
+        transform.parent.parent.SendMessage("DisableButton");
+    }
+    public void CloseOn()
+    {
         Clear();
         gameObject.SetActive(false);
-        transform.parent.parent.SendMessage("DisableButton");
     }
 }
 

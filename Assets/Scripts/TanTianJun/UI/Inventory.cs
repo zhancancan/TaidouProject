@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InfoType
-{
-    Equip
-}
+
 public enum InventoryType
 {
     Equip,

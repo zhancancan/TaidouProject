@@ -65,11 +65,15 @@ public class EquipPopup : MonoBehaviour {
         levelText.text = it.Level.ToString();
        
     }
-    void close()
+    public   void close()
+    {
+        closeon();
+        transform.parent.parent.SendMessage("DisableButton");
+    }
+   public  void closeon()
     {
         ClearObject();
         gameObject.SetActive(false);
-        transform.parent.parent.SendMessage("DisableButton");
     }
   
      void onequip()

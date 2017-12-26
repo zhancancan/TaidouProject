@@ -7,8 +7,23 @@ public enum PlayerType
 {
     Warrior,
     FemaleAssassion
-} 
+}
 
+public enum InfoType
+{   Name,
+    HeadPortait,
+    Level,
+    Power,
+    Exp,
+    Diamond,
+    Coin,
+    Energy,
+    Toughen,
+    Hp,
+    Damage,
+    Equip,
+    All
+}
 public class PlayInfo : MonoBehaviour
 {
     #region property
@@ -21,7 +36,11 @@ public class PlayInfo : MonoBehaviour
     int _coin;      //金币
     int _energy;    //体力
     int _toughen;   //历练
+    int _hp;   //血量
+    int _damage;  //伤害
     PlayerType playertype;
+    float energyTimer = 0;
+    float toughenTimer = 0;
     #endregion
     public static PlayInfo _instance;
     public InventoryItem helmet, clothes, weapon, ring, wing, necklace, bracelet, shoes;
@@ -156,6 +175,32 @@ public class PlayInfo : MonoBehaviour
             playertype = value;
         }
     }
+
+    public int Hp
+    {
+        get
+        {
+            return _hp;
+        }
+
+        set
+        {
+            _hp = value;
+        }
+    }
+
+    public int Damage
+    {
+        get
+        {
+            return _damage;
+        }
+
+        set
+        {
+            _damage = value;
+        }
+    }
     #endregion
 
     public delegate void OnPlayInfoChangedEvent(InfoType type);
@@ -164,7 +209,50 @@ public class PlayInfo : MonoBehaviour
     {
         _instance = this;
     }
-
+    private void Update()
+    {  //体力和历练的自动增长
+        if (this.Energy < 100)
+        {   
+            energyTimer += Time.deltaTime;
+            if (energyTimer > 60)
+            {
+                Energy += 1;
+                energyTimer -= 60;
+                OnPlayInfoChanged(InfoType.Energy);
+            }
+            else
+            {
+                this.energyTimer = 0;
+            }
+        }
+        if (this.Toughen < 50)
+        {
+            toughenTimer += Time.deltaTime;
+            if (toughenTimer > 60)
+            {
+                Toughen += 1;
+                toughenTimer -= 60;
+                OnPlayInfoChanged(InfoType.Toughen);
+            }
+            else
+            {
+                toughenTimer = 0;
+            }
+        }
+    }
+    void Init()
+    {
+        this.Coin = 9870;
+        this.Diamond = 1234;
+        this.Energy = 78;
+        this.Exp = 123;
+        this.HeadPortrait = "头像女性";
+        this.Level = 12;
+        this.Name = "王参";
+        this.Power = 1745;
+        this.Toughen = 34;
+        OnPlayInfoChanged(InfoType.All);
+    }
     public void DressOn(InventoryItem it)
     {
         it.Isdressed = true;
@@ -351,4 +439,9 @@ public class PlayInfo : MonoBehaviour
         }
         return (int)power;
     }
+    public void AddCoin(int count)
+    {
+        this.Coin += count;
+        OnPlayInfoChanged(InfoType.Coin);
+    }   //加钱
 }

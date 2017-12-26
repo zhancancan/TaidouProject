@@ -49,12 +49,13 @@ public class Knapsack : MonoBehaviour {
             {
                 roleEquip = objectArray[2] as KnapsackRoleEquip;
             }
-            
+            inventory.CloseOn();
             equip.Show(it, itUI, roleEquip,isleft);
         }
         else 
         {
             InventoryItemUI itUI = objectArray[2] as InventoryItemUI;
+            equip.closeon();
             inventory.Show(it,itUI);
         }
         if ((it.Inventory.InventoryType == InventoryType.Equip && isleft == true) || it.Inventory.InventoryType != InventoryType.Equip)
@@ -88,6 +89,12 @@ public class Knapsack : MonoBehaviour {
     }
     void OnSale()
     {
-        
+        int price = int.Parse(pricesale.text);
+        PlayInfo._instance.AddCoin(price);
+        InventoryManager._instance.RemoveInventoryItem(itUI.it);
+        itUI.Clear();
+        equip.close();
+        inventory.Close();
+        InventoryUI._instance.SendMessage("UpdateCount");
     }
 }

@@ -16,7 +16,7 @@ public class PetTopBG : MonoBehaviour
     private RawImage petHead;          //头像
     private Text petName;             //宠物名
     private Text petAtkNum;           //宠物攻击力
-    private Text petDefNum;           //宠物护甲
+    //private Text petDefNum;           //宠物护甲
     private Text petCombatNum;        //宠物战斗力
     private Text petSkillDescription; //宠物技能描述
     private Text petEnergyNum;        //宠物活力
@@ -36,7 +36,7 @@ public class PetTopBG : MonoBehaviour
         petHead = transform.Find("HeadCircle/PetHead").GetComponent<RawImage>();
         petName = transform.Find("PetName").GetComponent<Text>(); 
         petAtkNum = transform.Find("PetAtkNum").GetComponent<Text>();
-        petDefNum = transform.Find("PetDefNum").GetComponent<Text>();
+        //petDefNum = transform.Find("PetDefNum").GetComponent<Text>();
         petCombatNum = transform.Find("PetCombatNum").GetComponent<Text>();
         petSkillDescription = transform.Find("PetSkillDescription").GetComponent<Text>();
         petEnergyNum = transform.Find("PetEnergyNum").GetComponent<Text>();
@@ -61,7 +61,7 @@ public class PetTopBG : MonoBehaviour
     //当宠物信息发生更改时，会触发这个方法
     void OnPetInfoChanged(PetInfoType type)
     {
-        if (type==PetInfoType.PetAtk||type==PetInfoType.PetCombat||type==PetInfoType.PetDef||
+        if (type==PetInfoType.PetAtk||type==PetInfoType.PetCombat||
             type==PetInfoType.PetEnergy||type==PetInfoType.PetHead||type==PetInfoType.PetHP||
             type==PetInfoType.PetName||type==PetInfoType.PetSkill||type==PetInfoType.StarLevel||type==PetInfoType.All)
         {
@@ -79,7 +79,7 @@ public class PetTopBG : MonoBehaviour
         petName.text = petInfo.PetName.ToString();
         petHead.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Elf);    //加载Resources中的头像图片
         petAtkNum.text = petInfo.PetAtk.ToString();
-        petDefNum.text = petInfo.PetDef.ToString();
+        //petDefNum.text = petInfo.PetDef.ToString();
         petCombatNum.text = petInfo.PetCombat.ToString();
         petSkillDescription.text = petInfo.PetSkill.ToString();
         petEnergyNum.text = petInfo.PetEnergy.ToString()+"/100";

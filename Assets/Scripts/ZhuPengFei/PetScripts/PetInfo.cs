@@ -11,7 +11,7 @@ public enum PetInfoType
     PetHP,
     StarLevel,
     PetAtk,
-    PetDef,
+    //PetDef,
     PetCombat,
     PetSkill,
     PetEnergy,
@@ -40,7 +40,7 @@ public class PetInfo : MonoBehaviour {
     private float petHP;              //宠物生命值
     private int starLevelNum;            //宠物星阶等级
     private int petAtk;               //宠物攻击力
-    private int petDef;               //宠物防御力
+    //private int petDef;               //宠物防御力
     private int petCombat;            //宠物战斗力
     private string petSkill;          //宠物技能
     private int petEnergy;            //宠物活力值
@@ -50,7 +50,7 @@ public class PetInfo : MonoBehaviour {
     private int petEquipID;             //宠物装备
     #endregion
 
-
+    [HideInInspector]
     public float petEnergyTimer;          //活力计时器
 
     //创建委托时间监听宠物属性面板是否有更改
@@ -87,11 +87,11 @@ public class PetInfo : MonoBehaviour {
         get { return petAtk; }
         set { petAtk = value; }
     }
-    public int PetDef
-    {
-        get { return petDef; }
-        set { petDef = value; }
-    }
+    //public int PetDef
+    //{
+    //    get { return petDef; }
+    //    set { petDef = value; }
+    //}
     public int PetCombat
     {
         get { return petCombat; }
@@ -157,7 +157,7 @@ public class PetInfo : MonoBehaviour {
         this.petHP = 90;
         this.starLevelNum = 1;
         this.petAtk = 110;
-        this.PetDef = 95;
+        //this.PetDef = 95;
         this.petCombat = 1125;
         this.petSkill = "狮吼";
         this.petEnergy = 95;

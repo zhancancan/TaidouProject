@@ -36,7 +36,7 @@ public class EquipPopup : MonoBehaviour {
         equipbtn.onClick.AddListener(onequip);
 
     }
-    public void Show(InventoryItem it,InventoryItemUI itUI,KnapsackRoleEquip roleEquip,bool isleft=true)
+    public void Show(InventoryItem it,InventoryItemUI itUI,KnapsackRoleEquip roleEquip,bool isleft=true)     //物品的显示
     {
         gameObject.SetActive(true);
         this.it = it;
@@ -56,7 +56,6 @@ public class EquipPopup : MonoBehaviour {
         }
         
         equipimg.sprite = it.Inventory.Icon;
-       
         equipText.text = it.Inventory.Name;
         qualityText.text = it.Inventory.Quality.ToString();
         damageText.text = it.Inventory.Damage.ToString();
@@ -70,6 +69,7 @@ public class EquipPopup : MonoBehaviour {
     {
         ClearObject();
         gameObject.SetActive(false);
+        transform.parent.parent.SendMessage("DisableButton");
     }
   
      void onequip()
@@ -77,19 +77,22 @@ public class EquipPopup : MonoBehaviour {
         int startvalue = PlayInfo._instance.GetOverallPower();
         if (isleft)
         {
-            itUI.Clear();//清空装备身上的各种
-            PlayInfo._instance.DressOn(it);
+           
+            if (it.Inventory.InventoryType == InventoryType.Equip)
+            {
+                itUI.Clear();//清空装备身上的各种
+                PlayInfo._instance.DressOn(it);
+            }
         }
         else
         {
             roleEquip.Clear();
             PlayInfo._instance.DressOff(it);
         }
-       
-        gameObject.SetActive(false);
         int endvalue = PlayInfo._instance.GetOverallPower();
         powershow.ShowPowerChange(startvalue, endvalue);
         InventoryUI._instance.SendMessage("UpdateCount");
+        close();
     }
     public void Onequip(InventoryItem it)
     {

@@ -12,7 +12,9 @@ public class Knapsack : MonoBehaviour {
     ToggleGroup tg;
     Toggle t1, t2;
     Button close;
-    
+    Button btnsale;
+    Text pricesale;
+    InventoryItemUI itUI;
     
     private void Awake()
     {
@@ -25,13 +27,17 @@ public class Knapsack : MonoBehaviour {
         t1.onValueChanged.AddListener(ison);
         close = transform.Find("BagDetails/Closebtn").GetComponent<Button>();    //关闭
         close.onClick.AddListener(() =>transform.gameObject.SetActive(false));
-                              //整理
+        btnsale = transform.Find("BagDetails/btnsale").GetComponent<Button>();     //出售按钮
+        btnsale.onClick.AddListener(OnSale);
+        pricesale = transform.Find("BagDetails/btnsale/saleprice").GetComponent<Text>();     //出售价格      
+        DisableButton();
+              
     }
     public void OnInventoryClick(object[] objectArray)
     {
         InventoryItem it = objectArray[0] as InventoryItem;
         bool isleft = (bool)objectArray[1];
-        if (it.Inventory.InventoryType == InventoryType.Equip)
+        if (it.Inventory.InventoryType == InventoryType.Equip||it.Inventory.InventoryType==InventoryType.Pet||it.Inventory.InventoryType==InventoryType.PetEquip)
         {
             InventoryItemUI itUI = null;
             KnapsackRoleEquip roleEquip = null;
@@ -51,7 +57,12 @@ public class Knapsack : MonoBehaviour {
             InventoryItemUI itUI = objectArray[2] as InventoryItemUI;
             inventory.Show(it,itUI);
         }
-      
+        if ((it.Inventory.InventoryType == InventoryType.Equip && isleft == true) || it.Inventory.InventoryType != InventoryType.Equip)
+        {
+            this.itUI= objectArray[2] as InventoryItemUI;
+            EnableButton();
+            pricesale.text = (this.itUI.it.Inventory.Price * this.itUI.it.Count).ToString();
+        }
     }
     
     void ison(bool iss)
@@ -66,10 +77,17 @@ public class Knapsack : MonoBehaviour {
            
         }
     }
-   void OnClearUp()
+    void DisableButton()       //按钮的交互
     {
-
+        pricesale.text = "";
+        btnsale.interactable = false;
     }
-   
-
+    void EnableButton()
+    {
+        btnsale.interactable = true;
+    }
+    void OnSale()
+    {
+        
+    }
 }

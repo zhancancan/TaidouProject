@@ -45,8 +45,16 @@ public class InventoryManager : MonoBehaviour
                 case "Box":
                     inventory.InventoryType = InventoryType.Box;
                     break;
+                //-------------------------------宠物及宠物装备--------------------------
+                case "Pet":
+                    inventory.InventoryType = InventoryType.Pet;
+                    break;
+                case "PetEquip":
+                    inventory.InventoryType = InventoryType.PetEquip;
+                    break;
             }
-            if (inventory.InventoryType == InventoryType.Equip)
+            if (inventory.InventoryType == InventoryType.Equip|| inventory.InventoryType == InventoryType.PetEquip
+                || inventory.InventoryType == InventoryType.Pet)
             {
                 switch (proArray[4])
                 {
@@ -74,13 +82,21 @@ public class InventoryManager : MonoBehaviour
                     case "Bracelet":
                         inventory.EquipType = EquipType.Bracelet;
                         break;
+                    //------------------------宠物装备及武器---------------------
+                    case "PetCloth":
+                        inventory.EquipType = EquipType.PetCloth;
+                        break;
+                    case "PetWeapon":
+                        inventory.EquipType = EquipType.PetWeapon;
+                        break;
                 }
             }
-            //售价 星级 品质 伤害 生命 战斗力 作用类型 作用值 描述
-
-            if (inventory.InventoryType == InventoryType.Equip)
-            {
                 inventory.Price = int.Parse(proArray[5]);
+            //售价 星级 品质 伤害 生命 战斗力 作用类型 作用值 描述
+            if (inventory.InventoryType == InventoryType.Equip|| inventory.InventoryType == InventoryType.Pet|| 
+                inventory.InventoryType == InventoryType.PetEquip)
+            {
+               
                 inventory.Startlevel = int.Parse(proArray[6]);
                 inventory.Quality = int.Parse(proArray[7]);
                 inventory.Damage = int.Parse(proArray[8]);
@@ -102,11 +118,12 @@ public class InventoryManager : MonoBehaviour
         //随机生成主角拥有的物品
         for (int k = 0; k < 20; k++)
         {
-            int id = Random.Range(1001, 1020);
+            int id = Random.Range(1001, 1025);
 
             Inventory j = null;
             inventoryDict.TryGetValue(id, out j);
-            if (j.InventoryType == InventoryType.Equip)
+            if (j.InventoryType == InventoryType.Equip || j.InventoryType == InventoryType.PetEquip || j.InventoryType == InventoryType.Pet)
+          //if (j.InventoryType == InventoryType.Equip)
             {
                 InventoryItem it = new InventoryItem();
                 it.Inventory = j;
@@ -116,7 +133,7 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                //先判断备用里面是否存在
+                //先判断背包里面是否存在
                 InventoryItem it = null;
                 bool isExit = false;
                 foreach (InventoryItem temp in inventoryItemList)

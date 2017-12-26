@@ -154,17 +154,27 @@ public class PetInfo : MonoBehaviour {
     {
         this.petName = "烈焰狂狮";
         //头像直接在需要调用时在Resources中获取
-        this.petHP = 90;
+        this.petHP = this.starLevelNum*100;
         this.starLevelNum = 1;
-        this.petAtk = 110;
+        this.petAtk = this.starLevelNum*50;
         //this.PetDef = 95;
-        this.petCombat = 1125;
+        this.petCombat = (int)(this.petHP+this.petAtk);
         this.petSkill = "狮吼";
         this.petEnergy = 95;
-        
+
+
 
         OnPetInfoChanged(PetInfoType.All);
     }
 
+    //宠物穿上装备
+    void PutOnPetEquip(int id)
+    {
 
+    }
+    //宠物卸下装备
+    void PutOffPetEquip(int id)
+    {
+
+    }
 }

@@ -46,8 +46,8 @@ public class Inventory
     InfoType infoType;//作用类型，表示作用在哪个属性之上
     int applyValue;//作用值
     string des;//描述
-    //--------------------------------宠物-----------------------------
-    //string skill;//宠物技能
+    
+
 
 
     public int ID
@@ -126,11 +126,6 @@ public class Inventory
         get { return des; }
         set { des = value; }
     }
-    //--------------------------------宠物-----------------------------
-    //public string Skill
-    //{
-    //    get { return skill; }
-    //    set { skill = value; }
-    //}
+
 
 }

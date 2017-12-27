@@ -77,7 +77,7 @@ public class PetTopBG : MonoBehaviour
         hpSlider.value = petInfo.PetHP / 100f;
         petHPNum.text = petInfo.PetHP+"/100";
         petName.text = petInfo.PetName.ToString();
-        //petHead.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Elf);    //加载Resources中的头像图片
+        petHead.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Elf);    //加载Resources中的头像图片
         petAtkNum.text = petInfo.PetAtk.ToString();
         //petDefNum.text = petInfo.PetDef.ToString();
         petCombatNum.text = petInfo.PetCombat.ToString();

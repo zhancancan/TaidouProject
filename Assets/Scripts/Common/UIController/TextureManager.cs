@@ -22,7 +22,6 @@ public class TextureManager : MonoBehaviour
     public Texture GetTexture(string selfPath,string name)
     {
         string path = selfPath + "/" + name;
-        print(111);
         Texture texture = Resources.Load<Texture>(path);
         if (texture == null) print("null2");
         return texture;

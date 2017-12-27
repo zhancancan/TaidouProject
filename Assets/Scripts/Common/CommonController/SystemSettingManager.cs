@@ -19,12 +19,14 @@ public class SystemSettingManager : MonoBehaviour
 	
 	void Update ()
 	{
-	    systemSettingGo = GameObject.FindGameObjectWithTag(TagManager.SystemSetting);
 	    if (null == systemSettingGo)
 	    {
-	        
+	        systemSettingGo = GameObject.FindGameObjectWithTag(TagManager.SystemSetting);
+        }
+	    else
+	    {
+	        isShow = systemSettingGo.activeSelf;
 	    }
-
         if (Input.GetKeyDown(KeyCode.Escape))
 	    {
 	        if (isShow)

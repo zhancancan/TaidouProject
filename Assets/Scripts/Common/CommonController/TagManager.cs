@@ -8,7 +8,7 @@ public class TagManager {
     //hj
     //swl
     //zcc
-    public const string  SystemSetting= "UISystemSetting(clone)";
+    public const string  SystemSetting= "SystemSetting";
     //ttj
     //zpf
 

@@ -46,6 +46,7 @@ public class PetTopBG : MonoBehaviour
         PetInfo._petInstance.OnPetInfoChanged += this.OnPetInfoChanged;
     }
 
+
     void Update()
     {
         //更新宠物活力恢复计时器
@@ -61,9 +62,9 @@ public class PetTopBG : MonoBehaviour
     //当宠物信息发生更改时，会触发这个方法
     void OnPetInfoChanged(PetInfoType type)
     {
-        if (type==PetInfoType.PetAtk||type==PetInfoType.PetCombat||
-            type==PetInfoType.PetEnergy||type==PetInfoType.PetHead||type==PetInfoType.PetHP||
-            type==PetInfoType.PetName||type==PetInfoType.PetSkill||type==PetInfoType.StarLevel||type==PetInfoType.All)
+        if (type == PetInfoType.PetAtk || type == PetInfoType.PetCombat ||
+            type == PetInfoType.PetEnergy || type == PetInfoType.PetHead || type == PetInfoType.PetHP ||
+            type == PetInfoType.PetName || type == PetInfoType.PetSkill || type == PetInfoType.StarLevel || type == PetInfoType.All)
         {
             UpdateShowPetUI();
         }
@@ -74,19 +75,39 @@ public class PetTopBG : MonoBehaviour
     {
         PetInfo petInfo = PetInfo._petInstance;
         hpSlider.value = petInfo.PetHP / 100f;
-        starLevelNum.text = petInfo.StarLevelNum.ToString();
         petHPNum.text = petInfo.PetHP+"/100";
         petName.text = petInfo.PetName.ToString();
-        petHead.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Elf);    //加载Resources中的头像图片
+        //petHead.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Elf);    //加载Resources中的头像图片
         petAtkNum.text = petInfo.PetAtk.ToString();
         //petDefNum.text = petInfo.PetDef.ToString();
         petCombatNum.text = petInfo.PetCombat.ToString();
         petSkillDescription.text = petInfo.PetSkill.ToString();
         petEnergyNum.text = petInfo.PetEnergy.ToString()+"/100";
-
-        
-
-
+        starLevelNum.text = petInfo.StarLevelNum.ToString();
+        //星阶星星显示
+        #region  星阶星星显示
+        switch (starLevelNum.text)
+        {
+            case "2":
+                star2.enabled = true;               
+                break;
+            case "3":
+                star2.enabled = true;
+                star3.enabled = true;
+                break;
+            case "4":
+                star2.enabled = true;
+                star3.enabled = true;
+                star4.enabled = true;
+                break;
+            case "5":
+                star2.enabled = true;
+                star3.enabled = true;
+                star4.enabled = true;
+                star5.enabled = true;
+                break;
+        }
+        #endregion
     }
 
     //更新活力时间

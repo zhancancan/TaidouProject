@@ -154,14 +154,13 @@ public class PetInfo : MonoBehaviour {
     {
         this.petName = "烈焰狂狮";
         //头像直接在需要调用时在Resources中获取
-        this.petHP = this.starLevelNum*100;
-        this.starLevelNum = 1;
-        this.petAtk = this.starLevelNum*50;
+        this.petHP = 96;
+        this.starLevelNum = 3;
+        this.petAtk = 56;
         //this.PetDef = 95;
         this.petCombat = (int)(this.petHP+this.petAtk);
-        this.petSkill = "狮吼";
-        this.petEnergy = 95;
-
+        this.petSkill = "河东狮吼";
+        this.petEnergy = 96;
 
 
         OnPetInfoChanged(PetInfoType.All);

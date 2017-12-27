@@ -14,9 +14,6 @@ public class PetMoveAndAttack : MonoBehaviour
     public float speed = 1.0f;
     //宠物动画组件
     Animator petAnim;
-    //自动寻路组件
-    //private NavMeshAgent petAgent;
-
     //没遇见敌人
     bool NoMeetEnemy = true;
     //宠物是否攻击
@@ -31,8 +28,7 @@ public class PetMoveAndAttack : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         //获取动画组件
         petAnim = this.GetComponent<Animator>();
-        //获取自动寻路组件
-        //petAgent = this.GetComponent<NavMeshAgent>();
+     
     }
 
     private void Update()

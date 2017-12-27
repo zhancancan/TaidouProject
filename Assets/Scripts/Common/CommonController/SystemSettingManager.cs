@@ -19,7 +19,7 @@ public class SystemSettingManager : MonoBehaviour
 	
 	void Update ()
 	{
-	    systemSettingGo = GameObject.Find(TagManager.SystemSetting);
+	    systemSettingGo = GameObject.FindGameObjectWithTag(TagManager.SystemSetting);
 	    if (null == systemSettingGo)
 	    {
 	        

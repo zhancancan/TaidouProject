@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StoreItemType
+//zcc
+public enum StoreCommonItemType
 {
 
 }

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 5c26174bebcb8784ab76411d8f26d315
-timeCreated: 1514341319
+guid: 2fdcce9e821b4c94e967263bace43ba7
+timeCreated: 1514342393
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: "bg_\u5546\u5E97_0"
-    21300002: "bg_\u5546\u5E97_1"
-    21300004: "bg_\u5546\u5E97_2"
-    21300006: "bg_\u5546\u5E97_3"
-    21300008: "bg_\u5546\u5E97_4"
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -45,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -90,21 +85,7 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: "bg_\u5546\u5E97_1"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1455
-        height: 1001
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 

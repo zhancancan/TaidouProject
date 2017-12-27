@@ -123,4 +123,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 获取UI预设体实例
+    /// </summary>
+    /// <param name="UIname">UI预设体名字</param>
+    public GameObject GetUIPrefabInstance(string UIname)
+    {
+        GameObject uiPrefab = uiObject[UIname];
+        GameObject objUI = Instantiate(uiPrefab);
+        return objUI;
+    }
 }

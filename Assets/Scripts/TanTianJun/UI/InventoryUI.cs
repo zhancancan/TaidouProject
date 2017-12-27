@@ -89,8 +89,13 @@ public class InventoryUI : MonoBehaviour {
     {
         
         locklist.RemoveAt(0);
-        locklist[0].unlocked.interactable = true;
+
         OnRemoveUnlock();
+        if (locklist.Count == 0)
+        {
+            return;
+        }
+        else locklist[0].unlocked.interactable = true;
 
 
     }

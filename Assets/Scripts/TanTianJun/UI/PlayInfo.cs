@@ -24,6 +24,7 @@ public enum InfoType
     Equip,
     All
 }
+
 public class PlayInfo : MonoBehaviour
 {
     #region property
@@ -444,4 +445,9 @@ public class PlayInfo : MonoBehaviour
         this.Coin += count;
         OnPlayInfoChanged(InfoType.Coin);
     }   //加钱
+    public void CostCoin(int cout)
+    {
+        this.Coin -= cout;
+        OnPlayInfoChanged(InfoType.Coin);
+    }
 }

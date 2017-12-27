@@ -11,7 +11,8 @@ public enum InventoryType
     //---------------------宠物装备-------------------
     PetEquip,
     //--------------------宠物-----------------------
-    Pet
+    Pet,
+    Jewel
 }
 public enum EquipType
 {
@@ -26,6 +27,13 @@ public enum EquipType
     //-----------------宠物装备----------------
     PetCloth,
     PetWeapon
+}
+public enum JewelType
+{
+    Yellow,
+    Green,
+    Red,
+    Blue
 }
 public class Inventory
 {
@@ -43,6 +51,7 @@ public class Inventory
     InfoType infoType;//作用类型，表示作用在哪个属性之上
     int applyValue;//作用值
     string des;//描述
+    JewelType jeweType;
     
 
 
@@ -124,5 +133,16 @@ public class Inventory
         set { des = value; }
     }
 
+    public JewelType JeweType
+    {
+        get
+        {
+            return jeweType;
+        }
 
+        set
+        {
+            jeweType = value;
+        }
+    }
 }

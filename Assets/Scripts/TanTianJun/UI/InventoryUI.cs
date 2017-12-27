@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour {
     public static InventoryUI _instance;
+   
     public   List<InventoryItemUI> itemUIList = new List<InventoryItemUI>();//所有物品格子
+    public List<UnlockedUI> locklist = new List<UnlockedUI>();
     Button tidybtn;
     Text lattice;
     int count = 0;
+    int temp = 0;
     private void Awake()
     {
         _instance = this;
@@ -16,6 +19,14 @@ public class InventoryUI : MonoBehaviour {
         tidybtn.onClick.AddListener(UpdateShow);
         lattice = GameObject.Find("Lattice").GetComponent<Text>();
         InventoryManager._instance.OnInventoryChange += this.OnInventoryChange;
+        for (int i = 0; i < locklist.Count; i++)
+        {
+            
+            locklist[temp].setimg();
+            locklist[temp].unlocked.interactable = false;
+            temp++;
+        }
+        locklist[0].unlocked.interactable = true;
     }
    
     private void OnDestroy()
@@ -44,7 +55,7 @@ public class InventoryUI : MonoBehaviour {
             
             itemUIList[i].Clear();
         }
-        lattice.text = count + "/40";
+        lattice.text = count + "/"+itemUIList.Count;
     }
     //TODO
     public void AddInventoryItem(InventoryItem it)
@@ -58,7 +69,7 @@ public class InventoryUI : MonoBehaviour {
                 break;
             }
         }
-        lattice.text = count + "/40";
+        lattice.text = count + "/" + itemUIList.Count;
     }
     public void UpdateCount()
     {
@@ -70,6 +81,17 @@ public class InventoryUI : MonoBehaviour {
                 count++;
             }
         }
-        lattice.text = count + "/40";
+        lattice.text = count + "/" + itemUIList.Count;
+    }
+    public delegate void RemoveUnlockEvent();
+    public event RemoveUnlockEvent OnRemoveUnlock;
+    public void RemoveUnlock()
+    {
+        
+        locklist.RemoveAt(0);
+        locklist[0].unlocked.interactable = true;
+        OnRemoveUnlock();
+
+
     }
 }

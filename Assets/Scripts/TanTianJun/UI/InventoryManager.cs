@@ -52,6 +52,9 @@ public class InventoryManager : MonoBehaviour
                 case "PetEquip":
                     inventory.InventoryType = InventoryType.PetEquip;
                     break;
+                case "Jewel":
+                    inventory.InventoryType = InventoryType.Jewel;
+                    break;
             }
             if (inventory.InventoryType == InventoryType.Equip|| inventory.InventoryType == InventoryType.PetEquip
                 || inventory.InventoryType == InventoryType.Pet)
@@ -91,6 +94,24 @@ public class InventoryManager : MonoBehaviour
                         break;
                 }
             }
+            if (inventory.InventoryType == InventoryType.Jewel)
+            {
+                switch (proArray[4])
+                {
+                    case "Blue":
+                        inventory.JeweType= JewelType.Blue;
+                        break;
+                    case "Red":
+                        inventory.JeweType = JewelType.Red;
+                        break;
+                    case "Green":
+                        inventory.JeweType = JewelType.Green;
+                        break;
+                    case "Yellow":
+                        inventory.JeweType = JewelType.Yellow;
+                        break;
+                }
+            }
                 inventory.Price = int.Parse(proArray[5]);
             //售价 星级 品质 伤害 生命 战斗力 作用类型 作用值 描述
             if (inventory.InventoryType == InventoryType.Equip|| inventory.InventoryType == InventoryType.Pet|| 
@@ -99,6 +120,12 @@ public class InventoryManager : MonoBehaviour
                
                 inventory.Startlevel = int.Parse(proArray[6]);
                 inventory.Quality = int.Parse(proArray[7]);
+                inventory.Damage = int.Parse(proArray[8]);
+                inventory.Hp = int.Parse(proArray[9]);
+                inventory.Power = int.Parse(proArray[10]);
+            }
+            if (inventory.InventoryType == InventoryType.Jewel)
+            {
                 inventory.Damage = int.Parse(proArray[8]);
                 inventory.Hp = int.Parse(proArray[9]);
                 inventory.Power = int.Parse(proArray[10]);
@@ -118,7 +145,7 @@ public class InventoryManager : MonoBehaviour
         //随机生成主角拥有的物品
         for (int k = 0; k < 20; k++)
         {
-            int id = Random.Range(1001, 1025);
+            int id = Random.Range(1001, 1029);
 
             Inventory j = null;
             inventoryDict.TryGetValue(id, out j);

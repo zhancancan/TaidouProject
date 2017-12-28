@@ -90,8 +90,10 @@ public class UnlockedUI : MonoBehaviour{
     {
         image.DOFade(0, 0.4f).OnComplete(() => {
             image.sprite = Resources.Load("TanTianJun/Image/bg_道具", typeof(Sprite)) as Sprite;
+            image.DOFade(1, 0);
             unlockUI.AddComponent<InventoryItemUI>();
             InventoryUI._instance.itemUIList.Add(it);
+            it.Clear();
             InventoryUI._instance.UpdateShow();
             }
         );

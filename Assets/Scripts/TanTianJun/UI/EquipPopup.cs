@@ -82,16 +82,20 @@ public class EquipPopup : MonoBehaviour {
         if (isleft)
         {
            
-            if (it.Inventory.InventoryType == InventoryType.Equip)
+            if (it.Inventory.InventoryType == InventoryType.Equip||it.Inventory.InventoryType==InventoryType.PetEquip)
             {
                 itUI.Clear();//清空装备身上的各种
                 PlayInfo._instance.DressOn(it);
+                //------------------------------宠物-------------------
+                PetInfo._petInstance.PetDressOn(it);
             }
         }
         else
         {
             roleEquip.Clear();
             PlayInfo._instance.DressOff(it);
+            //-------------------------------
+            PetInfo._petInstance.PetDressOff(it);
         }
         int endvalue = PlayInfo._instance.GetOverallPower();
         powershow.ShowPowerChange(startvalue, endvalue);
@@ -102,15 +106,20 @@ public class EquipPopup : MonoBehaviour {
     {
         this.it = it;
         PlayInfo._instance.DressOn(it);
+        //-------------------------------
+        PetInfo._petInstance.PetDressOn(it);
     }
     public void Offequip(InventoryItem it)
     {
         this.it = it;
         PlayInfo._instance.DressOff(it);
+        //-------------------------------
+        PetInfo._petInstance.PetDressOff(it);
     }
     void ClearObject()
     {
         it = null;
         itUI = null;
     }
+   
 }

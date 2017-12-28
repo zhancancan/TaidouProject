@@ -51,8 +51,8 @@ public class PetInfo : MonoBehaviour {
     private int petEnergy;            //宠物活力值
 
 
-    private int petWeaponID=0;            //宠物武器
-    private int petEquipID=0;             //宠物装备
+    public  InventoryItem petWeaponID;            //宠物武器
+    public InventoryItem petEquipID;             //宠物装备
     #endregion
 
     [HideInInspector]
@@ -107,21 +107,23 @@ public class PetInfo : MonoBehaviour {
         get { return petSkill; }
         set { petSkill = value; }
     }
+
+
     public int PetEnergy
     {
         get { return petEnergy; }
         set { petEnergy = value; }
     }
-    public int PetWeaponID
-    {
-        get { return petWeaponID; }
-        set { petWeaponID = value; }
-    }
-    public int PetEquipID
-    {
-        get { return petEquipID; }
-        set { petEquipID = value; }
-    }
+    //public int PetWeaponID
+    //{
+    //    get { return petWeaponID; }
+    //    set { petWeaponID = value; }
+    //}
+    //public int PetEquipID
+    //{
+    //    get { return petEquipID; }
+    //    set { petEquipID = value; }
+    //}
     #endregion
 
 
@@ -168,8 +170,8 @@ public class PetInfo : MonoBehaviour {
         this.petEnergy = 96;
 
         //宠物装备的ID号
-        this.petEquipID = 1023;
-        this.petWeaponID = 1024;
+        //this.petEquipID = 1023;
+        //this.petWeaponID = 1024;
 
         //宠物生命伤害和战斗力的方法
         InitPetHpDamagePower();
@@ -183,8 +185,66 @@ public class PetInfo : MonoBehaviour {
         this.petHP = this.starLevelNum * 100;
         this.petAtk = this.starLevelNum * 20;
         this.petCombat = (int)(this.petHP + this.petAtk);
-        PutOnPetEquip(petEquipID);
-        PutOnPetEquip(petWeaponID);
+        
+    }
+    //----------------------------------------------------------------------
+    public void PetDressOn(InventoryItem it)
+    {
+        it.Isdressed = true;
+        //检测是否有相同类型装备
+        bool isPetDress = false;
+        InventoryItem inventoryPetItemDressed = null;
+        switch (it.Inventory.EquipType)
+        {          
+            case EquipType.PetCloth:
+                if (petEquipID != null)
+                {
+                    isPetDress = true;
+                    inventoryPetItemDressed = petEquipID;
+                }
+                    petEquipID = it;
+                break;
+            case EquipType.PetWeapon:
+                if (petWeaponID != null)
+                {
+                    isPetDress = true;
+                    inventoryPetItemDressed = petWeaponID;
+                }
+                    petWeaponID = it;
+                break;          
+        }
+        //有的话，脱掉原来的
+        if (isPetDress)
+        {
+            inventoryPetItemDressed.Isdressed = false;
+            InventoryUI._instance.AddInventoryItem(inventoryPetItemDressed);
+        }
+        OnPetInfoChanged(PetInfoType.PetEquip);
+        //穿上新的
+
+        //没有，直接穿上
+    }
+    public void PetDressOff(InventoryItem it)
+    {
+        Debug.Log(it);
+        switch (it.Inventory.EquipType)
+        {
+            case EquipType.PetCloth:
+                if (petEquipID != null)
+                {                    
+                    petEquipID=null;
+                }
+                break;
+            case EquipType.PetWeapon:
+                if (petWeaponID != null)
+                {
+                    petWeaponID=null;
+                }
+                break;
+        }
+        it.Isdressed = false;
+        InventoryUI._instance.AddInventoryItem(it);
+        OnPetInfoChanged(PetInfoType.PetEquip);
     }
 
     //宠物穿上装备
@@ -207,4 +267,5 @@ public class PetInfo : MonoBehaviour {
         this.petCombat -= inventory.Power;
         this.petAtk -= inventory.Damage;
     }
+
 }

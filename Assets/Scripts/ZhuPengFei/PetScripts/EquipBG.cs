@@ -23,17 +23,23 @@ public class EquipBG : MonoBehaviour {
     {
         PetInfo._petInstance.OnPetInfoChanged -= this.OnPetInfoChanged;
     }
-
+    
     void OnPetInfoChanged(PetInfoType type)
     {
+        if (type==PetInfoType.PetEquip)
+        {
+
         UpdateEquipShow();
+        }
     
     }
     void UpdateEquipShow()
     {
         PetInfo info = PetInfo._petInstance;
 
-        petEquip.SetPetID(info.PetEquipID);
-        petWeapon.SetPetID(info.PetWeaponID);
+        petWeapon.SetInventoryItem(info.petWeaponID);
+        petEquip.SetInventoryItem(info.petEquipID);
     }
+   
+   
 }

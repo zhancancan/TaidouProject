@@ -15,6 +15,11 @@ public enum PetInfoType
     PetCombat,
     PetSkill,
     PetEnergy,
+    //-------------宠物-------------
+    Pet,
+    PetEquip,
+
+
     All
 }
 public class PetInfo : MonoBehaviour {
@@ -46,8 +51,8 @@ public class PetInfo : MonoBehaviour {
     private int petEnergy;            //宠物活力值
 
 
-    private int petWeaponID;            //宠物武器
-    private int petEquipID;             //宠物装备
+    private int petWeaponID=0;            //宠物武器
+    private int petEquipID=0;             //宠物装备
     #endregion
 
     [HideInInspector]
@@ -154,26 +159,52 @@ public class PetInfo : MonoBehaviour {
     {
         this.petName = "烈焰狂狮";
         //头像直接在需要调用时在Resources中获取
-        this.petHP = 96;
+        this.petHP = this.starLevelNum*100;
         this.starLevelNum = 3;
-        this.petAtk = 56;
+        this.petAtk = this.starLevelNum*20;
         //this.PetDef = 95;
         this.petCombat = (int)(this.petHP+this.petAtk);
         this.petSkill = "河东狮吼";
         this.petEnergy = 96;
 
+        //宠物装备的ID号
+        this.petEquipID = 1023;
+        this.petWeaponID = 1024;
+
+        //宠物生命伤害和战斗力的方法
+        InitPetHpDamagePower();
+
 
         OnPetInfoChanged(PetInfoType.All);
+    }
+
+    void InitPetHpDamagePower()
+    {
+        this.petHP = this.starLevelNum * 100;
+        this.petAtk = this.starLevelNum * 20;
+        this.petCombat = (int)(this.petHP + this.petAtk);
+        PutOnPetEquip(petEquipID);
+        PutOnPetEquip(petWeaponID);
     }
 
     //宠物穿上装备
     void PutOnPetEquip(int id)
     {
-
+        if (id == 0) return;
+        Inventory inventory = null;
+        InventoryManager._instance.inventoryDict.TryGetValue(id, out inventory);
+        this.petHP += inventory.Hp;
+        this.petCombat += inventory.Power;
+        this.petAtk += inventory.Damage;
     }
     //宠物卸下装备
     void PutOffPetEquip(int id)
     {
-
+        if (id == 0) return;
+        Inventory inventory = null;
+        InventoryManager._instance.inventoryDict.TryGetValue(id, out inventory);
+        this.petHP -= inventory.Hp;
+        this.petCombat -= inventory.Power;
+        this.petAtk -= inventory.Damage;
     }
 }

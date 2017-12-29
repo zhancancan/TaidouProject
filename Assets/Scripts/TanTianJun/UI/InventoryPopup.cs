@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
-public class InventoryPopup : MonoBehaviour {
+public class InventoryPopup : MonoBehaviour ,IDragHandler{
 
     InventoryItem it;
     Image img;
@@ -28,6 +30,7 @@ public class InventoryPopup : MonoBehaviour {
     public void Show(InventoryItem it,InventoryItemUI itUI)
     {
         gameObject.SetActive(true);
+        transform.localPosition = new Vector3(375, 9, 0);
         this.it = it;
         this.itUI = itUI;
         img.sprite = it.Inventory.Icon;
@@ -38,6 +41,7 @@ public class InventoryPopup : MonoBehaviour {
     public void OnUse()  //左击使用
     {
         int startvalue = PlayInfo._instance.GetOverallPower();
+        if (it.Count <= 0) { Close(); return; }
         itUI.ChangeCount(1);
         PlayInfo._instance.InventoryUse(it, 1);
         Close();
@@ -48,6 +52,7 @@ public class InventoryPopup : MonoBehaviour {
     public void OnUseall()
     {
         int startvalue = PlayInfo._instance.GetOverallPower();
+        if(it.Count<=0) { Close(); return; }
         itUI.ChangeCount(it.Count);
         PlayInfo._instance.InventoryUse(it, it.Count);
         Close();
@@ -70,6 +75,12 @@ public class InventoryPopup : MonoBehaviour {
     {
         Clear();
         gameObject.SetActive(false);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        gameObject.transform.SetSiblingIndex(40);
+        gameObject.transform.position = eventData.position;
     }
 }
 

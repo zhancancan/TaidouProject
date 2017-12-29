@@ -34,7 +34,7 @@ public class PlayInfo : MonoBehaviour
     int _power = 1;  //战斗力
     int exp;    //经验
     int _diamond;   //钻石
-    int _coin;      //金币
+    int _coin=10000;      //金币
     int _energy;    //体力
     int _toughen;   //历练
     int _hp;   //血量
@@ -440,14 +440,33 @@ public class PlayInfo : MonoBehaviour
         }
         return (int)power;
     }
+    public bool  GetCoin(int count)  //升级取得需要个数的金币数
+    {
+        if (Coin >= count)
+        {
+            Coin -=count  ;
+            OnPlayInfoChanged(InfoType.Coin);
+            return true;
+        }
+        return false;
+    }
     public void AddCoin(int count)
     {
         this.Coin += count;
         OnPlayInfoChanged(InfoType.Coin);
     }   //加钱
-    public void CostCoin(int cout)
+    public void dsa()
     {
-        this.Coin -= cout;
-        OnPlayInfoChanged(InfoType.Coin);
+        Debug.Log(Coin);
+    }
+    public bool Getcoin(int count)  //背包取得需要个数的金币数
+    {
+        if (Coin >= count/2)
+        {
+            Coin -= count/2;
+            OnPlayInfoChanged(InfoType.Coin);
+            return true;
+        }
+        return false;
     }
 }

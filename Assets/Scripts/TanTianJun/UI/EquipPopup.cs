@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
-public class EquipPopup : MonoBehaviour {
+public class EquipPopup : MonoBehaviour, IDragHandler{
 
     InventoryItem it;
     InventoryItemUI itUI;
     KnapsackRoleEquip roleEquip;
     Image equipimg;
     Text equipText, qualityText, damageText, hpText, desText, powerText,levelText;
-    Button closebtn;
-    Button equipbtn;
+    Button closebtn;  //关闭
+    Button equipbtn;   //装备
+    Button upgradebtn;  //升级
     Text btntxt;
     bool isleft = true;
     public PowerShow powershow;
@@ -28,7 +31,10 @@ public class EquipPopup : MonoBehaviour {
         btntxt = transform.Find("EquiptInf/equipbtn/Text").GetComponent<Text>();
         closebtn = transform.Find("EquiptInf/Close").GetComponent<Button>();
         closebtn.onClick.AddListener(close);
-       
+        upgradebtn = transform.Find("EquiptInf/upgradebtn").GetComponent<Button>();
+        upgradebtn.onClick.AddListener(Upgrade);
+
+
     }
     private void Start()
     {
@@ -46,12 +52,12 @@ public class EquipPopup : MonoBehaviour {
         Vector3 pos = transform.localPosition;
         if (isleft)
         {
-            transform.localPosition = new Vector3(-Mathf.Abs(pos.x), pos.y, pos.z);
+            transform.localPosition = new Vector3(-370, 9, pos.z);
             btntxt.text = "装备";
         }
         else
         {
-            transform.localPosition = new Vector3(Mathf.Abs(pos.x), pos.y, pos.z);
+            transform.localPosition = new Vector3(380, 9, pos.z);
             btntxt.text = "卸下";
         }
         
@@ -81,21 +87,41 @@ public class EquipPopup : MonoBehaviour {
         int startvalue = PlayInfo._instance.GetOverallPower();
         if (isleft)
         {
+
            
-            if (it.Inventory.InventoryType == InventoryType.Equip||it.Inventory.InventoryType==InventoryType.PetEquip)
+           
+            if (it.Isdressed == true) { close(); return; }
+            if (it.Inventory.InventoryType == InventoryType.Equip)
+
             {
                 itUI.Clear();//清空装备身上的各种
                 PlayInfo._instance.DressOn(it);
-                //------------------------------宠物-------------------
+              
+            }
+            if (it.Inventory .InventoryType== InventoryType.PetEquip)
+            {
+                //------------------------------宠物------------------ -
+                itUI.Clear();//清空装备身上的各种
                 PetInfo._petInstance.PetDressOn(it);
             }
         }
         else
         {
+            if (it.Isdressed == false) { close(); return; }
+
             roleEquip.Clear();
-            PlayInfo._instance.DressOff(it);
+            if (it.Inventory.InventoryType == InventoryType.Equip)
+
+            {
+                PlayInfo._instance.DressOff(it);
+            }
             //-------------------------------
-            PetInfo._petInstance.PetDressOff(it);
+            if (it.Inventory.InventoryType == InventoryType.PetEquip)
+
+            {
+                PetInfo._petInstance.PetDressOff(it);
+            }
+
         }
         int endvalue = PlayInfo._instance.GetOverallPower();
         powershow.ShowPowerChange(startvalue, endvalue);
@@ -107,19 +133,39 @@ public class EquipPopup : MonoBehaviour {
         this.it = it;
         PlayInfo._instance.DressOn(it);
         //-------------------------------
-        PetInfo._petInstance.PetDressOn(it);
+        //PetInfo._petInstance.PetDressOn(it);
     }
     public void Offequip(InventoryItem it)
     {
         this.it = it;
         PlayInfo._instance.DressOff(it);
         //-------------------------------
-        PetInfo._petInstance.PetDressOff(it);
+        //PetInfo._petInstance.PetDressOff(it);
     }
     void ClearObject()
     {
         it = null;
         itUI = null;
     }
+
    
+
+
+    void Upgrade()
+    {
+        int CoinNeed = (it.Level+1)*it.Inventory.Price;
+        bool isSuccess = PlayInfo._instance.GetCoin(CoinNeed);
+        if (isSuccess)
+        {
+            it.Level += 1;
+            levelText.text = it.Level + "";
+        }
+        else { }
+    } //点击升级按钮
+    public void OnDrag(PointerEventData eventData)
+    {
+        gameObject.transform.SetSiblingIndex(40);
+        gameObject.transform.position = eventData.position;
+    }
+
 }

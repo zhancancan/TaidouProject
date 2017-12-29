@@ -121,9 +121,6 @@ public class InventoryItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
     }
-
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         isenter = true;

@@ -95,7 +95,10 @@ public class InventoryUI : MonoBehaviour {
         {
             return;
         }
-        else locklist[0].unlocked.interactable = true;
+        else {
+            locklist[0].unlocked.interactable = true;
+          
+        }
 
 
     }

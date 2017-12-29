@@ -14,6 +14,7 @@ public class PowerShow : MonoBehaviour {
     bool isup = true;
     public   int speed = 1000;
     
+    
     private void Awake()
     {
         pstxt = transform.Find("pstxt").GetComponent<Text>();
@@ -36,6 +37,7 @@ public class PowerShow : MonoBehaviour {
             if (isup)
             {
                 startvalue += speed * Time.deltaTime;
+                pstxt.text = (int)startvalue + " <color=#FF0000FF><size=35>↑</size></color>";
                 if (startvalue > endvalue)
                 {
                     isstart = false;
@@ -46,6 +48,7 @@ public class PowerShow : MonoBehaviour {
             else
             {
                 startvalue -= speed * Time.deltaTime;
+                pstxt.text = (int)startvalue + " <color=#F1FF00FF><size=35>↓</size></color>";
                 if (startvalue < endvalue)
                 {
                     isstart = false;
@@ -53,7 +56,6 @@ public class PowerShow : MonoBehaviour {
                     showpower.DOFade(0, 0.2f).OnComplete(Finished);
                 }
             }
-            pstxt.text = (int)startvalue + "";
         }
     }
     public void ShowPowerChange(int startvalue,int endvalue)

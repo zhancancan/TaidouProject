@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
-
-public class Knapsack : MonoBehaviour {
+public class Knapsack : MonoBehaviour ,IDragHandler{
  
     EquipPopup equip;
     InventoryPopup inventory;
@@ -96,5 +97,11 @@ public class Knapsack : MonoBehaviour {
         equip.close();
         inventory.Close();
         InventoryUI._instance.SendMessage("UpdateCount");
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        gameObject.transform.SetSiblingIndex(40);
+        gameObject.transform.position = eventData.position;
     }
 }

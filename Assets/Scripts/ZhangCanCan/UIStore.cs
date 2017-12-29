@@ -22,6 +22,11 @@ public class UIStore : UIBase
     //保存物品的父层级Transform
     private List<Transform> itemBgList = new List<Transform>();
 
+    //当前显示的副列表
+    private List<GameObject> viceCurrentList = new List<GameObject>();
+    //当前显示的物品
+    private List<GameObject> itemCurrentList = new List<GameObject>();
+
     //副列表Toggle中文名
     private string[] equipLabelNameArr = new string[] { "武 器", "头 盔", "项 链", "戒 指", "手 镯", "衣 服", "鞋 子", "翅 膀" };
     private string[] drugLabelNameArr = new string[] { "魔 法", "血 量", "加 成" };
@@ -241,15 +246,53 @@ public class UIStore : UIBase
             for (int i = 0; i < viceToggleList.Count; i++)
             {
                 //print(viceToggleList[i].Keys.First().GetType());
-                if (viceToggleList[i].ContainsKey(enumType))    //将list中包含当前总列表激活项对应的副列表项显示，其它不显示
+                if (viceToggleList[i].ContainsKey(enumType))    //将list中包含当前总列表激活项对应的副列表项保存，其它不显示
                     viceToggleList[i].Values.First().SetActive(true);  //toggleListDetial[i][0].SetActive(true);   //这种写法错误[index][key]所以这里没有key=0的值
+//                    viceCurrentList.Add(viceToggleList[i].Values.First());
                 else
                     viceToggleList[i].Values.First().SetActive(false);
             }
 
+            //副列表显示效果
+            StartCoroutine(UIActiveShowStyle(viceCurrentList));
+
+            //点击主列表也要刷新副列表
             ShowItemByMianItem();
         }
     }
+
+    /// <summary>
+    /// UI界面从隐藏到显示 间隔Time.deltaTime
+    /// </summary>
+    /// <param name="uiObj"></param>
+    /// <returns></returns>
+    public IEnumerator UIActiveShowStyle(List<GameObject> uiObj)
+    {
+        for (int i = 0; i < uiObj.Count; i++)
+        {
+//            uiObj[i].SetActive(false);
+            yield return new WaitForSeconds(Time.deltaTime);
+            uiObj[i].SetActive(true);
+        }
+        uiObj.Clear();
+    }
+
+    /// <summary>
+    /// UI界面重0-1 scale 变化
+    /// </summary>
+    /// <param name="uiObj"></param>
+    /// <returns></returns>
+//    public IEnumerator UIScaleShowStyle(List<GameObject> uiObj)
+//    {
+//        float scaleChangeSpeed = 0.1f;
+//        Transform uiObjTransform = uiObj[0].transform;
+//        uiObjTransform.localScale = Vector3.zero;
+//        for (int i = 0; i < 10; i++)
+//        {
+//            uiObjTransform.localScale += Vector3.one * scaleChangeSpeed;
+//            yield return null;
+//        }
+//    }
 
     /// <summary>
     /// 依据主副列表某单项显隐物品

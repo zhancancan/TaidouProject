@@ -128,19 +128,17 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         InventoryUI._instance.SendMessage("UpdateCount");
         close();
     }
+    //右击穿装备
     public void Onequip(InventoryItem it)
     {
         this.it = it;
-        PlayInfo._instance.DressOn(it);
-        //-------------------------------
-        //PetInfo._petInstance.PetDressOn(it);
+        PlayInfo._instance.DressOn(it);       
     }
+    //右击卸装备
     public void Offequip(InventoryItem it)
     {
         this.it = it;
-        PlayInfo._instance.DressOff(it);
-        //-------------------------------
-        //PetInfo._petInstance.PetDressOff(it);
+        PlayInfo._instance.DressOff(it);      
     }
     void ClearObject()
     {

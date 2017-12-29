@@ -226,7 +226,6 @@ public class PetInfo : MonoBehaviour {
     }
     public void PetDressOff(InventoryItem it)
     {
-        Debug.Log(it);
         switch (it.Inventory.EquipType)
         {
             case EquipType.PetCloth:

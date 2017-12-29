@@ -28,11 +28,10 @@ public class EquipBG : MonoBehaviour {
     {
         if (type==PetInfoType.PetEquip)
         {
-
         UpdateEquipShow();
-        }
-    
+        } 
     }
+    //装备更换更新方法
     void UpdateEquipShow()
     {
         PetInfo info = PetInfo._petInstance;

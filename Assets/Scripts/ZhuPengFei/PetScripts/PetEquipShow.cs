@@ -31,7 +31,8 @@ public class PetEquipShow : MonoBehaviour {
         this.it = it;
         clothBtn.image.sprite = it.Inventory.Icon;
     }
-    void abcd()
+    //清除装备中的UI
+    void CleanPetEquipUI()
     {if (it == null) return;
         PetInfo._petInstance.PetDressOff(it);
         clothBtn.image.sprite=Resources.Load("TanTianJun/Image/bg_道具",typeof(Sprite)) as Sprite;

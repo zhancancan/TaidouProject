@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class NewBehaviourScript : MonoBehaviour {
+
+public class UnLoadEquipBtn : MonoBehaviour {
 
     private Button btn;
     InventoryItem it;
     void Awake()
     {
         btn = this.GetComponent<Button>();
-        btn.onClick.AddListener(qqqq);
+        btn.onClick.AddListener(UnLoad);
     }
-    private void qqqq()
+    //卸载按钮点击事件
+    private void UnLoad()
     {
-        transform.parent.SendMessage("abcd");
-      
+        transform.parent.SendMessage("CleanPetEquipUI");
     }
 }

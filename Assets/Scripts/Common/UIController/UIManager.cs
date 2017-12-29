@@ -44,6 +44,9 @@ public class UIManager : MonoBehaviour
         //zcc
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIPlayerProperty);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIStore);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIStoreViceItem);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIStoreItem);
         //ttj
         AddUIPrefabs(ConstDates.ResourcePrefabDirTtj, ConstDates.UIBag);
         //zpf
@@ -127,10 +130,23 @@ public class UIManager : MonoBehaviour
     /// 获取UI预设体实例
     /// </summary>
     /// <param name="UIname">UI预设体名字</param>
-    public GameObject GetUIPrefabInstance(string UIname)
+    public GameObject GetUIPrefabInstance(string UIName)
     {
-        GameObject uiPrefab = uiObject[UIname];
+        GameObject uiPrefab = uiObject[UIName];
         GameObject objUI = Instantiate(uiPrefab);
+        return objUI;
+    }
+
+    /// <summary>
+    /// 获取UI预设体实例,并且修改名字
+    /// </summary>
+    /// <param name="UIname">UI预设体原来名字</param>
+    /// <param name="UIname">UI预设体实例现在名字</param>
+    public GameObject GetUIPrefabInstance(string OriginalUIName, string currentUIName)
+    {
+        GameObject uiPrefab = uiObject[OriginalUIName];
+        GameObject objUI = Instantiate(uiPrefab);
+        objUI.name = currentUIName;
         return objUI;
     }
 }

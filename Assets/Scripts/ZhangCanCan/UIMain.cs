@@ -35,6 +35,7 @@ public class UIMain:UIBase{
     {
         petBtn.onClick.AddListener(OnPetBtnClick);
         playerPropertyBtn.onClick.AddListener(OnPlayerPropertyBtnClick);
+        storeBtn.onClick.AddListener(OnStoreBtnClick);
         bagBtn.onClick.AddListener(OnBagBtnClick);
         settingBtn.onClick.AddListener(OnSettingBtnClick);
     }
@@ -89,5 +90,13 @@ public class UIMain:UIBase{
     void OnSettingBtnClick()
     {
         UIManager.Instance.PushUIPanel(ConstDates.UISystemSetting);
+    }
+
+    /// <summary>
+    /// 点击商城按钮
+    /// </summary>
+    void OnStoreBtnClick()
+    {
+        UIManager.Instance.PushUIPanel(ConstDates.UIStore);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextureManager : MonoBehaviour
 {
@@ -23,8 +24,21 @@ public class TextureManager : MonoBehaviour
     {
         string path = selfPath + "/" + name;
         Texture texture = Resources.Load<Texture>(path);
-        if (texture == null) print("null2");
         return texture;
+    }
+
+    public Image GetImage(string selfPath, string name)
+    {
+        string path = selfPath + "/" + name;
+        Image image = Resources.Load<Image>(path);
+        return image;
+    }
+
+    public Sprite GetSprite(string selfPath, string name)
+    {
+        string path = selfPath + "/" + name;
+        Sprite sprite = Resources.Load<Sprite>(path);
+        return sprite;
     }
 
 }

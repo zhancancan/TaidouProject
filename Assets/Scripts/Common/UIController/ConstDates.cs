@@ -27,6 +27,9 @@ public class ConstDates {
     //定义图片路径
     public const string ResourceTexturesDirZpf = "ZhuPengFei/Textures";
 
+    //定义image路径
+    public const string ResourceImagesDirTtj = "TanTianJun/Image";
+
     //背景音频
     //hj
     public const string Bgm_1 = "UIStartBGM";
@@ -36,6 +39,9 @@ public class ConstDates {
     public const string Head_Lion = "Head_Lion";
     public const string Head_Fairy = "Head_Fairy";
     public const string Head_Elf = "Head_Elf";
+
+    //精灵图片
+
 
     //UI具体界面
     //common
@@ -52,6 +58,9 @@ public class ConstDates {
     //zcc
     public const string UIMain = "UIMain";
     public const string UIPlayerProperty = "UIPlayerProperty";
+    public const string UIStore = "UIStore";
+    public const string UIStoreViceItem = "UIStoreViceItem";
+    public const string UIStoreItem = "UIStoreItem";
     //ttj
     public const string UIBag = "UIBag";
     //zpf

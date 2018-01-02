@@ -15,6 +15,8 @@ public class UIStore : UIBase
     private GameObject viceToggleParent;    //副列表Item的父层级
     private Transform ItemBgParent;        //物品背景父层级
 
+//    private 
+
     //保存所有副列表Item,控制副列表的显隐
     private List<Dictionary<object, GameObject>> viceToggleList = new List<Dictionary<object, GameObject>>();
     //保存所有物体，控制物体的显隐
@@ -47,7 +49,6 @@ public class UIStore : UIBase
     {
         //副列表及物体首次显隐
         ShowViceItem();
-        ShowItemByMianItem();
         //注册监听
         foreach (Transform temp in mainToggleParent.transform)//主列表每个Toggle注册监听事件
         {
@@ -125,7 +126,7 @@ public class UIStore : UIBase
         //副列表保存物体Item
         //武器
         //临时数据
-        string[] weaponArr = new[] { "女性武器1", "男性武器1" };
+        string[] weaponArr = new[] { "女性武器1", "男性武器1", "男性武器1" , "男性武器1"};
         string[] helmArr = new string[] { "女性帽子1", "男性头盔1" };
         string[] necklaceArr = new string[] { "女性项链1", "男性项链1" };
         string[] ringArr = new string[] { "女性戒指1", "男性戒指1" };
@@ -197,7 +198,7 @@ public class UIStore : UIBase
             viceOrItem = UIManager.Instance.GetUIPrefabInstance(ConstDates.UIStoreViceItem, currentViceItemName);
 
             //副列表属性设置
-            viceOrItem.transform.parent = viceToggleParent.transform; //设置父层级
+            viceOrItem.transform.SetParent(viceToggleParent.transform);//设置父层级
             viceOrItem.transform.Find("Label").GetComponent<Text>().text = chName;
             Toggle tgTemp = viceOrItem.GetComponent<Toggle>();
             if (0 == index)   //将Group组中的第一个Toggle激活
@@ -230,7 +231,7 @@ public class UIStore : UIBase
     void SetItemProperty(GameObject item,string imageName)
     {
         item.GetComponent<Image>().sprite = TextureManager.Instance.GetSprite(ConstDates.ResourceImagesDirTtj, imageName);
-        item.transform.parent = ItemBgParent;
+        item.transform.SetParent(ItemBgParent);
     }
 
     /// <summary>
@@ -238,6 +239,7 @@ public class UIStore : UIBase
     /// </summary>
     void ShowViceItem()
     {
+        viceCurrentList.Clear();
         //print("1--" + mainToggleGroup.ActiveToggles().First());
         mainActiveToggle = mainToggleGroup.ActiveToggles().First();
         if (null != mainActiveToggle)//当前总列表有某项被激活
@@ -246,15 +248,16 @@ public class UIStore : UIBase
             for (int i = 0; i < viceToggleList.Count; i++)
             {
                 //print(viceToggleList[i].Keys.First().GetType());
-                if (viceToggleList[i].ContainsKey(enumType))    //将list中包含当前总列表激活项对应的副列表项保存，其它不显示
-                    viceToggleList[i].Values.First().SetActive(true);  //toggleListDetial[i][0].SetActive(true);   //这种写法错误[index][key]所以这里没有key=0的值
-//                    viceCurrentList.Add(viceToggleList[i].Values.First());
+                if (viceToggleList[i].ContainsKey(enumType)) {    //将list中包含当前总列表激活项对应的副列表项保存，其它不显示
+                    //viceToggleList[i].Values.First().SetActive(true);  //toggleListDetial[i][0].SetActive(true);   //这种写法错误[index][key]所以这里没有key=0的值
+                    viceCurrentList.Add(viceToggleList[i].Values.First());
+                }
                 else
                     viceToggleList[i].Values.First().SetActive(false);
             }
-
+          
             //副列表显示效果
-            StartCoroutine(UIActiveShowStyle(viceCurrentList));
+            StartCoroutine(UIActiveShowStyle());
 
             //点击主列表也要刷新副列表
             ShowItemByMianItem();
@@ -266,15 +269,14 @@ public class UIStore : UIBase
     /// </summary>
     /// <param name="uiObj"></param>
     /// <returns></returns>
-    public IEnumerator UIActiveShowStyle(List<GameObject> uiObj)
+    public IEnumerator UIActiveShowStyle()
     {
-        for (int i = 0; i < uiObj.Count; i++)
+        for (int i = 0; i < viceCurrentList.Count; i++)
         {
-//            uiObj[i].SetActive(false);
-            yield return new WaitForSeconds(Time.deltaTime);
-            uiObj[i].SetActive(true);
+            viceCurrentList[i].SetActive(true);
+            yield return new WaitForSeconds(Time.deltaTime*2);
         }
-        uiObj.Clear();
+        //viceCurrentList.Clear();  放在这里清空list，有时候多点击其它选项，在点击另一个选项，会刷新不了，所以在ShowViceItem()开始的时候调用
     }
 
     /// <summary>
@@ -282,44 +284,64 @@ public class UIStore : UIBase
     /// </summary>
     /// <param name="uiObj"></param>
     /// <returns></returns>
-//    public IEnumerator UIScaleShowStyle(List<GameObject> uiObj)
-//    {
-//        float scaleChangeSpeed = 0.1f;
-//        Transform uiObjTransform = uiObj[0].transform;
-//        uiObjTransform.localScale = Vector3.zero;
-//        for (int i = 0; i < 10; i++)
-//        {
-//            uiObjTransform.localScale += Vector3.one * scaleChangeSpeed;
-//            yield return null;
-//        }
-//    }
+    public IEnumerator UIScaleShowStyle()
+    {
+        float scaleChangeSpeed = 0.2f;
+
+        for (int i = 0; i < itemCurrentList.Count; i++)
+        {
+            Transform uiObjTransform = itemCurrentList[i].transform;
+
+            for (int j = 0; j < 5; j++)
+            {
+                if (Vector3.one == uiObjTransform.localScale)//房主
+                {
+                    break;
+                }
+                uiObjTransform.localScale += Vector3.one * scaleChangeSpeed;
+                yield return null;
+            }
+        }
+    }
 
     /// <summary>
     /// 依据主副列表某单项显隐物品
     /// </summary>
     void ShowItemByViceItem(object enumType)
     {
+        print("ShowItemByViceItem");
+        itemCurrentList.Clear();
         int index = 0;//物品背景标志位
         for (int i = 0; i < itemList.Count; i++)
         {
-            GameObject item = itemList[i].Values.First(); ;
+            GameObject item = itemList[i].Values.First(); 
             //print(itemList[i].Keys.First().enumType());
             if (itemList[i].ContainsKey(enumType)) //将list中包含当前副列表激活项对应物品显示，其它不显示
             {
                 item.SetActive(true); //显示
-                item.transform.parent = itemBgList[index++];
+                item.transform.SetParent(itemBgList[index++]);
+                item.transform.localScale = Vector3.zero;
                 item.transform.localPosition = Vector3.zero;
+
+                itemCurrentList.Add(item);
             }
             else
             {
                 item.SetActive(false);  //隐藏
-                item.transform.parent = ItemBgParent;   //设置父层级到content
+                item.transform.SetParent(ItemBgParent);//设置父层级到content
             }
         }
+
+        //物品显示效果
+        //for (int i = 0; i < itemCurrentList.Count; i++)
+        //{
+            StartCoroutine(UIScaleShowStyle());
+        //}
+        
     }
 
     /// <summary>
-    /// 依据主列带副列表表选项显隐物品
+    /// 依据主列带副列表选项显隐物品
     /// </summary>
     void ShowItemByMianItem()
     {
@@ -330,11 +352,11 @@ public class UIStore : UIBase
         }
         if (null != viceActiveToggle)//当前副列表有某项被激活
         {
-            MainItemType mainEnumType = (MainItemType)Enum.Parse(typeof(MainItemType), mainActiveToggle.name);  //获取总列表当前激活的那一项对应枚举
+            MainItemType mainEnumType = (MainItemType)Enum.Parse(typeof(MainItemType), mainActiveToggle.name,true);  //获取总列表当前激活的那一项对应枚举
             switch (mainEnumType)
             {
                 case MainItemType.Equip:
-                    ViceEquipItemType equipEnum = (ViceEquipItemType)Enum.Parse(typeof(ViceEquipItemType), viceActiveToggle.name);  //获取副列表当前激活的那一项对应枚举
+                    ViceEquipItemType equipEnum = (ViceEquipItemType)Enum.Parse(typeof(ViceEquipItemType), viceActiveToggle.name, true);  //获取副列表当前激活的那一项对应枚举
                     ShowItemByViceItem(equipEnum);
                     break;
                 case MainItemType.Drug:
@@ -352,7 +374,8 @@ public class UIStore : UIBase
     /// </summary>
     void MainToggleValueChanged(bool isOn)
     {
-        ShowViceItem();
+        if (isOn)   //这里必须加ison判断，不然会会执行两次
+            ShowViceItem();
     }
 
     /// <summary>
@@ -360,6 +383,11 @@ public class UIStore : UIBase
     /// </summary>
     void AssistantToggleValueanged(bool isOn)
     {
-        ShowItemByMianItem();
+        
+        if (isOn)   //这里必须加ison判断，不然会会执行两次
+        {
+            ShowItemByMianItem();
+        }
+            
     }
 }

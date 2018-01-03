@@ -11,8 +11,8 @@ public class EquipBG : MonoBehaviour {
 
     void Awake()
     {
-        petEquip = transform.Find("Cloth").GetComponent<PetEquipShow>();
-        petWeapon = transform.Find("Weapon").GetComponent<PetEquipShow>();
+        petEquip = transform.Find("PetCloth").GetComponent<PetEquipShow>();
+        petWeapon = transform.Find("PetWeapon").GetComponent<PetEquipShow>();
 
         //注册事件
         PetInfo._petInstance.OnPetInfoChanged += this.OnPetInfoChanged;

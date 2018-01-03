@@ -57,19 +57,19 @@ public class UIManager : MonoBehaviour
     /// 加载所有的预支体界面
     /// </summary>
     /// <param name="selfPath">自己定义自己的预设体路径</param>
-    /// <param name="UIname">UI界面的名字</param>
-    void AddUIPrefabs(string selfPath,string UIname)
+    /// <param name="uiName">UI界面的名字</param>
+    void AddUIPrefabs(string selfPath,string uiName)
     {
-        string path = selfPath + "/" + UIname;
+        string path = selfPath + "/" + uiName;
         GameObject obj = Resources.Load<GameObject>(path);
-        if (obj) uiObject.Add(UIname, obj);
+        if (obj) uiObject.Add(uiName, obj);
     }
 
     /// <summary>
     /// 界面入栈
     /// </summary>
-    /// <param name="UIname">UI界面的名字</param>
-    public void PushUIPanel(string UIname)
+    /// <param name="uiName">UI界面的名字</param>
+    public void PushUIPanel(string uiName)
     {
         //说明栈内存在界面
         if (currentUIStack.Count > 0)
@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
             old_pop.OnPausing();//暂时停用
         }
         //创建界面
-        UIBase new_pop = GetUIBase(UIname);
+        UIBase new_pop = GetUIBase(uiName);
         new_pop.OnEntering();
         currentUIStack.Push(new_pop);
     }
@@ -89,24 +89,24 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="UIname">UI界面的名字</param>
     /// <returns></returns>
-    UIBase GetUIBase(string UIname)
+    UIBase GetUIBase(string uiName)
     {
         //currentUI已经有该UI界面
         foreach (var name in uiHaveLoaded.Keys)
         {
-            if (name == UIname)
+            if (name == uiName)
             {
-                return uiHaveLoaded[UIname];
+                return uiHaveLoaded[uiName];
             }
         }
         //如果currentUI没有界面，那么应该根据预支体实例化界面并保存在其中
-        GameObject uiPrefab = uiObject[UIname];
+        GameObject uiPrefab = uiObject[uiName];
         GameObject objUI = Instantiate(uiPrefab);
         print(objUI.name);
-        objUI.name = UIname;
+        objUI.name = uiName;
 
         UIBase uibase = objUI.GetComponent<UIBase>();
-        uiHaveLoaded.Add(UIname, uibase);
+        uiHaveLoaded.Add(uiName, uibase);
         return uibase;
     }
 
@@ -129,10 +129,10 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// 获取UI预设体实例
     /// </summary>
-    /// <param name="UIname">UI预设体名字</param>
-    public GameObject GetUIPrefabInstance(string UIName)
+    /// <param name="uiName">UI预设体名字</param>
+    public GameObject GetUIPrefabInstance(string uiName)
     {
-        GameObject uiPrefab = uiObject[UIName];
+        GameObject uiPrefab = uiObject[uiName];
         GameObject objUI = Instantiate(uiPrefab);
         return objUI;
     }
@@ -140,11 +140,11 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// 获取UI预设体实例,并且修改名字
     /// </summary>
-    /// <param name="UIname">UI预设体原来名字</param>
-    /// <param name="UIname">UI预设体实例现在名字</param>
-    public GameObject GetUIPrefabInstance(string OriginalUIName, string currentUIName)
+    /// <param name="originalUIName">UI预设体原来名字</param>
+    /// <param name="currentUIName">UI预设体实例现在名字</param>
+    public GameObject GetUIPrefabInstance(string originalUIName, string currentUIName)
     {
-        GameObject uiPrefab = uiObject[OriginalUIName];
+        GameObject uiPrefab = uiObject[originalUIName];
         GameObject objUI = Instantiate(uiPrefab);
         objUI.name = currentUIName;
         return objUI;

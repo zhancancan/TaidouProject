@@ -1689,6 +1689,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db633f2381fde34dbf0cbbfa087401d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vedioPlayer: {fileID: 0}
+  ass: {fileID: 0}
+  playerBtn: {fileID: 0}
+  playerIm: {fileID: 0}
+  s: {fileID: 0}
+  s1: {fileID: 0}
+  vc: {fileID: 0}
+  vc1: {fileID: 0}
+  vc2: {fileID: 0}
+  vc3: {fileID: 0}
+  vc4: {fileID: 0}
+  vc5: {fileID: 0}
+  vedio: {fileID: 0}
+  player: {fileID: 0}
   btn:
   - {fileID: 114264358047080776}
   - {fileID: 114983868485781496}

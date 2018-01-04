@@ -36,7 +36,7 @@ public class PrefabManager : MonoBehaviour {
     /// 获取预设体实例
     /// </summary>
     /// <param name="name">预设体名字</param>
-    public GameObject GetUIPrefabInstance(string name)
+    public GameObject GetPrefabInstance(string name)
     {
         GameObject prefab = prefabObject[name];
         GameObject obj = Instantiate(prefab);
@@ -48,7 +48,7 @@ public class PrefabManager : MonoBehaviour {
     /// </summary>
     /// <param name="originalName">预设体原来名字</param>
     /// <param name="currentName">预设体实例现在名字</param>
-    public GameObject GetUIPrefabInstance(string originalName, string currentName)
+    public GameObject GetPrefabInstance(string originalName, string currentName)
     {
         GameObject prefab = prefabObject[originalName];
         GameObject obj = Instantiate(prefab);

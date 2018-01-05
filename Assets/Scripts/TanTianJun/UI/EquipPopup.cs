@@ -7,6 +7,10 @@ using System;
 
 public class EquipPopup : MonoBehaviour, IDragHandler{
 
+    //-----------------------------------
+    public static EquipPopup _equipPopUp;
+
+
     InventoryItem it;
     InventoryItemUI itUI;
     KnapsackRoleEquip roleEquip;
@@ -18,8 +22,18 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
     Text btntxt;
     bool isleft = true;
     public PowerShow powershow;
+
+    //-----------------------------------------------
+    public bool isUILion;
+    public bool isUIFairy;
+    public bool isUIElf;
+
+    Button exist;
+
     private void Awake()
     {
+        _equipPopUp = this;
+
         equipimg = transform.Find("EquiptInf/EquipBg").GetComponent<Image>();
         equipText = transform.Find("EquiptInf/Introduction/EquipText").GetComponent<Text>();
         qualityText = transform.Find("EquiptInf/Introduction/QualityText/Text").GetComponent<Text>();
@@ -34,6 +48,8 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         upgradebtn = transform.Find("EquiptInf/upgradebtn").GetComponent<Button>();
         upgradebtn.onClick.AddListener(Upgrade);
 
+        exist = transform.Find("EquiptInf/Exist").GetComponent<Button>();
+        exist.onClick.AddListener(ExistUI);
 
     }
     private void Start()
@@ -104,6 +120,29 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
                 itUI.Clear();//清空装备身上的各种
                 PetInfo._petInstance.PetDressOn(it);
             }
+            //------------------------------------------------------------------------------
+            if (it.Inventory.InventoryType == InventoryType.Pet)
+            {
+                if (it.Inventory.Name == "烈焰狂狮"&&UIPetManager._uiPetManager.isHaveLion==false)
+                {
+                    isUILion = true;
+                    itUI.Clear();
+                }
+                if (it.Inventory.Name == "小精灵" && UIPetManager._uiPetManager.isHaveElf == false)
+                {
+                    isUIElf = true;
+                    itUI.Clear();
+                }
+                if (it.Inventory.Name == "小仙女" && UIPetManager._uiPetManager.isHaveFairy == false)
+                { 
+                    isUIFairy = true;
+                    itUI.Clear();
+                }
+                else
+                {
+                    transform.Find("EquiptInf/Exist").gameObject.SetActive(true);
+                }
+            }
         }
         else
         {
@@ -120,7 +159,7 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
 
             {
                 PetInfo._petInstance.PetDressOff(it);
-            }
+            }     
 
         }
         int endvalue = PlayInfo._instance.GetOverallPower();
@@ -166,4 +205,8 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         gameObject.transform.position = eventData.position;
     }
 
+    void ExistUI()
+    {
+        transform.Find("EquiptInf/Exist").gameObject.SetActive(false);
+    }
 }

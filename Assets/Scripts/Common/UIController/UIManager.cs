@@ -51,6 +51,10 @@ public class UIManager : MonoBehaviour
         AddUIPrefabs(ConstDates.ResourcePrefabDirTtj, ConstDates.UIBag);
         //zpf
         AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UIPet);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UIPetMain);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UILion);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UIFairy);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZpf, ConstDates.UIElf);
     }
 
     /// <summary>

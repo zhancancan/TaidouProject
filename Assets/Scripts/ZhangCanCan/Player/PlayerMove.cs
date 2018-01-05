@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum PlayerState
 {
-    Move,
-    Idle
+    Idle,
+    Walk
 }
 
 public class PlayerMove : MonoBehaviour
@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
         {
             isMoving = true;
             playerCtr.SimpleMove(transform.forward * speed);
-            playerState = PlayerState.Move;
+            playerState = PlayerState.Walk;
         }
         else
         {

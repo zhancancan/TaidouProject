@@ -33,3 +33,11 @@ public enum ViceDrugItemType
     HP,
     MP
 }
+
+
+public enum PoolObjectType
+{
+    Enemy1,
+    Enemy2,
+    Enemy3
+}

@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class IsClothBtnDown : MonoBehaviour {
 
-    public static IsClothBtnDown _isBtnDown;
+    public static IsClothBtnDown _isClothBtnDown;
     Button clothBtn;
-    public bool btnDown = false;
+    public bool clothBtnDown = false;
     void Awake()
     {
-        _isBtnDown = this;
+        _isClothBtnDown = this;
         clothBtn = transform.GetComponent<Button>();
         clothBtn.onClick.AddListener(BtnDown);
     }
 
     void BtnDown()
     {
-        btnDown = true;
+        clothBtnDown = true;
     }
     
 

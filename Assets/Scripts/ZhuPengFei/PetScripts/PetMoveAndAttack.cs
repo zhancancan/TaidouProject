@@ -23,7 +23,7 @@ public class PetMoveAndAttack : MonoBehaviour
     private void Start()
     {
         //获取英雄对象
-        hero = GameObject.FindGameObjectWithTag("Hero");
+        hero = GameObject.FindGameObjectWithTag("Player");
         //获取敌人对象
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         //获取动画组件

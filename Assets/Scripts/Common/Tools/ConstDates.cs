@@ -12,12 +12,13 @@ public class ConstDates {
     //swl
     public const string ResourcePrefabDirSwl = "ShanWeiLong/Prefabs/UI";
     //zcc
-    public const string ResourcePrefabDirZcc = "ZhangCanCan/Prefabs";
+    public const string ResourcePrefabDirZcc = "ZhangCanCan/Prefabs/UI";
     public const string ResourceEffectPrefabDirZcc = "ZhangCanCan/Prefabs/Effects";
     //ttj
     public const string ResourcePrefabDirTtj = "TanTianJun/Prefabs";
     //zpf
     public const string ResourcePrefabDirZpf = "ZhuPengFei/Prefabs";
+    public const string ResourcePetPrefabDirZpf = "ZhuPengFei/Prefabs/Pet";
 
     //定义音频路径
     //public
@@ -66,10 +67,20 @@ public class ConstDates {
     public const string UIBag = "UIBag";
     //zpf
     public const string UIPet = "UIPet";
+    public const string UIPetMain = "UIPetMain";
+    public const string UIElf = "UIElf";
+    public const string UILion = "UILion";
+    public const string UIFairy = "UIFairy";
 
     //特效预制体
     //zcc
     public const string Effect_MouseClick_Green = "Effect_MouseClick_Green";
+
+    //宠物
+    //zpf
+    public const string Elf = "Elf";
+    public const string Fairy = "Fairy";
+    public const string Lion = "Lion";
 
     //当前运行场景的名字
     //hj

@@ -27,7 +27,6 @@ public class Knapsack : MonoBehaviour ,IDragHandler{
         sc = transform.Find("BagDetails/bagdetails/ScrInventory/Scrollbar").GetComponent<Scrollbar>();   //滚动
         t1.onValueChanged.AddListener(ison);
         close = transform.Find("BagDetails/Closebtn").GetComponent<Button>();    //关闭
-        close.onClick.AddListener(() =>transform.gameObject.SetActive(false));
         btnsale = transform.Find("BagDetails/btnsale").GetComponent<Button>();     //出售按钮
         btnsale.onClick.AddListener(OnSale);
         pricesale = transform.Find("BagDetails/btnsale/saleprice").GetComponent<Text>();     //出售价格      

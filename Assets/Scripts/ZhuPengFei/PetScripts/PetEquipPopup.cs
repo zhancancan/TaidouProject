@@ -56,15 +56,17 @@ public class PetEquipPopup : MonoBehaviour
 
     void Unload()
     {
-        transform.Find("PetEquiptInf").gameObject.SetActive(false);
-        transform.parent.Find("Panel/EquipBG/PetWeapon").SendMessage("CleanPetEquipUI");
-        
-        if (IsClothBtnDown._isBtnDown.btnDown)
+        if (IsWeaponBtnDown._isWeaponBtnDown.weaponBtnDown)
         {
-            transform.parent.Find("Panel/EquipBG/PetCloth").SendMessage("CleanPetEquipUI");
-            
+            transform.parent.Find("Panel/EquipBG/PetWeapon").SendMessage("CleanPetEquipUI");
         }
-        IsClothBtnDown._isBtnDown.btnDown = false;
+        if (IsClothBtnDown._isClothBtnDown.clothBtnDown)
+        {
+            transform.parent.Find("Panel/EquipBG/PetCloth").SendMessage("CleanPetEquipUI");           
+        }
+        transform.Find("PetEquiptInf").gameObject.SetActive(false);
+        IsClothBtnDown._isClothBtnDown.clothBtnDown = false;
+        IsWeaponBtnDown._isWeaponBtnDown.weaponBtnDown = false;
     }
     void closeWindow()
     {

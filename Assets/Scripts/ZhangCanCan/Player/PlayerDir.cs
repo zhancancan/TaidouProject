@@ -21,11 +21,15 @@ public class PlayerDir : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Input.GetMouseButtonDown(0))
         {
-            hitInfo = new RaycastHit();
-            if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.tag == Tags.Ground)
+            //当前检测到的不是UI层   
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                ShowClickEffect(hitInfo.point);
-                isMouseClick = true;
+                hitInfo = new RaycastHit();
+                if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.tag == Tags.Ground)
+                {
+                    ShowClickEffect(hitInfo.point);
+                    isMouseClick = true;
+                }
             }
         }
 
@@ -54,7 +58,7 @@ public class PlayerDir : MonoBehaviour
     void ShowClickEffect(Vector3 hitPoint)
     {
         hitPoint = new Vector3(hitPoint.x, hitPoint.y + 0.1f, hitPoint.z);
-        GameObject obj = PrefabManager.Instance.GetUIPrefabInstance(ConstDates.Effect_MouseClick_Green);
+        GameObject obj = PrefabManager.Instance.GetPrefabInstance(ConstDates.Effect_MouseClick_Green);
         obj.transform.position = hitPoint;
         obj.transform.rotation = Quaternion.identity;
     }

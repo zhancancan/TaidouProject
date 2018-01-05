@@ -36,8 +36,7 @@ public class Task
     //领取奖励
     private int id;
     private TaskType taskType;
-    private string name;
-    private string icon;
+    private string name;    
     private string des;
     private int coin;
     private int dainmond;
@@ -80,19 +79,7 @@ public class Task
         {
             name = value;
         }
-    }
-
-    public string Icon
-    {
-        get
-        {
-            return icon;
-        }
-        set
-        {
-            icon = value;
-        }
-    }
+    }   
 
     public string Des
     {

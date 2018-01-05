@@ -35,15 +35,18 @@ public class TaskManager : MonoBehaviour
                     task.TaskType = TaskType.Daily;
                     break;
             }
-            task.Name = proArray[2];
-            task.Icon = proArray[3];
-            task.Des = proArray[4];
-            task.Coin = int.Parse(proArray[5]);
-            task.Dainmond = int.Parse(proArray[6]);
-            task.NpcTalk = proArray[7];
-            task.NpcId = int.Parse(proArray[8]);
-            task.TranscriptId = int.Parse(proArray[9]);
+            task.Name = proArray[2];            
+            task.Des = proArray[3];
+            task.Coin = int.Parse(proArray[4]);
+            task.Dainmond = int.Parse(proArray[5]);
+            task.NpcTalk = proArray[6];
+            task.NpcId = int.Parse(proArray[7]);
+            task.TranscriptId = int.Parse(proArray[8]);
             taskList.Add(task);
         }
+    }
+    public ArrayList GetTaskList()
+    {
+        return taskList;
     }
 }

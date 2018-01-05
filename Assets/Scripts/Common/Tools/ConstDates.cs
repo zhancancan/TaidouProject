@@ -14,6 +14,7 @@ public class ConstDates {
     //zcc
     public const string ResourcePrefabDirZcc = "ZhangCanCan/Prefabs/UI";
     public const string ResourceEffectPrefabDirZcc = "ZhangCanCan/Prefabs/Effects";
+    public const string ResourceTexturePrefabDirZcc = "ZhangCanCan/Textures/MouseCursor";
     //ttj
     public const string ResourcePrefabDirTtj = "TanTianJun/Prefabs";
     //zpf

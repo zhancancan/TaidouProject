@@ -27,6 +27,13 @@ public class TextureManager : MonoBehaviour
         return texture;
     }
 
+    public Texture2D GetTexture2D(string selfPath, string name)
+    {
+        string path = selfPath + "/" + name;
+        Texture2D texture = Resources.Load<Texture2D>(path);
+        return texture;
+    }
+
     public Image GetImage(string selfPath, string name)
     {
         string path = selfPath + "/" + name;

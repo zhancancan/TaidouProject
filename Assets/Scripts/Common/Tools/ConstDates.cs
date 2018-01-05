@@ -11,6 +11,7 @@ public class ConstDates {
     public const string ResourcePrefabDirHj = "HuJian/Prefabs";
     //swl
     public const string ResourcePrefabDirSwl = "ShanWeiLong/Prefabs/UI";
+    public const string ResourcePlayerPrefabDirSwl = "ShanWeiLong/Prefabs/Player";
     //zcc
     public const string ResourcePrefabDirZcc = "ZhangCanCan/Prefabs/UI";
     public const string ResourceEffectPrefabDirZcc = "ZhangCanCan/Prefabs/Effects";
@@ -97,6 +98,15 @@ public class ConstDates {
     public const string CreatePlayerScene = "CreatePlayerScene";
     //zcc
     public const string MainScene = "MainScene";
+
+    //人物角色预制体
+    //swl
+    public const string ArcherFemale = "/Archer_Female";
+    public const string ArcherMale = "/Archer_Male";
+    public const string MageFemale = "/Mage_Female";
+    public const string MageMale = "/Mage_Male";
+    public const string WarriorFemale = "/Warrior_Female";
+    public const string WarriorMale = "/Warrior_Male";
 
     //当前场景的Index
     public const int StartSceneIndex = 0;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState
+public enum PlayerMoveState
 {
     Idle,
     Walk
@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     private CharacterController playerCtr;
     private PlayerDir playerDir;
 
-    public PlayerState playerState;
+    public PlayerMoveState playerMoveState;
     private float speed = 4;
     public bool isMoving = false;
 
@@ -33,12 +33,12 @@ public class PlayerMove : MonoBehaviour
         {
             isMoving = true;
             playerCtr.SimpleMove(transform.forward * speed);
-            playerState = PlayerState.Walk;
+            playerMoveState = PlayerMoveState.Walk;
         }
         else
         {
             isMoving = false;
-            playerState = PlayerState.Idle;
+            playerMoveState = PlayerMoveState.Idle;
         }
 //      }
 //	    else

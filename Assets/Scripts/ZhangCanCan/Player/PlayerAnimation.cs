@@ -18,12 +18,12 @@ public class PlayerAnimation : MonoBehaviour
 	void LateUpdate () {
 //	    if (attack.state == PlayerState.ControlWalk)
 //	    {
-	    if (move.playerState == PlayerState.Idle)
+	    if (move.playerMoveState == PlayerMoveState.Idle)
 	    {
              animator.SetBool("Walk", false);
              animator.SetBool("Idle",true);
         }
-        else if (move.playerState == PlayerState.Walk)
+        else if (move.playerMoveState == PlayerMoveState.Walk)
 	    {
 	        animator.SetBool("Idle", false);
 	        animator.SetBool("Walk",true);

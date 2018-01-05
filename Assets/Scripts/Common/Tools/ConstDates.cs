@@ -41,6 +41,12 @@ public class ConstDates {
     public const string Head_Lion = "Head_Lion";
     public const string Head_Fairy = "Head_Fairy";
     public const string Head_Elf = "Head_Elf";
+    //zcc
+    public const string Cursor_Normal = "Cursor_Normal";
+    public const string Cursor_NpcTalk = "Cursor_NpcTalk";
+    public const string Cursor_Attack = "Cursor_Attack";
+    public const string Cursor_LockTarget = "Cursor_LockTarget";
+    public const string Cursor_Pick = "Cursor_Pick";
 
     //精灵图片
 

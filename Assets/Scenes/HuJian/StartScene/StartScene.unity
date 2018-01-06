@@ -273,7 +273,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -365,6 +365,8 @@ GameObject:
   - component: {fileID: 1451587002}
   - component: {fileID: 1451586999}
   - component: {fileID: 1451586997}
+  - component: {fileID: 1451587004}
+  - component: {fileID: 1451587003}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -486,7 +488,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -555,6 +557,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aaa: {fileID: 2800000, guid: 5e6f0c80e4afb394781827afa3e5e671, type: 3}
+--- !u!114 &1451587003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1451586992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30cd17240d901d4ca874efb92d33bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ServerRed: {fileID: 1818043225168470, guid: eb0b63bb957e78c4c8c13b561a59a0a2, type: 2}
+  ServerGreen: {fileID: 1321840502382720, guid: dd3dec9debcfa314e92123f9c4f0d246,
+    type: 2}
+--- !u!114 &1451587004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1451586992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1718deba6d6c0344a9a7868f011183d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverAddress: 127.0.0.1:4530
+  ApplicationName: TaidouServer
 --- !u!1 &1715405968
 GameObject:
   m_ObjectHideFlags: 0

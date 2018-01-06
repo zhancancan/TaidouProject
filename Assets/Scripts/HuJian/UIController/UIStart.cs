@@ -5,18 +5,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UIStart :UIBase
-{    
+{
     Image pleaseLoginbg;
-    Button loginBtn;    
+    Button loginBtn;
+    GameObject TotalList;
+    GameObject SelectSeverBG;
+    Button SeverBtn;
     public override void OnEntering()
     {
-        
-        gameObject.SetActive(true);
-        //播放声音
-        //SoundManager.Instance.PlayBGSound(ConstDates.Bgm_1);
-        SoundManager.Instance.PlayBGSound(ConstDates.ResourceAudiosDirHj,ConstDates.Bgm_1);
-        pleaseLoginbg = GameObject.Find("PleaseLoginBG").GetComponent<Image>();
+
+        TotalList = transform.Find("StartBG/TotalList").gameObject;
+        SelectSeverBG = transform.Find("StartBG/SelectSeverBG").gameObject;
+        SeverBtn = transform.Find("StartBG/SelectSeverBG/SeverBtn").GetComponent<Button>();
+        SeverBtn.onClick.AddListener(() => {
+            TotalList.gameObject.SetActive(true);
+            SelectSeverBG.gameObject.SetActive(false);
+        });
+        SoundManager.Instance.PlayBGSound(ConstDates.ResourceAudiosDirHj, ConstDates.Bgm_1);
+        pleaseLoginbg = transform.Find("StartBG/PleaseLoginBG").GetComponent<Image>();
         loginBtn = pleaseLoginbg.transform.Find("PleaseLoginBtn").GetComponent<Button>();
+
         pleaseLoginbg.gameObject.SetActive(false);
     }
     public override void OnPausing()
@@ -40,7 +48,9 @@ public class UIStart :UIBase
     //跳转
     public void GoToSelectSever()
     {
-        UIManager.Instance.PushUIPanel(ConstDates.UISelectSever);
+        //UIManager.Instance.PushUIPanel(ConstDates.UISelectSever);
+        TotalList.gameObject.SetActive(false);
+        SelectSeverBG.gameObject.SetActive(true);
     }
     public void GoToLogin()
     {
@@ -64,5 +74,21 @@ public class UIStart :UIBase
     public void Onclick()
     {
         pleaseLoginbg.gameObject.SetActive(false);
+    }
+     GameObject serverSelectedGo;
+    GameObject selectedserver;
+    public void OnServerSelect(GameObject serverGo)
+    {
+        //sp = serverGo.GetComponent<ServerProperty>();
+        serverSelectedGo = transform.Find("StartBG/SelectSeverBG/SeverContentImg").gameObject;
+        serverSelectedGo.GetComponent<Image>().sprite = serverGo.GetComponent<Image>().sprite;
+        serverSelectedGo.transform.Find("SeverNameTxt").GetComponent<Text>().text = serverGo.transform.Find("SeverNameTxt").GetComponent<Text>().text;
+        serverSelectedGo.transform.Find("SeverNameTxt").GetComponent<Text>().color = serverGo.transform.Find("SeverNameTxt").GetComponent<Text>().color;
+        selectedserver = transform.Find("StartBG/TotalList/SelectSeverBtn").gameObject;
+        selectedserver.transform.Find("Text").GetComponent<Text>().text = serverGo.transform.Find("SeverNameTxt").GetComponent<Text>().text;
+        selectedserver.transform.Find("Text").GetComponent<Text>().color = serverGo.transform.Find("SeverNameTxt").GetComponent<Text>().color;
+
+
+
     }
 }

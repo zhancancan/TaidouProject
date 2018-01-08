@@ -38,6 +38,10 @@ public class UIManager : MonoBehaviour
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIRegister);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UISelectSever);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UISelectRole);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UITask);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIGemstoneCompose);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UITaskList);
+
         //swl
         AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISelectPlayer);
         AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UICreatePlayer);

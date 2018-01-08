@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 114565570300788402}
   - component: {fileID: 114433408464026680}
   - component: {fileID: 114348269931960808}
-  - component: {fileID: 114056565121837564}
   m_Layer: 5
   m_Name: UIRegister
   m_TagString: Untagged
@@ -385,21 +384,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114056565121837564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804052639510618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 972f9e2fae5d0bf4889c163abba8e21d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  username: {fileID: 114807920921700352}
-  password: {fileID: 114088533008279762}
-  registerButton: {fileID: 114084726417635006}
-  failedImg: {fileID: 114741451260159204}
 --- !u!114 &114084726417635006
 MonoBehaviour:
   m_ObjectHideFlags: 1

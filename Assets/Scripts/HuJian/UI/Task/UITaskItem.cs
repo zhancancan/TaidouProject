@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class TaskItemUI : MonoBehaviour
+public class UITaskItem : MonoBehaviour
 {
     private Image mainImg;
     private Image rewardImg;

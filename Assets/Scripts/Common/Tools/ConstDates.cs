@@ -8,7 +8,7 @@ public class ConstDates {
     //common
     public const string ResourcePrefabDirCommon = "Common/Prefabs";
     //hj
-    public const string ResourcePrefabDirHj = "HuJian/Prefabs";
+    public const string ResourcePrefabDirHj = "HuJian/Prefabs/UI";
     //swl
     public const string ResourcePrefabDirSwl = "ShanWeiLong/Prefabs/UI";
     public const string ResourcePlayerPrefabDirSwl = "ShanWeiLong/Prefabs/Player";
@@ -62,6 +62,9 @@ public class ConstDates {
     public const string UIRegister = "UIRegister";
     public const string UISelectSever = "UISelectSever";
     public const string UISelectRole = "UISelectRole";
+    public const string UITask = "UITask";
+    public const string UIGemstoneCompose = "UIGemstoneCompose";
+    public const string UITaskList = "UITaskList";
     //swl
     public const string UISelectPlayer = "UISelectPlayer";
     public const string UICreatePlayer = "UICreatePlayer";

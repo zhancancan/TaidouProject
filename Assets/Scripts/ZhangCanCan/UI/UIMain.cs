@@ -34,7 +34,9 @@ public class UIMain:UIBase{
     void Start()
     {
         petBtn.onClick.AddListener(OnPetBtnClick);
+        composeBtn.onClick.AddListener(OnComposeBtnClick);
         playerPropertyBtn.onClick.AddListener(OnPlayerPropertyBtnClick);
+        taskBtn.onClick.AddListener(OnTaskBtnBtnClick);
         storeBtn.onClick.AddListener(OnStoreBtnClick);
         bagBtn.onClick.AddListener(OnBagBtnClick);
         settingBtn.onClick.AddListener(OnSettingBtnClick);
@@ -69,11 +71,27 @@ public class UIMain:UIBase{
     }
 
     /// <summary>
+    /// 点击宝石合成按钮
+    /// </summary>
+    void OnComposeBtnClick()
+    {
+        UIManager.Instance.PushUIPanel(ConstDates.UIGemstoneCompose);
+    }
+
+    /// <summary>
     /// 点击人物属性按钮
     /// </summary>
     void OnPlayerPropertyBtnClick()
     {
         UIManager.Instance.PushUIPanel(ConstDates.UIPlayerProperty);
+    }
+
+    /// <summary>
+    /// 点击任务按钮
+    /// </summary>
+    void OnTaskBtnBtnClick()
+    {
+        UIManager.Instance.PushUIPanel(ConstDates.UITask);
     }
 
     /// <summary>

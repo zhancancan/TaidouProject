@@ -14,8 +14,7 @@ public class UIStore : UIBase
     private GameObject mainToggleParent;    //主列表Item的父层级
     private GameObject viceToggleParent;    //副列表Item的父层级
     private Transform ItemBgParent;        //物品背景父层级
-
-//    private 
+    private Button exit;
 
     //保存所有副列表Item,控制副列表的显隐
     private List<Dictionary<object, GameObject>> viceToggleList = new List<Dictionary<object, GameObject>>();
@@ -40,6 +39,7 @@ public class UIStore : UIBase
         mainToggleParent = transform.Find("StoreBg/MainGroup/ScrollView/Viewport/Content").gameObject;
         viceToggleParent = transform.Find("StoreBg/ViceGroup/ScrollView/Viewport/Content").gameObject;
         ItemBgParent = transform.Find("StoreBg/ItemScrollView/Viewport/Content");
+        exit = transform.Find("StoreBg/Exit").GetComponent<Button>();
 
         AddAllViceAndItemObjToDic(); //加载所有副列表
         AddAllItemBg();
@@ -47,6 +47,7 @@ public class UIStore : UIBase
 
     void Start ()
     {
+        exit.onClick.AddListener(() => { UIManager.Instance.PopUIPanel();});
         //副列表及物体首次显隐
         ShowViceItem();
         //注册监听

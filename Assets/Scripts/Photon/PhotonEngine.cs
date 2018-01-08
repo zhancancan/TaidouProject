@@ -9,7 +9,7 @@ public class PhotonEngine : MonoBehaviour,IPhotonPeerListener {
 
     PhotonPeer peer;
     ConnectionProtocol protocol = ConnectionProtocol.Tcp;
-    public string serverAddress = "127.0.0.1:4530";
+    public string serverAddress = "101.83.6.79:4530";
     public string ApplicationName = "TaidouServer";
     public delegate void OnConnectedToServerEvent();
     public event OnConnectedToServerEvent OnConnectedToServer;

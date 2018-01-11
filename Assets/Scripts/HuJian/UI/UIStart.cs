@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UIStart :UIBase
 {
-    Image pleaseLoginbg;
     Button loginBtn;
     GameObject TotalList;
     GameObject SelectSeverBG;
@@ -22,10 +21,8 @@ public class UIStart :UIBase
             SelectSeverBG.gameObject.SetActive(false);
         });
         SoundManager.Instance.PlayBGSound(ConstDates.ResourceAudiosDirHj, ConstDates.Bgm_1);
-        pleaseLoginbg = transform.Find("StartBG/PleaseLoginBG").GetComponent<Image>();
-        loginBtn = pleaseLoginbg.transform.Find("PleaseLoginBtn").GetComponent<Button>();
+        
 
-        pleaseLoginbg.gameObject.SetActive(false);
     }
     public override void OnPausing()
     {
@@ -73,7 +70,7 @@ public class UIStart :UIBase
     }
     public void Onclick()
     {
-        pleaseLoginbg.gameObject.SetActive(false);
+       
     }
      GameObject serverSelectedGo;
     GameObject selectedserver;

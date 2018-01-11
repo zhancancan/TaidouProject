@@ -49,7 +49,6 @@ public class PhotonEngine : MonoBehaviour,IPhotonPeerListener {
         if (controller != null)
         {
             controller.OnOperationResponse(operationResponse);
-
         }
         else
         {
@@ -83,6 +82,7 @@ public class PhotonEngine : MonoBehaviour,IPhotonPeerListener {
     }
     public void SendRequest(OperationCode opCode,Dictionary<byte,object> parameters)
     {
+        Debug.Log("sendrequest to server , opcode : " + opCode);
         peer.OpCustom((byte)opCode, parameters, true);
     }
 }

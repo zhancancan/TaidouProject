@@ -583,7 +583,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1718deba6d6c0344a9a7868f011183d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverAddress: 101.83.119.65:4530
   ApplicationName: TaidouServer
 --- !u!1 &1715405968
 GameObject:

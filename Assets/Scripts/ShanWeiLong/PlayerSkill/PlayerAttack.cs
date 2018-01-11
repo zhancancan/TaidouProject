@@ -25,19 +25,19 @@ public class PlayerAttack : MonoBehaviour {
 
     private void Awake()
     {
-        BloodSpray = Resources.Load<PlayerEffect>("BloodSpray");
-        Crack = Resources.Load<PlayerEffect>("Crack");
-        Fire = Resources.Load<PlayerEffect>("Fire");
-        FireDragon = Resources.Load<PlayerEffect>("FireDragon");
-        FireDragonRoll = Resources.Load<PlayerEffect>("FireDragonRoll");
-        Ice = Resources.Load<PlayerEffect>("Ice");
-        IceArrow = Resources.Load<PlayerEffect>("IceArrow");
-        IceMake = Resources.Load<PlayerEffect>("IceMake");
-        MageAttack = Resources.Load<PlayerEffect>("MageAttack");
-        MonsterRaids = Resources.Load<PlayerEffect>("MonsterRaids");
-        MuzzleFlash = Resources.Load<PlayerEffect>("MuzzleFlash");
-        Shock_Bomb = Resources.Load<PlayerEffect>("Shock_Bomb");
-        Tonado_Electro = Resources.Load<PlayerEffect>("Tonado_Electro");
+        BloodSpray = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.BloodSpray);
+        Crack = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.Crack);
+        Fire = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.Fire);
+        FireDragon = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.FireDragon);
+        FireDragonRoll = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.FireDragonRoll);
+        Ice = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.Ice);
+        IceArrow = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.IceArrow);
+        IceMake = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.IceMake);
+        MageAttack = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.MageAttack);
+        MonsterRaids = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.MonsterRaids);
+        MuzzleFlash = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.MuzzleFlash);
+        Shock_Bomb = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.Shock_Bomb);
+        Tonado_Electro = Resources.Load<PlayerEffect>(ConstDates.ResourceEffectPrefabDirSwl + ConstDates.Tonado_Electro);
         effectArray = new PlayerEffect[] { BloodSpray , Crack , Fire , FireDragon , FireDragonRoll , Ice ,
                                          IceArrow,IceMake,MageAttack,MonsterRaids,MuzzleFlash,Shock_Bomb,Tonado_Electro
                                         };
@@ -250,27 +250,27 @@ public class PlayerAttack : MonoBehaviour {
 
     //}
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            animPlay.SetTrigger("Attack");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            animPlay.SetTrigger("Skill1");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            animPlay.SetTrigger("Skill2");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            animPlay.SetTrigger("Skill3");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            animPlay.SetTrigger("Skill4");
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        animPlay.SetTrigger("Attack");
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        animPlay.SetTrigger("Skill1");
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        animPlay.SetTrigger("Skill2");
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        animPlay.SetTrigger("Skill3");
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        animPlay.SetTrigger("Skill4");
+    //    }
+    //}
 }

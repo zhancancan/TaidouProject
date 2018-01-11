@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEditor.Animations;
 
 public class CharacterSelectController : MonoBehaviour {
 
@@ -57,6 +58,9 @@ public class CharacterSelectController : MonoBehaviour {
     Animator mageMaleAnim;
     Animator archerFemaleAnim;
     Animator archerMaleAnim;
+    AnimatorController warriorAnimatorController;
+    AnimatorController mageAnimatorController;
+    AnimatorController archerAnimatorController;
 
     private void Awake()
     {
@@ -81,16 +85,39 @@ public class CharacterSelectController : MonoBehaviour {
         mageBtn = transform.Find("MageBTN").GetComponent<Button>();
         archerBtn = transform.Find("ArcherBTN").GetComponent<Button>();
         createNameField = transform.Find("CreateNameInputField").GetComponent<InputField>();
-        warriorTXT = GameObject.Find("WarriorIntroductionTXT");
-        mageTXT = GameObject.Find("MageIntroductionTXT");
-        archerTXT = GameObject.Find("ArcherIntroductionTXT");
+        warriorTXT = transform.Find("Introduction/WarriorIntroductionTXT").gameObject;
+        mageTXT = transform.Find("Introduction/MageIntroductionTXT").gameObject;
+        archerTXT = transform.Find("Introduction/ArcherIntroductionTXT").gameObject;
         warriorTXT.SetActive(false);
         mageTXT.SetActive(false);
         archerTXT.SetActive(false);
 
     }
+
     private void Start()
     {
+        //状态机
+        /*RuntimeAnimatorController*/ warriorAnimatorController
+            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.WarriorAnimator);
+        /*RuntimeAnimatorController*/ mageAnimatorController
+            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.MageAnimator);
+        /*RuntimeAnimatorController*/ archerAnimatorController
+            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.ArcherAnimator);
+
+        //人物Animator获取
+        warriorFemaleAnim = warriorFemaleObj.GetComponent<Animator>();
+        warriorMaleAnim = warriorMaleObj.GetComponent<Animator>();
+        mageFemaleAnim = mageFemaleObj.GetComponent<Animator>();
+        mageMaleAnim = mageMaleObj.GetComponent<Animator>();
+        archerFemaleAnim = archerFemaleObj.GetComponent<Animator>();
+        archerMaleAnim = archerMaleObj.GetComponent<Animator>();
+        warriorFemaleAnim.runtimeAnimatorController = Instantiate(warriorAnimatorController);
+        warriorMaleAnim.runtimeAnimatorController = Instantiate(warriorAnimatorController);
+        mageFemaleAnim.runtimeAnimatorController = Instantiate(mageAnimatorController);
+        mageMaleAnim.runtimeAnimatorController = Instantiate(mageAnimatorController);
+        archerFemaleAnim.runtimeAnimatorController = Instantiate(archerAnimatorController);
+        archerMaleAnim.runtimeAnimatorController = Instantiate(archerAnimatorController);
+
         //生成人物预制体
         goWarriorFemale = Instantiate(warriorFemaleObj, bornPointFemale.transform.position, Quaternion.identity);
         goWarriorMale = Instantiate(warriorMaleObj, bornPointMale.transform.position, Quaternion.identity);
@@ -105,15 +132,7 @@ public class CharacterSelectController : MonoBehaviour {
         goArcherMale.SetActive(false);
         mageTXT.SetActive(false);
         archerTXT.SetActive(false);
-
-        //人物Animator获取
-        warriorFemaleAnim = warriorFemaleObj.GetComponent<Animator>();
-        warriorMaleAnim = warriorMaleObj.GetComponent<Animator>();
-        mageFemaleAnim = mageFemaleObj.GetComponent<Animator>();
-        mageMaleAnim = mageMaleObj.GetComponent<Animator>();
-        archerFemaleAnim = archerFemaleObj.GetComponent<Animator>();
-        archerMaleAnim = archerMaleObj.GetComponent<Animator>();
-
+        
         //点击返回键
         returnBtn.onClick.AddListener(() => { Debug.Log(111); });
 
@@ -166,7 +185,7 @@ public class CharacterSelectController : MonoBehaviour {
             if (goWarriorMale.activeSelf == true)
             {
                 goWarriorMale.transform.LookAt(showPoint.transform.position);
-
+                warriorMaleAnim.SetBool("Walk", true);
                 goWarriorMale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
                     goWarriorMale.transform.LookAt(new Vector3(
                          Camera.main.transform.position.x,
@@ -174,12 +193,14 @@ public class CharacterSelectController : MonoBehaviour {
                          Camera.main.transform.position.z
                         ));
                     femaleBtn.interactable = true;
+                    warriorMaleAnim.SetBool("Walk", false);
                     warriorMaleAnim.SetTrigger("Skill1");
                 });
             }
             else if (goMageMale.activeSelf == true)
             {
                 goMageMale.transform.LookAt(showPoint.transform.position);
+                mageMaleAnim.SetBool("Walk", true);
                 goMageMale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
                     goMageMale.transform.LookAt(new Vector3(
                          Camera.main.transform.position.x,
@@ -193,6 +214,7 @@ public class CharacterSelectController : MonoBehaviour {
             else if (goArcherMale.activeSelf == true)
             {
                 goArcherMale.transform.LookAt(showPoint.transform.position);
+                archerMaleAnim.SetBool("Walk", true);
                 goArcherMale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
                     goArcherMale.transform.LookAt(new Vector3(
                          Camera.main.transform.position.x,
@@ -207,34 +229,40 @@ public class CharacterSelectController : MonoBehaviour {
             if (Vector3.Distance(goWarriorFemale.transform.position, showPoint.transform.position) <= 0.01f)
             {
                 goWarriorFemale.transform.LookAt(bornPointFemale.transform.position);
+                warriorFemaleAnim.SetBool("Walk", true);
                 goWarriorFemale.transform.DOMove(bornPointFemale.transform.position, 2).OnComplete(() => {
                     goWarriorFemale.transform.LookAt(new Vector3(
                          Camera.main.transform.position.x - 2,
                          Camera.main.transform.position.y - 2,
                          Camera.main.transform.position.z
                         ));
+                    warriorFemaleAnim.SetBool("Walk", false);
                 });
             }
             else if(Vector3.Distance(goMageFemale.transform.position, showPoint.transform.position) <= 0.01f)
             {
                 goMageFemale.transform.LookAt(bornPointFemale.transform.position);
+                mageFemaleAnim.SetBool("Walk", true);
                 goMageFemale.transform.DOMove(bornPointFemale.transform.position, 2).OnComplete(() => {
                     goMageFemale.transform.LookAt(new Vector3(
                          Camera.main.transform.position.x - 2,
                          Camera.main.transform.position.y - 2,
                          Camera.main.transform.position.z
                         ));
+                    mageFemaleAnim.SetBool("Walk", false);
                 });
             }
             else if (Vector3.Distance(goArcherFemale.transform.position, showPoint.transform.position) <= 0.01f)
             {
                 goArcherFemale.transform.LookAt(bornPointFemale.transform.position);
+                archerFemaleAnim.SetBool("Walk", true);
                 goArcherFemale.transform.DOMove(bornPointFemale.transform.position, 2).OnComplete(() => {
                     goArcherFemale.transform.LookAt(new Vector3(
                          Camera.main.transform.position.x - 2,
                          Camera.main.transform.position.y - 2,
                          Camera.main.transform.position.z
                         ));
+                    archerFemaleAnim.SetBool("Walk", false);
                 });
             }
         });

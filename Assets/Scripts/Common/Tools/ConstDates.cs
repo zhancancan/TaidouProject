@@ -12,6 +12,8 @@ public class ConstDates {
     //swl
     public const string ResourcePrefabDirSwl = "ShanWeiLong/Prefabs/UI";
     public const string ResourcePlayerPrefabDirSwl = "ShanWeiLong/Prefabs/Player";
+    public const string ResourceAnimatorPrefabDirSwl = "ShanWeiLong/Prefabs/Animators";
+    public const string ResourceEffectPrefabDirSwl = "ShanWeiLong/Prefabs/MyEffect";
     //zcc
     public const string ResourcePrefabDirZcc = "ZhangCanCan/Prefabs/UI";
     public const string ResourceEffectPrefabDirZcc = "ZhangCanCan/Prefabs/Effects";
@@ -110,6 +112,27 @@ public class ConstDates {
     public const string MageMale = "/Mage_Male";
     public const string WarriorFemale = "/Warrior_Female";
     public const string WarriorMale = "/Warrior_Male";
+
+    //技能特效预制体
+    //swl
+    public const string BloodSpray = "/BloodSpray/BloodSpray";
+    public const string Crack = "/Crack/Crack";
+    public const string Fire = "/FireAndIce/Fire";
+    public const string Ice = "/FireAndIce/Ice";
+    public const string FireDragon = "/FireDragon/FireDragon";
+    public const string FireDragonRoll = "/FireDragonRoll/FireDragonRoll";
+    public const string IceArrow = "/IceArrow/IceArrow";
+    public const string IceMake = "/IceMake/IceMake";
+    public const string MageAttack = "/MageAttack/MageAttack";
+    public const string MonsterRaids = "/MonsterRaids/MonsterRaids";
+    public const string MuzzleFlash = "/Perfab/MuzzleFlash";
+    public const string Shock_Bomb = "/Perfab/Shock_Bomb";
+    public const string Tonado_Electro = "/Perfab/Tonado_Electro";
+
+    //人物状态机
+    public const string WarriorAnimator = "/WarriorAnim";
+    public const string MageAnimator = "/MageAnim";
+    public const string ArcherAnimator = "/ArcherAnim";
 
     //当前场景的Index
     public const int StartSceneIndex = 0;

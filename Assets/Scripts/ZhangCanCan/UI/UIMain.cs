@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIMain:UIBase{
+    //UIFunctionBar
     private Button petBtn;              //宠物
     private Button forgeBtn;            //锻造
     private Button composeBtn;          //宝石合成
@@ -16,8 +18,28 @@ public class UIMain:UIBase{
     private Button bagBtn;              //背包
     private Button settingBtn;          //系统设定
 
+    private Button rechargeBtn;         //充值
+    private Button prizeBtn;            //奖励
+    private Button signBtn;             //签到
+
+    //UIHead
+    private Text levelTxt;              //等级
+    private Text powerTxt;              //体力
+    private Text temperTxt;             //历练
+    private Image powerImg;
+    private Image temperImg;
+    private Button powerBtn;
+    private Button temperBtn;
+
+    //UIRich
+    private Text diamonTxt;             //宝石
+    private Text coinTxt;               //金币
+    private Button diamonBtn;
+    private Button coinBtn;
+
     void Awake()
     {
+        //UIFunctionBar
         petBtn = transform.Find("FunctionBar/FbBg/PetBtn").GetComponent<Button>();
         forgeBtn = transform.Find("FunctionBar/FbBg/ForgeBtn").GetComponent<Button>();
         composeBtn = transform.Find("FunctionBar/FbBg/ComposeBtn").GetComponent<Button>();
@@ -29,6 +51,23 @@ public class UIMain:UIBase{
         storeBtn = transform.Find("FunctionBar/FbBg/StoreBtn").GetComponent<Button>();
         bagBtn = transform.Find("FunctionBar/FbBg/BagBtn").GetComponent<Button>();
         settingBtn = transform.Find("FunctionBar/FbBg/SettingBtn").GetComponent<Button>();
+
+        rechargeBtn = transform.Find("RechargeSignPrize/RechargeBtn").GetComponent<Button>();
+        prizeBtn = transform.Find("RechargeSignPrize/PrizeBtn").GetComponent<Button>();
+        signBtn = transform.Find("RechargeSignPrize/SignBtn").GetComponent<Button>();
+        //UIHead
+        levelTxt = transform.Find("HeadBg/Level").GetComponent<Text>();
+        powerTxt = transform.Find("HeadBg/PowerCount").GetComponent<Text>();
+        temperTxt = transform.Find("HeadBg/TemperCount").GetComponent<Text>();
+        powerImg = transform.Find("HeadBg/PowerImg").GetComponent<Image>();
+        temperImg = transform.Find("HeadBg/TemperImg").GetComponent<Image>();
+        powerBtn = transform.Find("HeadBg/PowerAddBtn").GetComponent<Button>();
+        temperBtn = transform.Find("HeadBg/TemperAddBtn").GetComponent<Button>();
+        //UIRich
+        diamonTxt = transform.Find("Rich/DiamonCount").GetComponent<Text>();
+        coinTxt = transform.Find("Rich/CoinCount").GetComponent<Text>();
+        diamonBtn = transform.Find("Rich/DiamonAddBtn").GetComponent<Button>();
+        coinBtn = transform.Find("Rich/CoinAddBtn").GetComponent<Button>();
     }
 
     void Start()
@@ -40,6 +79,10 @@ public class UIMain:UIBase{
         storeBtn.onClick.AddListener(OnStoreBtnClick);
         bagBtn.onClick.AddListener(OnBagBtnClick);
         settingBtn.onClick.AddListener(OnSettingBtnClick);
+
+        rechargeBtn.onClick.AddListener(OnRechargeBtnClick);
+        prizeBtn.onClick.AddListener(OnPrizeBtnClick);
+        signBtn.onClick.AddListener(OnSignBtnClick);
     }
 
     public override void OnEntering()
@@ -116,5 +159,29 @@ public class UIMain:UIBase{
     void OnStoreBtnClick()
     {
         UIManager.Instance.PushUIPanel(ConstDates.UIStore);
+    }
+
+    /// <summary>
+    /// 点击充值按钮
+    /// </summary>
+    void OnRechargeBtnClick()
+    {
+        UIManager.Instance.PushUIPanel(ConstDates.UIRecharge);
+    }
+
+    /// <summary>
+    /// 点击奖励按钮
+    /// </summary>
+    void OnPrizeBtnClick()
+    {
+        //UIManager.Instance.PushUIPanel(ConstDates.UIPrize);
+    }
+
+    /// <summary>
+    /// 点击签到按钮
+    /// </summary>
+    void OnSignBtnClick()
+    {
+        //UIManager.Instance.PushUIPanel(ConstDates.UISignIn);
     }
 }

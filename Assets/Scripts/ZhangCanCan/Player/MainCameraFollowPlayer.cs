@@ -12,15 +12,19 @@ public class MainCameraFollowPlayer : MonoBehaviour
     private float rotateSpeed = 5;
     private bool isClicked = false;
 
+    void Awake()
+    {
+        playerTransform = GameObject.FindGameObjectWithTag(Tags.Player).transform;
+    }
+
     void Start ()
 	{
-	    playerTransform = GameObject.FindGameObjectWithTag(Tags.Player).transform;
         offset = transform.position - playerTransform.position;
         distance = offset.magnitude;
         transform.LookAt(playerTransform.position);
     }
 
-    void Update ()
+    void LateUpdate ()
     {
         RotateView();
         ScaleView();
@@ -31,7 +35,7 @@ public class MainCameraFollowPlayer : MonoBehaviour
     void ScaleView()
     {
         distance = offset.magnitude - Input.GetAxis("Mouse ScrollWheel") * scaleSpeed;
-        distance = Mathf.Clamp(distance, 2.5f, 30);//控制缩放的范围
+        distance = Mathf.Clamp(distance, 10f, 40f);//控制缩放的范围
         offset = offset.normalized * distance;
     }
 

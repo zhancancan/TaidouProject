@@ -36,6 +36,9 @@ public class ConstDates {
     //定义image路径
     public const string ResourceImagesDirTtj = "TanTianJun/Image";
 
+    //定义精灵路径
+    public const string ResourceSpritesDirSwl = "ShanWeiLong/Sprites";
+
     //背景音频
     //hj
     public const string Bgm_1 = "UIStartBGM";
@@ -53,7 +56,9 @@ public class ConstDates {
     public const string Cursor_Pick = "Cursor_Pick";
 
     //精灵图片
-
+    //swl
+    public const string VideoPlay = "播放";
+    public const string VideoPause = "暂停";
 
     //UI界面预制体
     //common

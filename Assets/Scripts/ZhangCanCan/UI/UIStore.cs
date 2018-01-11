@@ -13,7 +13,7 @@ public class UIStore : UIBase
     private Toggle viceActiveToggle;        //副列表激活的Toggle
     private GameObject mainToggleParent;    //主列表Item的父层级
     private GameObject viceToggleParent;    //副列表Item的父层级
-    private Transform ItemBgParent;        //物品背景父层级
+    private Transform itemBgParent;        //物品背景父层级
     private Button exit;
 
     //保存所有副列表Item,控制副列表的显隐
@@ -38,7 +38,7 @@ public class UIStore : UIBase
         viceToggleGroup = transform.Find("StoreBg/ViceGroup").GetComponent<ToggleGroup>();
         mainToggleParent = transform.Find("StoreBg/MainGroup/ScrollView/Viewport/Content").gameObject;
         viceToggleParent = transform.Find("StoreBg/ViceGroup/ScrollView/Viewport/Content").gameObject;
-        ItemBgParent = transform.Find("StoreBg/ItemScrollView/Viewport/Content");
+        itemBgParent = transform.Find("StoreBg/ItemScrollView/Viewport/Content");
         exit = transform.Find("StoreBg/Exit").GetComponent<Button>();
 
         AddAllViceAndItemObjToDic(); //加载所有副列表
@@ -100,7 +100,7 @@ public class UIStore : UIBase
     /// </summary>
     void AddAllItemBg()
     {
-        foreach (Transform temp in ItemBgParent)
+        foreach (Transform temp in itemBgParent)
         {
             itemBgList.Add(temp);
         }
@@ -232,7 +232,7 @@ public class UIStore : UIBase
     void SetItemProperty(GameObject item,string imageName)
     {
         item.GetComponent<Image>().sprite = TextureManager.Instance.GetSprite(ConstDates.ResourceImagesDirTtj, imageName);
-        item.transform.SetParent(ItemBgParent);
+        item.transform.SetParent(itemBgParent);
     }
 
     /// <summary>
@@ -295,7 +295,7 @@ public class UIStore : UIBase
 
             for (int j = 0; j < 5; j++)
             {
-                if (Vector3.one == uiObjTransform.localScale)//房主
+                if (Vector3.one == uiObjTransform.localScale)//防止多次点击
                 {
                     break;
                 }
@@ -329,7 +329,7 @@ public class UIStore : UIBase
             else
             {
                 item.SetActive(false);  //隐藏
-                item.transform.SetParent(ItemBgParent);//设置父层级到content
+                item.transform.SetParent(itemBgParent);//设置父层级到content
             }
         }
 

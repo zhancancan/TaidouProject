@@ -26,9 +26,10 @@ public class MainCameraFollowPlayer : MonoBehaviour
 
     void LateUpdate ()
     {
-        RotateView();
+        transform.position = offset + playerTransform.position;//这里必须要先更新一下摄像机位置，因为人物在移动的过程中，右键一直按着会出现摄像机不跟随的bug
+        RotateView();//先旋转，因为旋转之后物体和摄像机的距离没变，只是方向变了
         ScaleView();
-        transform.position = offset + playerTransform.position;
+        //transform.position = offset + playerTransform.position;
     }
 
     //滑动滚轮缩放视野

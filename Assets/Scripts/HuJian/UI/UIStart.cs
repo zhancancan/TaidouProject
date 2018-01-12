@@ -12,7 +12,7 @@ public class UIStart :UIBase
     Button SeverBtn;
     public override void OnEntering()
     {
-
+        gameObject.SetActive(true);
         TotalList = transform.Find("StartBG/TotalList").gameObject;
         SelectSeverBG = transform.Find("StartBG/SelectSeverBG").gameObject;
         SeverBtn = transform.Find("StartBG/SelectSeverBG/SeverBtn").GetComponent<Button>();
@@ -32,7 +32,7 @@ public class UIStart :UIBase
     public override void OnResuming()
     {
 
-       
+        gameObject.SetActive(true);
 
     }
     public override void OnExiting()
@@ -51,10 +51,12 @@ public class UIStart :UIBase
     }
     public void GoToLogin()
     {
+        gameObject.SetActive(false);
         UIManager.Instance.PushUIPanel(ConstDates.UILogin);
     }
     public void GoToRegister()
     {
+        gameObject.SetActive(false);
         UIManager.Instance.PushUIPanel(ConstDates.UIRegister);
     }
     public void GoToSelectRole()

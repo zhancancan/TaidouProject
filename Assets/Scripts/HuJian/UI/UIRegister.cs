@@ -41,6 +41,7 @@ public class UIRegister : UIBase
     public void Exc()
     {
         gameObject.SetActive(false);
+        UIManager.Instance.PushUIPanel(ConstDates.UIStart);
     }
     public void Onclick()
     {

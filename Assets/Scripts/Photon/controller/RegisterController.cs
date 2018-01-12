@@ -26,7 +26,7 @@ public class RegisterController : ControllerBase {
         switch (response.ReturnCode)
         {
             case (short)ReturnCode.Success:
-
+                UIManager.Instance.PushUIPanel(ConstDates.UIStart);
                 uigesiter.Onclick();
                 break;
             case (short)ReturnCode.Fail:

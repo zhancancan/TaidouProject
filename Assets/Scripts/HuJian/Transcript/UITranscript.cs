@@ -16,7 +16,7 @@ public class UITranscript : UIBase
     private void Start()
     {
         exit.onClick.AddListener(() => { UIManager.Instance.PopUIPanel(); });
-        one.onClick.AddListener(() => { SceneManager.LoadScene("Map_01"); });        
+        one.onClick.AddListener(() => { UIManager.Instance.PushUIPanel("UIProgressBar"); });        
     }
     public override void OnEntering()
     {

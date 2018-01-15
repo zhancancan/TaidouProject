@@ -73,6 +73,7 @@ public class ConstDates {
     public const string UIGemstoneCompose = "UIGemstoneCompose";
     public const string UITaskList = "UITaskList";
     public const string UITranscript = "UIMap";
+    public const string UIProgressBar = "UIProgressBar";
     //swl
     public const string UISelectPlayer = "UISelectPlayer";
     public const string UICreatePlayer = "UICreatePlayer";

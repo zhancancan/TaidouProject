@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UIGemstoneCompose);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj,ConstDates.UITaskList);
         AddUIPrefabs(ConstDates.ResourcePrefabDirHj, ConstDates.UITranscript);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirHj, ConstDates.UIProgressBar);
 
         //swl
         AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISelectPlayer);

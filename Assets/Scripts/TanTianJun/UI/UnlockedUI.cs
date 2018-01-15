@@ -72,7 +72,7 @@ public class UnlockedUI : MonoBehaviour{
             }
             else
             {
-                
+                MessageManager._instance.ShowMessage("金币不足");
             }
          
         }

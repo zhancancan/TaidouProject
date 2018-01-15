@@ -50,7 +50,6 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
 
         existBtn = transform.Find("EquiptInf/Exist/ExistBtn").GetComponent<Button>();
         existBtn.onClick.AddListener(ExistUI);
-
     }
     private void Start()
     {
@@ -196,7 +195,9 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
             it.Level += 1;
             levelText.text = it.Level + "";
         }
-        else { }
+        else {
+            MessageManager._instance.ShowMessage("升级所需金币不足");
+        }
     } //点击升级按钮
     public void OnDrag(PointerEventData eventData)
     {

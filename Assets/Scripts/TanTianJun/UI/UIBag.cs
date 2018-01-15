@@ -7,19 +7,22 @@ public class UIBag : UIBase
 {
     private Button exitBtn;
 
+
     void Awake()
     {
-        exitBtn = transform.Find("Knapsack/BagDetails/Closebtn").GetComponent<Button>();
+        exitBtn = transform.Find("Knapsack/BagDetails/Closebtn").GetComponent<Button>();     
     }
 
     void Start()
     {
         exitBtn.onClick.AddListener(OnExitBtnClick);
+        gameObject.SetActive(false);
     }
 
     public override void OnEntering()
     {
         gameObject.SetActive(true);
+
     }
 
     public override void OnPausing()

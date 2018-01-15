@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TaidouCommon;
+using TaidouCommon.Model;
 
 public class PhotonEngine : MonoBehaviour,IPhotonPeerListener {
 
@@ -26,8 +27,10 @@ public class PhotonEngine : MonoBehaviour,IPhotonPeerListener {
         _instance = this;
         peer = new PhotonPeer(this, protocol);
         peer.Connect(serverAddress, ApplicationName);
+        DontDestroyOnLoad(this.gameObject);
        
     }
+    public Role role;
     // Update is called once per frame
     void Update () {
         if (peer!=null) peer.Service();

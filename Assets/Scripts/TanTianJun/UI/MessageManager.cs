@@ -20,7 +20,7 @@ public class MessageManager : MonoBehaviour {
     {
         txt.text = message;
         Messageimg.DOFade(1, 0.5f).OnComplete(() => Messageimg.DOFade(0, 1f).OnComplete(()=>txt.text=""));
-        txt.DOColor(Color.red, 0.5f).OnComplete(() => { txt.DOColor(Color.yellow, 0.7f); });
+        txt.DOColor(Color.red, 0.5f).OnComplete(() => { txt.DOColor(Color.yellow, 0.2f); });
         
 
     }

@@ -22,7 +22,7 @@ public class UILogin : UIBase {
         username = transform.Find("UIBG/LoginBG/AccountTxt/InputAccount/Text").GetComponent<Text>();
         password = transform.Find("UIBG/LoginBG/PassWordTxt /InputAccount/Text").GetComponent<Text>();
         LoginBtn =transform.Find("UIBG/LoginBG/LoginBtn") .GetComponent<Button>();
-        LoginBtn.onClick.AddListener(() => { login.Login(username.text,password.text); });
+        LoginBtn.onClick.AddListener(Login);
     }
     public override void OnEntering()
     {
@@ -71,5 +71,19 @@ public class UILogin : UIBase {
     {
         failedBg.gameObject.SetActive(true);
 
+    }
+    private void Update()
+    {
+        if (username.text != "" || password.text != "")
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                Login();
+            }
+        }
+    }
+    public void Login()
+    {
+        login.Login(username.text, password.text);
     }
 }

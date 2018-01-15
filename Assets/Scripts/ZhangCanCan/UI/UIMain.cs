@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
@@ -68,8 +69,13 @@ public class UIMain:UIBase{
         coinTxt = transform.Find("Rich/CoinCount").GetComponent<Text>();
         diamonBtn = transform.Find("Rich/DiamonAddBtn").GetComponent<Button>();
         coinBtn = transform.Find("Rich/CoinAddBtn").GetComponent<Button>();
+        UIManager.Instance.PushUIPanel(ConstDates.UIBag);
+        PlayInfo._instance.OnPlayInfoChanged += this.OnPlayInfoChanged;
     }
-
+    private void OnDestroy()
+    {
+        PlayInfo._instance.OnPlayInfoChanged -= this.OnPlayInfoChanged;
+    }
     void Start()
     {
         petBtn.onClick.AddListener(OnPetBtnClick);
@@ -88,6 +94,9 @@ public class UIMain:UIBase{
     public override void OnEntering()
     {
         gameObject.SetActive(true);
+     
+        
+
     }
 
     public override void OnPausing()
@@ -104,7 +113,7 @@ public class UIMain:UIBase{
     {
        
     }
-
+    #region click
     /// <summary>
     /// 点击宠物按钮
     /// </summary>
@@ -142,6 +151,7 @@ public class UIMain:UIBase{
     /// </summary>
     void OnBagBtnClick()
     {
+        UIManager.Instance.PushUIPanel(ConstDates.UIPet);
         UIManager.Instance.PushUIPanel(ConstDates.UIBag);
     }
 
@@ -183,5 +193,23 @@ public class UIMain:UIBase{
     void OnSignBtnClick()
     {
         //UIManager.Instance.PushUIPanel(ConstDates.UISignIn);
+    }
+    #endregion
+    void OnPlayInfoChanged(InfoType type)
+    {
+        if(type == InfoType.All || type == InfoType.Name || type == InfoType.HeadPortait || type == InfoType.Level || type == InfoType.Energy || type == InfoType.Toughen || type == InfoType.Coin || type == InfoType.Diamond)
+        {
+            UpdateShow();
+        }
+    }
+
+    private void UpdateShow()
+    {
+        PlayInfo info = PlayInfo._instance;
+        levelTxt.text = info.Level.ToString();
+        powerTxt.text = info.Power.ToString();
+        temperTxt.text = info.Toughen.ToString();
+        diamonTxt.text = info.Diamond.ToString();
+        coinTxt.text = info.Coin.ToString();
     }
 }

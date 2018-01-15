@@ -18,6 +18,11 @@ public class PrefabManager : MonoBehaviour {
         _instance = this;
         //zcc
         AddPrefabs(ConstDates.ResourceEffectPrefabDirZcc,ConstDates.Effect_MouseClick_Green);
+
+        //zpf
+        AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Lion);
+        AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Elf);
+        AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Fairy);
     }
 
     /// <summary>

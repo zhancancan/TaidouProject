@@ -28,7 +28,7 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
     public bool isUIFairy;
     public bool isUIElf;
 
-    Button exist;
+    Button existBtn;
 
     private void Awake()
     {
@@ -48,8 +48,8 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         upgradebtn = transform.Find("EquiptInf/upgradebtn").GetComponent<Button>();
         upgradebtn.onClick.AddListener(Upgrade);
 
-        exist = transform.Find("EquiptInf/Exist").GetComponent<Button>();
-        exist.onClick.AddListener(ExistUI);
+        existBtn = transform.Find("EquiptInf/Exist/ExistBtn").GetComponent<Button>();
+        existBtn.onClick.AddListener(ExistUI);
 
     }
     private void Start()
@@ -120,27 +120,26 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
                 itUI.Clear();//清空装备身上的各种
                 PetInfo._petInstance.PetDressOn(it);
             }
-            //------------------------------------------------------------------------------
-            if (it.Inventory.InventoryType == InventoryType.Pet)
+            //-------------------------通知UIPetManager激活宠物模型UI----------------------------
+            if (it.Inventory.InventoryType == InventoryType.Pet)                                    //如果点击背包里面的东西类型是宠物
             {
-                if (it.Inventory.Name == "烈焰狂狮"&&UIPetManager._uiPetManager.isHaveLion==false)
+                if (it.Inventory.Name=="烈焰狂狮"&&UIPetManager._uiPetManager.isHaveLion==false)    //当狮子宠物不存在的时候
                 {
-                    isUILion = true;
-                    itUI.Clear();
+                    itUI.Clear();                                                                   //清除背包宠物UI
+                    isUILion = true;                                                                //如果点击的是狮子
+                    UIPetManager._uiPetManager.CreatPet();                                          //调用宠物UI模型的激活
                 }
-                if (it.Inventory.Name == "小精灵" && UIPetManager._uiPetManager.isHaveElf == false)
+                if (it.Inventory.Name == "小精灵"&&UIPetManager._uiPetManager.isHaveElf == false)
                 {
+                    itUI.Clear();
                     isUIElf = true;
-                    itUI.Clear();
+                    UIPetManager._uiPetManager.CreatPet();                              
                 }
-                if (it.Inventory.Name == "小仙女" && UIPetManager._uiPetManager.isHaveFairy == false)
+                if (it.Inventory.Name == "小仙女"&&UIPetManager._uiPetManager.isHaveFairy == false)
                 { 
-                    isUIFairy = true;
                     itUI.Clear();
-                }
-                else
-                {
-                    transform.Find("EquiptInf/Exist").gameObject.SetActive(true);
+                    isUIFairy = true;
+                    UIPetManager._uiPetManager.CreatPet();
                 }
             }
         }

@@ -25,7 +25,6 @@ public class PetMoveAndAttack : MonoBehaviour
         //获取英雄对象
         hero = GameObject.FindGameObjectWithTag("Player");
         //获取敌人对象
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
         //获取动画组件
         petAnim = this.GetComponent<Animator>();
      
@@ -33,6 +32,7 @@ public class PetMoveAndAttack : MonoBehaviour
 
     private void Update()
     {
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
         //如果找到英雄对象
         if (hero != null)
         {
@@ -55,47 +55,52 @@ public class PetMoveAndAttack : MonoBehaviour
                 //宠物朝向英雄
                 transform.LookAt(hero.transform.position);
             }
-            //如果宠物攻击
-            if (IsPetAtk)
+            if (enemy != null)
             {
-                //如果英雄与敌人距离小于1
-                if (Vector3.Distance(hero.transform.position, enemy.transform.position) <= 3f)
-                {
-                    petAnim.SetBool("Run",false);
-                    //宠物自动寻路到宠物本身位置
-                    transform.position = Vector3.Lerp(transform.position, hero.transform.position+new Vector3(-1,0,-1), Time.deltaTime * speed);
-                    //遇见敌人
-                    NoMeetEnemy = false;
-                    //播放攻击动画
-                    petAnim.SetBool("Atk", true);
-                }
-                //如果英雄与敌人距离在1~5之间
-                if (Vector3.Distance(hero.transform.position, enemy.transform.position) >= 3f &&
-                    Vector3.Distance(hero.transform.position, enemy.transform.position) <= 10f)
-                {
-                    //宠物移动到敌人位置                   
-                    transform.position = Vector3.Lerp(transform.position, enemy.transform.position+new Vector3(-1,0,-1), Time.deltaTime * speed);
-                    //检测到敌人
-                    NoMeetEnemy = false;
-                    //播放移动动画
-                    petAnim.SetBool("Run", true);
-                    //宠物朝向敌人
-                    transform.LookAt(enemy.transform.position);
-                }
-                //如果英雄与敌人距离大于5
-                if (Vector3.Distance(hero.transform.position, enemy.transform.position) > 5f)
-                {
-                    //检测不到敌人
-                    NoMeetEnemy = true;
-                    //关闭攻击动画
-                    petAnim.SetBool("Atk",false);
 
-                }
-                //当宠物与敌人间距小于3时，播放攻击动画并且停止移动动画
-                if (Vector3.Distance(transform.position, enemy.transform.position)<3f)
+                //}
+                //如果宠物攻击
+                if (IsPetAtk)
                 {
-                    petAnim.SetBool("Run",false);
-                    petAnim.SetBool("Atk", true);
+                    //如果英雄与敌人距离小于1
+                    if (Vector3.Distance(hero.transform.position, enemy.transform.position) <= 3f)
+                    {
+                        petAnim.SetBool("Run", false);
+                        //宠物自动寻路到宠物本身位置
+                        transform.position = Vector3.Lerp(transform.position, hero.transform.position + new Vector3(-1, 0, -1), Time.deltaTime * speed);
+                        //遇见敌人
+                        NoMeetEnemy = false;
+                        //播放攻击动画
+                        petAnim.SetBool("Atk", true);
+                    }
+                    //如果英雄与敌人距离在1~5之间
+                    if (Vector3.Distance(hero.transform.position, enemy.transform.position) >= 3f &&
+                        Vector3.Distance(hero.transform.position, enemy.transform.position) <= 10f)
+                    {
+                        //宠物移动到敌人位置                   
+                        transform.position = Vector3.Lerp(transform.position, enemy.transform.position + new Vector3(-1, 0, -1), Time.deltaTime * speed);
+                        //检测到敌人
+                        NoMeetEnemy = false;
+                        //播放移动动画
+                        petAnim.SetBool("Run", true);
+                        //宠物朝向敌人
+                        transform.LookAt(enemy.transform.position);
+                    }
+                    //如果英雄与敌人距离大于5
+                    if (Vector3.Distance(hero.transform.position, enemy.transform.position) > 5f)
+                    {
+                        //检测不到敌人
+                        NoMeetEnemy = true;
+                        //关闭攻击动画
+                        petAnim.SetBool("Atk", false);
+
+                    }
+                    //当宠物与敌人间距小于3时，播放攻击动画并且停止移动动画
+                    if (Vector3.Distance(transform.position, enemy.transform.position) < 3f)
+                    {
+                        petAnim.SetBool("Run", false);
+                        petAnim.SetBool("Atk", true);
+                    }
                 }
             }
         }

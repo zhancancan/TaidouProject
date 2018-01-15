@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
-
-public class ShowText:MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ShowOneText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+
     Text showTxt;
     private void Awake()
     {
-        showTxt = GameObject.Find("ShowTxt").GetComponent<Text>();
+        showTxt = GameObject.Find("ShowTxt1").GetComponent<Text>();
         showTxt.gameObject.SetActive(false);
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -22,7 +22,4 @@ public class ShowText:MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         showTxt.gameObject.SetActive(false);
     }
-
-   
-    
 }

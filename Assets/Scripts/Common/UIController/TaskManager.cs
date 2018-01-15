@@ -1,12 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class TaskManager : MonoBehaviour
 {
     public static TaskManager _instance;
     public TextAsset taskinfoText;
     public ArrayList taskList = new ArrayList();
+    private Task currentTask;
+    private PlayerAutoMove playerAutoMove;
+    bool isArrivalTranscript;   
+    private PlayerAutoMove PlayerAutoMove
+    {
+        get
+        {
+            if(playerAutoMove == null)
+            {
+                playerAutoMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAutoMove>();
+
+            }
+            return playerAutoMove;
+        }
+    }
     private void Awake()
     {
         _instance = this;
@@ -48,5 +63,37 @@ public class TaskManager : MonoBehaviour
     public ArrayList GetTaskList()
     {
         return taskList;
+    }
+    //执行某个任务
+    public void OnExcuteTask(Task task)
+    {
+        currentTask = task;
+        if(task.TaskProgress == TaskProgress.NoStart)//点击下一步，自动导航到NPC
+        {
+            PlayerAutoMove.SetDestinations(NPCManager._instance.GetNpcById(task.NpcId).transform.position);
+        }
+        else if(task.TaskProgress == TaskProgress.Accept)
+        {
+            PlayerAutoMove.SetDestinations(NPCManager._instance.transcriptPosition.transform.position);
+        }
+    }
+    public void OnAcceptTask()
+    {
+        currentTask.TaskProgress = TaskProgress.Accept;
+        //接收完任务后自动寻路到副本入口
+        PlayerAutoMove.SetDestinations(NPCManager._instance.transcriptPosition.transform.position);
+        isArrivalTranscript = true;
+    }
+    public void OnArriveDestination()
+    {
+        //达到NPC点
+        if(currentTask.TaskProgress == TaskProgress.NoStart)
+        {           
+            NPCTalk._instance.Show(currentTask.NpcTalk);
+        }
+        if (isArrivalTranscript)
+        {
+            UIManager.Instance.PushUIPanel("UIMap");
+        }
     }
 }

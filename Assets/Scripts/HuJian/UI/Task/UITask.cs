@@ -7,9 +7,10 @@ public class UITask : UIBase
     private RectTransform contentTask;
     private GameObject taskItemPrefab;
     private Button exit;
-
+    public static UITask _instance;
     private void Awake()
     {
+        _instance = this;
         exit = transform.Find("TaskBG/ESCBtn").GetComponent<Button>();
         contentTask = transform.Find("TaskBG/TaskScrollView/TaskItemUI/TaskListContent").GetComponent<RectTransform>();
     }

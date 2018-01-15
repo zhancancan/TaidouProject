@@ -31,6 +31,12 @@ public class UITaskItem : MonoBehaviour
         combatBtn = transform.Find("FightBtn").GetComponent<Button>();
         rewardBtn = transform.Find("RewardBtn").GetComponent<Button>();
         combatTxt = transform.Find("FightBtn/FightTxt").GetComponent<Text>();
+        
+    }
+    private void Start()
+    {
+        combatBtn.onClick.AddListener(OnCombat);
+        rewardBtn.onClick.AddListener(OnReward);
     }
     public void SetTask(Task task)
     {
@@ -88,6 +94,15 @@ public class UITaskItem : MonoBehaviour
                 combatBtn.gameObject.SetActive(false);
                 break;
         }
+    }
+    void OnCombat()
+    {
+        UITask._instance.OnExiting();
+        TaskManager._instance.OnExcuteTask(task);
+
+    }
+    void OnReward()
+    {
 
     }
 }

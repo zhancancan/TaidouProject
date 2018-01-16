@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     Vector3 _moment; //移动方向
     Rigidbody _rig;//人物身上的刚体
     Animator _aim;//人物身上的动画控制器
-
     int _floorMask;//地板的层号
     public float maxCamRayLength = 100f;//相机发射射线的最大长度
 
@@ -65,9 +64,32 @@ public class PlayerMovement : MonoBehaviour
     {
         _aim.SetBool("Walk", h != 0 || v != 0);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == CreatEnemy._instance.points[0].gameObject)
+        {
+                        
+            CreatEnemy._instance.CreateFirstEnemy();
+        }
+        if (other.gameObject == CreatEnemy._instance.points[1].gameObject)
+        {
+                        
+            CreatEnemy._instance.CreateSecondEnemy();
+        }
+        if (other.gameObject == CreatEnemy._instance.points[2].gameObject)
+        {
+            
+            
+            CreatEnemy._instance.CreateThirdEnemy();
+        }
+        if (other.gameObject == CreatEnemy._instance.points[3].gameObject)
+        {
+            
+            CreatEnemy._instance.CreateFourthEnemy();
+        }
+    }
 
-   
 
-    
+
 
 }

@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIStoreViceItem);
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIStoreItem);
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIRecharge);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UISignIn);
         //ttj
         AddUIPrefabs(ConstDates.ResourcePrefabDirTtj, ConstDates.UIBag);
         //zpf

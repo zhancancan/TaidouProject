@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerMoveState
-{
-    Idle,
-    Walk
-}
-
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController playerCtr;

@@ -69,13 +69,26 @@ public class UIMain:UIBase{
         coinTxt = transform.Find("Rich/CoinCount").GetComponent<Text>();
         diamonBtn = transform.Find("Rich/DiamonAddBtn").GetComponent<Button>();
         coinBtn = transform.Find("Rich/CoinAddBtn").GetComponent<Button>();
+
+        //第一次进场景，加载所有UI界面
+        UIManager.Instance.PushUIPanel(ConstDates.UIPet);
+        UIManager.Instance.PushUIPanel(ConstDates.UIGemstoneCompose);
+        UIManager.Instance.PushUIPanel(ConstDates.UIPlayerProperty);
+        UIManager.Instance.PushUIPanel(ConstDates.UITask);
+        UIManager.Instance.PushUIPanel(ConstDates.UIStore);
+        UIManager.Instance.PushUIPanel(ConstDates.UISystemSetting);
+        UIManager.Instance.PushUIPanel(ConstDates.UIRecharge);
+        UIManager.Instance.PushUIPanel(ConstDates.UISignIn);
         UIManager.Instance.PushUIPanel(ConstDates.UIBag);
+
         PlayInfo._instance.OnPlayInfoChanged += this.OnPlayInfoChanged;
     }
+
     private void OnDestroy()
     {
         PlayInfo._instance.OnPlayInfoChanged -= this.OnPlayInfoChanged;
     }
+
     void Start()
     {
         petBtn.onClick.AddListener(OnPetBtnClick);
@@ -94,9 +107,6 @@ public class UIMain:UIBase{
     public override void OnEntering()
     {
         gameObject.SetActive(true);
-     
-        
-
     }
 
     public override void OnPausing()
@@ -113,6 +123,7 @@ public class UIMain:UIBase{
     {
        
     }
+
     #region click
     /// <summary>
     /// 点击宠物按钮
@@ -192,9 +203,10 @@ public class UIMain:UIBase{
     /// </summary>
     void OnSignBtnClick()
     {
-        //UIManager.Instance.PushUIPanel(ConstDates.UISignIn);
+        UIManager.Instance.PushUIPanel(ConstDates.UISignIn);
     }
     #endregion
+
     void OnPlayInfoChanged(InfoType type)
     {
         if(type == InfoType.All || type == InfoType.Name || type == InfoType.HeadPortait || type == InfoType.Level || type == InfoType.Energy || type == InfoType.Toughen || type == InfoType.Coin || type == InfoType.Diamond)

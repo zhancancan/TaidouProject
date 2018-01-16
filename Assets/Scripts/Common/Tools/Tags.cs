@@ -8,9 +8,10 @@ public class Tags {
     //hj
     //swl
     //zcc
-    public const string  SystemSetting = "SystemSetting";
-    public const string  Ground = "Ground";
-    public const string  Player = "Player";
+    public const string SystemSetting = "SystemSetting";
+    public const string Ground = "Ground";
+    public const string Player = "Player";
+    public const string Enemy = "Enemy";
     //ttj
     //zpf
 

@@ -84,6 +84,7 @@ public class ConstDates {
     public const string UIStoreViceItem = "UIStoreViceItem";
     public const string UIStoreItem = "UIStoreItem";
     public const string UIRecharge = "UIRecharge";
+    public const string UISignIn = "UISignIn";
     //ttj
     public const string UIBag = "UIBag";
     //zpf

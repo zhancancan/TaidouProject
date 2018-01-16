@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEditor.Animations;
+using UnityEngine.SceneManagement;
+using System;
+using TaidouCommon.Model;
+
+public enum ProfessionType
+{
+    战士,
+    法师,
+    弓箭手
+}
 
 public class CharacterSelectController : MonoBehaviour {
 
@@ -23,6 +33,7 @@ public class CharacterSelectController : MonoBehaviour {
     Button archerBtn;
     //输入创建人物名称文本框
     InputField createNameField;
+   public  Text nametxt;
     //战士介绍
     GameObject warriorTXT;
     //刺客介绍
@@ -62,8 +73,11 @@ public class CharacterSelectController : MonoBehaviour {
     AnimatorController mageAnimatorController;
     AnimatorController archerAnimatorController;
 
+
+    public static CharacterSelectController _instance;
     private void Awake()
     {
+        _instance = this;
         //需要修改
         warriorFemaleObj = Resources.Load<GameObject>(ConstDates.ResourcePlayerPrefabDirSwl + ConstDates.WarriorFemale);
         warriorMaleObj = Resources.Load<GameObject>(ConstDates.ResourcePlayerPrefabDirSwl + ConstDates.WarriorMale);
@@ -91,9 +105,11 @@ public class CharacterSelectController : MonoBehaviour {
         warriorTXT.SetActive(false);
         mageTXT.SetActive(false);
         archerTXT.SetActive(false);
+        nametxt = createNameField.transform.Find("Text").GetComponent<Text>();
 
     }
-
+    public string profession;
+    public bool isman;
     private void Start()
     {
         //状态机
@@ -132,12 +148,14 @@ public class CharacterSelectController : MonoBehaviour {
         goArcherMale.SetActive(false);
         mageTXT.SetActive(false);
         archerTXT.SetActive(false);
-        
+        profession = ProfessionType.战士.ToString();
+        isman = true;
+
         //点击返回键
-        returnBtn.onClick.AddListener(() => { Debug.Log(111); });
+        returnBtn.onClick.AddListener(() => { SceneManager.LoadSceneAsync(ConstDates.SelectPlayerSceneIndex); });
 
         //点击创建人物
-        createPersonBtn.onClick.AddListener(() => { Debug.Log(222); });
+        createPersonBtn.onClick.AddListener(create);
 
         //战士按钮
         warriorBtn.onClick.AddListener(() =>
@@ -151,6 +169,7 @@ public class CharacterSelectController : MonoBehaviour {
             goArcherMale.SetActive(false);
             mageTXT.SetActive(false);
             archerTXT.SetActive(false);
+            profession = ProfessionType.战士.ToString();
         });
 
         //法师按钮
@@ -164,6 +183,7 @@ public class CharacterSelectController : MonoBehaviour {
             goArcherMale.SetActive(false);
             warriorTXT.SetActive(false);
             archerTXT.SetActive(false);
+            profession = ProfessionType.法师.ToString();
         });
 
         //弓箭手按钮
@@ -177,6 +197,7 @@ public class CharacterSelectController : MonoBehaviour {
             goArcherMale.SetActive(true);
             warriorTXT.SetActive(false);
             mageTXT.SetActive(false);
+            profession = ProfessionType.弓箭手.ToString();
         });
 
         //男按钮
@@ -265,6 +286,7 @@ public class CharacterSelectController : MonoBehaviour {
                     archerFemaleAnim.SetBool("Walk", false);
                 });
             }
+            isman = true;
         });
 
         //女按钮
@@ -343,9 +365,33 @@ public class CharacterSelectController : MonoBehaviour {
                         ));
                 });
             }
+            isman = false;
         });
 
         //人物名称文本框
         //createNameField.onValueChanged.AddListener();
+    }
+    int index = -1;
+    Role role;
+    public List<Role> rolelist = null;
+   
+    private void create()
+    {
+        if (nametxt.text != "")
+        {
+            PlayerSelect._instance.ShowRole(role);
+            
+
+        }
+        
+        else
+        {
+            if (PlayerSelect._instance.rolelist.Count >= 5)
+            {
+                MessageManager._instance.ShowMessage("角色已满");
+            }
+            else
+            MessageManager._instance.ShowMessage("请先输入名字");
+        }
     }
 }

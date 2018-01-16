@@ -9,16 +9,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoginController : ControllerBase {
+
     public override OperationCode OpCode
     {
         get { return OperationCode.Login; }
     }
-
-    RoleController rolecontroller;
     public override void Start()
     {
         base.Start();
-        rolecontroller = this.GetComponent<RoleController>();
     }
 
     public void Login(string username, string password)
@@ -36,8 +34,9 @@ public class LoginController : ControllerBase {
         {
             case (short)ReturnCode.Success:
                 //根据登录的用户  加载用户的角色信息
+              
                 SceneManager.LoadSceneAsync(ConstDates.SelectPlayerSceneIndex);
-                //rolecontroller.GetRole();
+               
                 break;
             case (short)ReturnCode.Fail:
                 UILogin.Instance.Error();

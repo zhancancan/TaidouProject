@@ -744,6 +744,14 @@ MonoBehaviour:
   profession: {fileID: 0}
   seximg: {fileID: 0}
   level: {fileID: 0}
+  go:
+  - {fileID: 1656957553558818, guid: afa7e342ffe336f4ba1c8a75f52d0cb3, type: 2}
+  - {fileID: 1521683806351656, guid: 00e2f112820fcbd4d9607756712cb68c, type: 2}
+  - {fileID: 1103704250675808, guid: 0370cfaa48e1cd242b6f3f8c3cff3b34, type: 2}
+  - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
+  - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
+  - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
+  born: {fileID: 0}
 --- !u!114 &114076468150343056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -907,6 +915,14 @@ MonoBehaviour:
   profession: {fileID: 0}
   seximg: {fileID: 0}
   level: {fileID: 0}
+  go:
+  - {fileID: 1656957553558818, guid: afa7e342ffe336f4ba1c8a75f52d0cb3, type: 2}
+  - {fileID: 1521683806351656, guid: 00e2f112820fcbd4d9607756712cb68c, type: 2}
+  - {fileID: 1103704250675808, guid: 0370cfaa48e1cd242b6f3f8c3cff3b34, type: 2}
+  - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
+  - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
+  - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
+  born: {fileID: 0}
 --- !u!114 &114129819962267800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1156,6 +1172,14 @@ MonoBehaviour:
   profession: {fileID: 0}
   seximg: {fileID: 0}
   level: {fileID: 0}
+  go:
+  - {fileID: 1656957553558818, guid: afa7e342ffe336f4ba1c8a75f52d0cb3, type: 2}
+  - {fileID: 1521683806351656, guid: 00e2f112820fcbd4d9607756712cb68c, type: 2}
+  - {fileID: 1103704250675808, guid: 0370cfaa48e1cd242b6f3f8c3cff3b34, type: 2}
+  - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
+  - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
+  - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
+  born: {fileID: 0}
 --- !u!114 &114349088479402198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1357,6 +1381,14 @@ MonoBehaviour:
   profession: {fileID: 0}
   seximg: {fileID: 0}
   level: {fileID: 0}
+  go:
+  - {fileID: 1656957553558818, guid: afa7e342ffe336f4ba1c8a75f52d0cb3, type: 2}
+  - {fileID: 1521683806351656, guid: 00e2f112820fcbd4d9607756712cb68c, type: 2}
+  - {fileID: 1103704250675808, guid: 0370cfaa48e1cd242b6f3f8c3cff3b34, type: 2}
+  - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
+  - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
+  - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
+  born: {fileID: 0}
 --- !u!114 &114537881735713550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1625,6 +1657,14 @@ MonoBehaviour:
   profession: {fileID: 0}
   seximg: {fileID: 0}
   level: {fileID: 0}
+  go:
+  - {fileID: 1656957553558818, guid: afa7e342ffe336f4ba1c8a75f52d0cb3, type: 2}
+  - {fileID: 1521683806351656, guid: 00e2f112820fcbd4d9607756712cb68c, type: 2}
+  - {fileID: 1103704250675808, guid: 0370cfaa48e1cd242b6f3f8c3cff3b34, type: 2}
+  - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
+  - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
+  - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
+  born: {fileID: 0}
 --- !u!114 &114628225160833362
 MonoBehaviour:
   m_ObjectHideFlags: 1

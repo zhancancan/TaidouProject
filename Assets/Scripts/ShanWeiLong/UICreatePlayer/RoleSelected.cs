@@ -9,12 +9,18 @@ public class RoleSelected : MonoBehaviour {
     public  Text profession;
     public  Image seximg;
     public Text level;
+    public GameObject[] go;
+    GameObject born;
+    Button show;
     private void Awake()
     {
         PersonName = transform.Find("PersonName").GetComponent<Text>();
         profession = transform.Find("PersonPosition").GetComponent<Text>();
         level = transform.Find("PersonLevel").GetComponent<Text>();
         seximg = transform.Find("PersonHead").GetComponent<Image>();
+        born = GameObject.Find("born").gameObject;
+        show = GetComponent<Button>();
+        show.onClick.AddListener(UpdateShow);
     }
     void Start () {
 		
@@ -24,12 +30,56 @@ public class RoleSelected : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void UpdateShow()
+    GameObject showrole;
+    void UpdateShow()
     {
-        string name= PlayerPrefs.GetString("username");
-        string profess= PlayerPrefs.GetString("profession");
-        PersonName.text = name;
-        profession.text = "<color=#F1FF00FF>" + profess+ "</color>";
+        if (GameObject.FindGameObjectWithTag("Role"))
+        {
+            showrole = GameObject.FindGameObjectWithTag("Role");
+            Destroy(showrole);
+        }
+
+
+        if (profession.text.Contains("战士"))
+        {
+            if (!GameObject.FindGameObjectWithTag("Role"))
+            {
+                if (seximg.sprite.name.Contains("女性"))
+                {
+                    Instantiate(go[4], born.transform.position, Quaternion.Euler(0, -180, 0));
+                }
+                else
+                {
+                    Instantiate(go[5], born.transform.position, Quaternion.Euler(0, -180, 0));
+                }
+            }
+        }
+        else if(profession.text.Contains("法师") )
+        {
+            if (seximg.sprite.name.Contains("女性"))
+            {
+                Instantiate(go[2], born.transform.position, Quaternion.Euler(0, -180, 0));
+            }
+            else
+            {
+             Instantiate(go[3], born.transform.position, Quaternion.Euler(0, -180, 0));
+            }
+        }
+        else if(profession.text.Contains("弓箭手") )
+        {
+            if (seximg.sprite.name.Contains("女性"))
+            {
+              Instantiate(go[0], born.transform.position, Quaternion.Euler(0, -180, 0));
+            }
+            else
+            {
+               Instantiate(go[1], born.transform.position, Quaternion.Euler(0, -180, 0));
+            }
+        }
+        else
+        {
+            return;
+        }
         
     }
 }

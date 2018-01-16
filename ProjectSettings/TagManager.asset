@@ -9,6 +9,10 @@ TagManager:
   - Ground
   - UILion
   - Enemy
+  - Road
+  - Block
+  - Cloud
+  - Role
   layers:
   - Default
   - TransparentFX

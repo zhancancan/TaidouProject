@@ -37,8 +37,6 @@ public class LoginController : ControllerBase {
             case (short)ReturnCode.Success:
                 //根据登录的用户  加载用户的角色信息
                 rolecontroller.GetRole();
-                //SceneManager.LoadSceneAsync(ConstDates.SelectPlayerSceneIndex);
-
                 break;
             case (short)ReturnCode.Fail:
                 UILogin.Instance.Error();

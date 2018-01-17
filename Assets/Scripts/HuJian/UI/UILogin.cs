@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class UILogin : UIBase {
     Image failedBg;//登陆失败界面
-    Button LoginBtn; //登陆按钮
-   public Text username;
-    public Text password;
+    Button LoginBtn; //登陆按钮\
+    [HideInInspector]
+    public Text username;
+    [HideInInspector]
+    public InputField password;
     private static UILogin _instance;
     public static UILogin Instance
     {
@@ -18,7 +20,7 @@ public class UILogin : UIBase {
     {
         _instance = this;
         username = transform.Find("UIBG/LoginBG/AccountTxt/InputAccount/Text").GetComponent<Text>();
-        password = transform.Find("UIBG/LoginBG/PassWordTxt /InputAccount/Text").GetComponent<Text>();
+        password = transform.Find("UIBG/LoginBG/PassWordTxt /InputAccount").GetComponent<InputField>();
         LoginBtn =transform.Find("UIBG/LoginBG/LoginBtn") .GetComponent<Button>();
         LoginBtn.onClick.AddListener(() => { PlayerSelect._instance.Login(); });
     }
@@ -44,18 +46,7 @@ public class UILogin : UIBase {
     /// <summary>
     /// 切换到选择角色场景
     /// </summary>
-    public void ChangeToSelectPlayerScene()
-    {
-        //    //if(xxx)
-        //    //判断登陆是否成功，如果成功则跳转到开始界面
-        //    UIManager.Instance.PopUIPanel();
-        //    //如果失败则跳转到失败界面
-        //    //else{xxx}
-        //    //gameObject.SetActive(true);
-        //    //failedBg.gameObject.SetActive(true);
 
-        //SceneManager.LoadSceneAsync(ConstDates.SelectPlayerSceneIndex);
-    }
     public void Onclick()
     {
         failedBg.gameObject.SetActive(false);
@@ -70,18 +61,5 @@ public class UILogin : UIBase {
         failedBg.gameObject.SetActive(true);
 
     }
-    private void Update()
-    {
-        if (username.text != "" || password.text != "")
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                //Login();
-            }
-        }
-    }
-    //public void Login()
-    //{
-    //    login.Login(username.text, password.text);
-    //}
+ 
 }

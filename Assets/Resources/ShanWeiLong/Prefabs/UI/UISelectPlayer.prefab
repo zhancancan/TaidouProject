@@ -751,7 +751,6 @@ MonoBehaviour:
   - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
   - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
   - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
-  born: {fileID: 0}
 --- !u!114 &114076468150343056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,7 +805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c322360119d3d7244977211d9bb5928d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   selectplayer:
   - {fileID: 114623312636323360}
   - {fileID: 114516280014663982}
@@ -922,7 +920,6 @@ MonoBehaviour:
   - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
   - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
   - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
-  born: {fileID: 0}
 --- !u!114 &114129819962267800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1179,7 +1176,6 @@ MonoBehaviour:
   - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
   - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
   - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
-  born: {fileID: 0}
 --- !u!114 &114349088479402198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1388,7 +1384,6 @@ MonoBehaviour:
   - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
   - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
   - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
-  born: {fileID: 0}
 --- !u!114 &114537881735713550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1521,18 +1516,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114732662963998016}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114090219531337968}
-        m_MethodName: ChangerToMainScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114569564732630744
@@ -1664,7 +1648,6 @@ MonoBehaviour:
   - {fileID: 1938671373100538, guid: 3b97b95f2f9633e48891666b0472c050, type: 2}
   - {fileID: 1065628812733534, guid: 598ca063a336b6b489d879d92de6371e, type: 2}
   - {fileID: 1847316405000048, guid: 8fdf381f143ee85499a2d51a06e65de4, type: 2}
-  born: {fileID: 0}
 --- !u!114 &114628225160833362
 MonoBehaviour:
   m_ObjectHideFlags: 1

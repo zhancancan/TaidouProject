@@ -109,10 +109,6 @@ public class PlayerSelect : MonoBehaviour
         }
       
      }
-    public void OnGamePlay()
-    {
-        rolecontroller.SelectRole(PhotonEngine.Instance.role);
-    }
     public void Login()
     {
         login.Login(UILogin.Instance.username.text, UILogin.Instance.password.text);

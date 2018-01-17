@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RoleSelected : MonoBehaviour {
-
-    public  Text PersonName;
-    public  Text profession;
-    public  Image seximg;
+    [HideInInspector]
+    public Text PersonName;
+    [HideInInspector]
+    public Text profession;
+    [HideInInspector]
+    public Image seximg;
+    [HideInInspector]
     public Text level;
     public GameObject[] go;
     GameObject born;

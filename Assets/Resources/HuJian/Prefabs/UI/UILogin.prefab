@@ -773,8 +773,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114227038518458910}
   m_TextComponent: {fileID: 114780079420558930}
   m_Placeholder: {fileID: 114928854936138708}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1.007353, g: -0.022221042, b: -0.022221042, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

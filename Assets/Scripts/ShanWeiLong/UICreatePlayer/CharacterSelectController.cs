@@ -34,7 +34,8 @@ public class CharacterSelectController : MonoBehaviour {
     Button archerBtn;
     //输入创建人物名称文本框
     InputField createNameField;
-   public  Text nametxt;
+    [HideInInspector]
+    public  Text nametxt;
     //战士介绍
     GameObject warriorTXT;
     //刺客介绍
@@ -109,7 +110,9 @@ public class CharacterSelectController : MonoBehaviour {
         nametxt = createNameField.transform.Find("Text").GetComponent<Text>();
 
     }
+    [HideInInspector]
     public string profession;
+    [HideInInspector]
     public bool isman;
     private void Start()
     {
@@ -369,10 +372,7 @@ public class CharacterSelectController : MonoBehaviour {
             isman = false;
         });
 
-        //人物名称文本框
-        //createNameField.onValueChanged.AddListener();
     }
-    int index = -1;
     Role role;
     public List<Role> rolelist = null;
     Regex reg = new Regex(@"^.{4,10}$");

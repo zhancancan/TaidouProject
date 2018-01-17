@@ -9,7 +9,6 @@ public class UISelectPlayer : UIBase {
     Text PersonName;
     Text profession;
     Image seximg;
-    public int index=-1;
     public List<RoleSelected> selectplayer;
     public static UISelectPlayer _instance;
     RoleController rolecontroller;
@@ -56,15 +55,6 @@ public class UISelectPlayer : UIBase {
         SceneManager.LoadSceneAsync(ConstDates.CreatePlayerSceneIndex);
     }
 
-    /// <summary>
-    /// 切换到主场景
-    /// </summary>
-    public void ChangerToMainScene()
-    {
-        //PlayerPrefs.DeleteAll();
-        //SceneManager.LoadSceneAsync(ConstDates.MainSceneIndex);
-        
-    }
-    //public List<Role> rolelist = null;
+  
   
 }

@@ -10,13 +10,16 @@ using System;
 public class PlayerSelect : MonoBehaviour
 {
     RoleController rolecontroller;
+    LoginController login;
     public static PlayerSelect _instance;
     private void Awake()
     {
         _instance = this;
+        login = GetComponent<LoginController>();
         rolecontroller = transform.GetComponent<RoleController>();
         rolecontroller.OnAddRole += AddRole;
         rolecontroller.OnGetRole += GetRole;
+       
     }
     public List<Role> rolelist = null;
     public void GetRole(List<Role> rolelist)
@@ -25,7 +28,7 @@ public class PlayerSelect : MonoBehaviour
         if (rolelist != null && rolelist.Count > 0)
         {
             Role role = rolelist[0];
-            ShowChar(role);
+            SceneManager.LoadSceneAsync(ConstDates.SelectPlayerScene);
         }
         else
         {
@@ -36,24 +39,25 @@ public class PlayerSelect : MonoBehaviour
     public void ShowChar(Role role)
     {
         int index;
-        for (int i = 0; i < rolelist.Count; i++)
-        {
-            index = i;
-            UISelectPlayer._instance.selectplayer[index].PersonName.text = rolelist[index].Name;
-            UISelectPlayer._instance.selectplayer[index].profession.text = "<color=#F1FF00FF>" + rolelist[index].Profession + "</color>";
-            UISelectPlayer._instance.selectplayer[index].level.text = "<color=#00FF7FFF>" + rolelist[index].Level + "</color>";
-            if (rolelist[index].IsMan == true)
-            {
-                UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/头像底板男性", typeof(Sprite)) as Sprite;
-                UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
-            }
-            else
-            {
-                UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/头像底板女性", typeof(Sprite)) as Sprite;
-                UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
-            }
-        }
        
+            for (int i = 0; i < rolelist.Count; i++)
+            {
+                index = i;
+                UISelectPlayer._instance.selectplayer[index].PersonName.text = rolelist[index].Name;
+                UISelectPlayer._instance.selectplayer[index].profession.text = "<color=#F1FF00FF>" + rolelist[index].Profession + "</color>";
+                UISelectPlayer._instance.selectplayer[index].level.text = "<color=#00FF7FFF>" + rolelist[index].Level + "</color>";
+                if (rolelist[index].IsMan == true)
+                {
+                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/头像底板男性", typeof(Sprite)) as Sprite;
+                    UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                }
+                else
+                {
+                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/头像底板女性", typeof(Sprite)) as Sprite;
+                    UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                }
+            }
+         
     }
 
     public void AddRole(Role role)
@@ -64,7 +68,7 @@ public class PlayerSelect : MonoBehaviour
         }
         rolelist.Add(role);
         SceneManager.LoadSceneAsync(ConstDates.SelectPlayerScene);
-           
+
     }
     //添加角色
     public void ShowRole(Role role)
@@ -104,7 +108,14 @@ public class PlayerSelect : MonoBehaviour
 
         }
       
-        
+     }
+    public void OnGamePlay()
+    {
+        rolecontroller.SelectRole(PhotonEngine.Instance.role);
+    }
+    public void Login()
+    {
+        login.Login(UILogin.Instance.username.text, UILogin.Instance.password.text);
     }
    
 }

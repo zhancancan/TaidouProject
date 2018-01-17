@@ -88,4 +88,11 @@ public class PhotonEngine : MonoBehaviour,IPhotonPeerListener {
         Debug.Log("sendrequest to server , opcode : " + opCode);
         peer.OpCustom((byte)opCode, parameters, true);
     }
+    public void SendRequest(OperationCode opCode, SubCode subCode, Dictionary<byte, object> parameters)
+    {
+        Debug.Log("sendrequest to server , opcode : " + opCode + " subCode:  " + subCode);
+        parameters.Add((byte)ParameterCode.SubCode, subCode);
+        peer.OpCustom((byte)opCode, parameters, true);
+    }
+
 }

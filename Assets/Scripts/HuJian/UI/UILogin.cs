@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class UILogin : UIBase {
     Image failedBg;//登陆失败界面
     Button LoginBtn; //登陆按钮
-    LoginController login;
-    Text username;
-    Text password;
+   public Text username;
+    public Text password;
     private static UILogin _instance;
     public static UILogin Instance
     {
@@ -18,11 +17,10 @@ public class UILogin : UIBase {
     private void Awake()
     {
         _instance = this;
-        login = this.GetComponent<LoginController>();
         username = transform.Find("UIBG/LoginBG/AccountTxt/InputAccount/Text").GetComponent<Text>();
         password = transform.Find("UIBG/LoginBG/PassWordTxt /InputAccount/Text").GetComponent<Text>();
         LoginBtn =transform.Find("UIBG/LoginBG/LoginBtn") .GetComponent<Button>();
-        LoginBtn.onClick.AddListener(Login);
+        LoginBtn.onClick.AddListener(() => { PlayerSelect._instance.Login(); });
     }
     public override void OnEntering()
     {
@@ -78,12 +76,12 @@ public class UILogin : UIBase {
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                Login();
+                //Login();
             }
         }
     }
-    public void Login()
-    {
-        login.Login(username.text, password.text);
-    }
+    //public void Login()
+    //{
+    //    login.Login(username.text, password.text);
+    //}
 }

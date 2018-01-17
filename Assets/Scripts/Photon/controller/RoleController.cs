@@ -32,12 +32,12 @@ public class RoleController : ControllerBase
         PhotonEngine.Instance.SendRequest(OpCode, parameters);
     }
 
-    //public void SelectRole(Role role)
-    //{
-    //    Dictionary<byte, object> parameters = new Dictionary<byte, object>();
-    //    parameters.Add((byte)ParameterCode.Role, JsonMapper.ToJson(role));
-    //    PhotonEngine.Instance.SendRequest(OpCode, SubCode.SelectRole, parameters);
-    //}
+    public void SelectRole(Role role)
+    {
+        Dictionary<byte, object> parameters = new Dictionary<byte, object>();
+        parameters.Add((byte)ParameterCode.Role, JsonMapper.ToJson(role));
+        PhotonEngine.Instance.SendRequest(OpCode, SubCode.SelectRole,parameters);
+    }
 
     //public void UpdateRole(Role role)
     //{

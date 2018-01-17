@@ -57,6 +57,11 @@ public class RoleController : ControllerBase
                 break;
             case SubCode.AddRole:
                 Role role = ParameterTool.GetParameter<Role>(response.Parameters, ParameterCode.Role);
+                if (response.ReturnCode == (short)ReturnCode.Fail)
+                {
+                    MessageManager._instance.ShowMessage(response.DebugMessage);
+                    return;
+                }
                 OnAddRole(role);
                 break;
             case SubCode.SelectRole:
@@ -65,6 +70,11 @@ public class RoleController : ControllerBase
                     OnSelectRole();
                 }
                 break;
+        }
+        if (response.ReturnCode == (short)ReturnCode.Fail)
+        {
+            MessageManager._instance.ShowMessage(response.DebugMessage);
+            
         }
     }
 

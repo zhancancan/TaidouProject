@@ -82,15 +82,13 @@ public class PlayerSelect : MonoBehaviour
                     MessageManager._instance.ShowMessage("角色已满");
                     return;
                 }
-                int index;
                 for (int i = 0; i < rolelist.Count; i++)
                 {
-                        if (CharacterSelectController._instance.nametxt.text == rolelist[i].Name)
-                        {
-                            MessageManager._instance.ShowMessage("角色名重复");
-                            return;
-                        }
-
+                    if (CharacterSelectController._instance.nametxt.text == rolelist[i].Name)
+                    {
+                        MessageManager._instance.ShowMessage("角色名重复");
+                        return;
+                    }
                 }
                   
             }

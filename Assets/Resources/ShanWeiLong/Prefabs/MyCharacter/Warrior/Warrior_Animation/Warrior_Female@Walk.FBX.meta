@@ -118,12 +118,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #263'
-    second: {fileID: 2100000, guid: a96ef4187e730ab45accc11281809e25, type: 2}
+    second: {fileID: 2100000, guid: 02d7a40c3a8aca442ba64307c8e6de1c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #264'
-    second: {fileID: 2100000, guid: 51f334c14deb1314a9b1b8d24376cdf8, type: 2}
+    second: {fileID: 2100000, guid: 593734ef8941a934483de4f9239c4026, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -142,7 +142,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -219,8 +219,8 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
-    hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasTranslationDoF: 1
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

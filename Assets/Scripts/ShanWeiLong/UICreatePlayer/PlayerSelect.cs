@@ -81,14 +81,14 @@ public class PlayerSelect : MonoBehaviour
                 int index;
                 for (int i = 0; i < rolelist.Count; i++)
                 {
-                    index = i;
-                    if (CharacterSelectController._instance.nametxt.text == rolelist[index].Name)
+                        if (CharacterSelectController._instance.nametxt.text == rolelist[i].Name)
                         {
                             MessageManager._instance.ShowMessage("角色名重复");
                             return;
                         }
-                    
+
                 }
+                  
             }
             Role roleAdd = new Role();
             roleAdd.Name = CharacterSelectController._instance.nametxt.text;

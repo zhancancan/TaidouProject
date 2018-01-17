@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Text.RegularExpressions;
+
 public class UIRegister : UIBase
 {
     Image failedBG;//注册失败界面
     Text username;
-    Text password;
-    Text againpassword;
+    InputField password;
+    InputField againpassword;
     RegisterController register;
     GameObject MessagePanel;
    
     private void Awake()
     {
         username = transform.Find("UIBG/RegisterBG/AccountTxt/InputAccount/Text").GetComponent<Text>();
-        password=transform.Find("UIBG/RegisterBG/PassWordTxt /InputAccount/Text").GetComponent<Text>();
-        againpassword = transform.Find("UIBG/RegisterBG/AgainPassWordTxt/InputAccount/Text").GetComponent<Text>();
+        password=transform.Find("UIBG/RegisterBG/PassWordTxt /InputAccount").GetComponent<InputField>();
+        againpassword = transform.Find("UIBG/RegisterBG/AgainPassWordTxt/InputAccount").GetComponent<InputField>();
         MessagePanel = transform.Find("MessagePanel").gameObject;
       
         register = GetComponent<RegisterController>();
@@ -47,26 +49,31 @@ public class UIRegister : UIBase
     {
         gameObject.SetActive(false);
     }
+    Regex reg = new Regex(@"(?i)^[a-z][\w]{3,10}$");
+    Regex regps = new Regex(@"^[a-zA-Z]\w{5,11}$");
     public void Register()
     {
         
-        if (username.text == null || username.text.Length <= 3)
+        if (username.text == null||password.text==null )
         {
            
-            MessageManager._instance.ShowMessage("字符少于3个");
+            MessageManager._instance.ShowMessage("用户名或密码不能为空");
             return;
         }
-        if (password.text == null || password.text.Length <= 3)
+        else if(!reg.IsMatch(username.text))
         {
-            MessageManager._instance.ShowMessage("字符少于3个");
+            MessageManager._instance.ShowMessage("用户名只能由字母开头长度为4-10个字母或者数字或下划线组成的字符串组成");
             return;
         }
-        if (password.text != againpassword.text)
+        else if (!regps.IsMatch(password.text))
+        {
+            MessageManager._instance.ShowMessage("密码只能以字母开头,长度在6~12之间,只能包含字母、数字和下划线");
+            return;
+        }
+       else if (password.text != againpassword.text)
         {
             MessageManager._instance.ShowMessage("密码不一致");
-            return;
         }
-       
         register.Register(username.text, password.text);
     }
 }

@@ -7,6 +7,7 @@ using UnityEditor.Animations;
 using UnityEngine.SceneManagement;
 using System;
 using TaidouCommon.Model;
+using System.Text.RegularExpressions;
 
 public enum ProfessionType
 {
@@ -374,24 +375,16 @@ public class CharacterSelectController : MonoBehaviour {
     int index = -1;
     Role role;
     public List<Role> rolelist = null;
-   
+    Regex reg = new Regex(@"^.{4,10}$");
     private void create()
     {
-        if (nametxt.text != "")
+        if (nametxt.text != "" && reg.IsMatch(nametxt.text))
         {
-            PlayerSelect._instance.ShowRole(role);
-            
-
+                PlayerSelect._instance.ShowRole(role);
         }
-        
         else
         {
-            if (PlayerSelect._instance.rolelist.Count >= 5)
-            {
-                MessageManager._instance.ShowMessage("角色已满");
-            }
-            else
-            MessageManager._instance.ShowMessage("请先输入名字");
+            MessageManager._instance.ShowMessage("名字长度4-10位");
         }
     }
 }

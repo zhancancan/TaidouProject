@@ -20,9 +20,14 @@ public class PrefabManager : MonoBehaviour {
         AddPrefabs(ConstDates.ResourceEffectPrefabDirZcc,ConstDates.Effect_MouseClick_Green);
 
         //zpf
+        //宠物UI预制体
         AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Lion);
         AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Elf);
         AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Fairy);
+        //宠物特效预制体
+        AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.LionEffect);
+        AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.ElfEffect);
+        AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.FairyEffect);
     }
 
     /// <summary>

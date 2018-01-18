@@ -40,7 +40,7 @@ public class PetMoveAndAttack : MonoBehaviour
             if (NoMeetEnemy)
             {
                 //宠物与英雄距离超过一定距离后，宠物开始向英雄移动
-                if (Vector3.Distance(hero.transform.position, transform.position) > 3f)
+                if (Vector3.Distance(hero.transform.position, transform.position) > 4f)
                 {
                     //调用宠物移动方法
                     PetToMove();
@@ -67,18 +67,20 @@ public class PetMoveAndAttack : MonoBehaviour
                     {
                         petAnim.SetBool("Run", false);
                         //宠物自动寻路到宠物本身位置
-                        transform.position = Vector3.Lerp(transform.position, hero.transform.position + new Vector3(-1, 0, -1), Time.deltaTime * speed);
+                        transform.position = Vector3.Lerp(transform.position,
+                            new Vector3(hero.transform.position.x - 2, hero.transform.position.y, hero.transform.position.z - 2), Time.deltaTime * speed);
                         //遇见敌人
                         NoMeetEnemy = false;
                         //播放攻击动画
                         petAnim.SetBool("Atk", true);
                     }
-                    //如果英雄与敌人距离在1~5之间
+                    //如果英雄与敌人距离在3~8之间
                     if (Vector3.Distance(hero.transform.position, enemy.transform.position) >= 3f &&
-                        Vector3.Distance(hero.transform.position, enemy.transform.position) <= 10f)
+                        Vector3.Distance(hero.transform.position, enemy.transform.position) <= 8f)
                     {
                         //宠物移动到敌人位置                   
-                        transform.position = Vector3.Lerp(transform.position, enemy.transform.position + new Vector3(-1, 0, -1), Time.deltaTime * speed);
+                        transform.position = Vector3.Lerp(transform.position, 
+                            new Vector3(enemy.transform.position.x - 1.5f, enemy.transform.position.y, enemy.transform.position.z - 1.5f), Time.deltaTime * speed);
                         //检测到敌人
                         NoMeetEnemy = false;
                         //播放移动动画
@@ -108,7 +110,8 @@ public class PetMoveAndAttack : MonoBehaviour
     //宠物移动到英雄位置的方法
     void PetToMove()
     {
-        transform.position = Vector3.Lerp(transform.position, hero.transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, 
+            new Vector3(hero.transform.position.x-2, hero.transform.position.y, hero.transform.position.z-2), Time.deltaTime * speed);
     }
 }
 

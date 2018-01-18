@@ -41,7 +41,7 @@ public class UIPetMain : MonoBehaviour
     void UpdateShowUIPetMain()
     {
         PetInfo petInfo = PetInfo._petInstance;
-        petHeadIconImg.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Elf);
+        petHeadIconImg.texture = TextureManager.Instance.GetTexture(ConstDates.ResourceTexturesDirZpf, ConstDates.Head_Lion);
         petLevel.text = petInfo.StarLevelNum.ToString();
         petHPCount.text = petInfo.PetHP+"/100";
         petHPImg.fillAmount = petInfo.PetHP / 100.0f;

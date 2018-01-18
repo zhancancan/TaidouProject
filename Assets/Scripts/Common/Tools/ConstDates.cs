@@ -23,6 +23,7 @@ public class ConstDates {
     //zpf
     public const string ResourcePrefabDirZpf = "ZhuPengFei/Prefabs";
     public const string ResourcePetPrefabDirZpf = "ZhuPengFei/Prefabs/Pet";
+    public const string ResourcePetPrefabEffectZpf = "ZhuPengFei/PetEffect";
 
     //定义音频路径
     //public
@@ -106,6 +107,10 @@ public class ConstDates {
     public const string Elf = "Elf";
     public const string Fairy = "Fairy";
     public const string Lion = "Lion";
+    //宠物特效预制体
+    public const string ElfEffect = "ElfEffect";
+    public const string LionEffect = "LionEffect";
+    public const string FairyEffect = "FairyEffect";
 
     //当前运行场景的名字
     //hj

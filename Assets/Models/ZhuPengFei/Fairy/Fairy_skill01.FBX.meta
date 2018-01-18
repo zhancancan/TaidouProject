@@ -160,7 +160,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.447487
+        functionName: Fairy
+        data: 
+        objectReferenceParameter: {fileID: 1173290712838290, guid: 25c6acb54c079944393e1ebc7ffbfea7,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

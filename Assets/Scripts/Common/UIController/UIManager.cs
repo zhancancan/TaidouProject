@@ -47,6 +47,9 @@ public class UIManager : MonoBehaviour
         //swl
         AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISelectPlayer);
         AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UICreatePlayer);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISkill);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISkillItem);
+        AddUIPrefabs(ConstDates.ResourcePrefabDirSwl, ConstDates.UISkillPic);
         //zcc
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIMain);
         AddUIPrefabs(ConstDates.ResourcePrefabDirZcc, ConstDates.UIPlayerProperty);
@@ -139,26 +142,47 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 获取UI预设体实例
-    /// </summary>
-    /// <param name="uiName">UI预设体名字</param>
-    public GameObject GetUIPrefabInstance(string uiName)
-    {
-        GameObject uiPrefab = uiObject[uiName];
-        GameObject objUI = Instantiate(uiPrefab);
-        return objUI;
-    }
-
-    /// <summary>
-    /// 获取UI预设体实例,并且修改名字
+    /// 获取UI预设体实例,可以修改名字
     /// </summary>
     /// <param name="originalUIName">UI预设体原来名字</param>
     /// <param name="currentUIName">UI预设体实例现在名字</param>
-    public GameObject GetUIPrefabInstance(string originalUIName, string currentUIName)
+    public GameObject GetUIPrefabInstance(string originalUIName, string currentUIName = null)
     {
         GameObject uiPrefab = uiObject[originalUIName];
         GameObject objUI = Instantiate(uiPrefab);
-        objUI.name = currentUIName;
+        if (null != currentUIName) objUI.name = currentUIName;
+        return objUI;
+    }
+
+    public GameObject GetUIPrefabInstance(string originalUIName, Transform parent, string currentUIName = null)
+    {
+        GameObject uiPrefab = uiObject[originalUIName];
+        GameObject objUI = Instantiate(uiPrefab, parent);
+        if (null != originalUIName) objUI.name = currentUIName;
+        return objUI;
+    }
+
+    public GameObject GetUIPrefabInstance(string originalUIName, Transform parent, bool worldPositionStays, string currentUIName = null)
+    {
+        GameObject uiPrefab = uiObject[originalUIName];
+        GameObject objUI = Instantiate(uiPrefab, parent, worldPositionStays);
+        if (null != originalUIName) objUI.name = currentUIName;
+        return objUI;
+    }
+
+    public GameObject GetUIPrefabInstance(string originalUIName, Vector3 position, Quaternion rotation, string currentUIName = null)
+    {
+        GameObject uiPrefab = uiObject[originalUIName];
+        GameObject objUI = Instantiate(uiPrefab, position, rotation);
+        if (null != originalUIName) objUI.name = currentUIName;
+        return objUI;
+    }
+
+    public GameObject GetUIPrefabInstance(string originalUIName, Vector3 position, Quaternion rotation, Transform parent, string currentUIName = null)
+    {
+        GameObject uiPrefab = uiObject[originalUIName];
+        GameObject objUI = Instantiate(uiPrefab, position, rotation, parent);
+        if (null != originalUIName) objUI.name = currentUIName;
         return objUI;
     }
 }

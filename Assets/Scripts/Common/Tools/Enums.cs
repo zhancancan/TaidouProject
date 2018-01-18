@@ -29,14 +29,14 @@ public enum ViceEquipItemType
     Wing,
 }
 
-public enum ViceDrugItemType
+public enum ViceDrugItemType 
 {
     HP,
     MP
 }
 
 //PoolProperty
-public enum PoolObjectType
+public enum PoolObjectType 
 {
     Enemy1,
     Enemy2,
@@ -44,32 +44,73 @@ public enum PoolObjectType
 }
 
 //PlayerMove
-public enum PlayerMoveState //移动状态
-{
+public enum PlayerMoveState
+{//移动状态
     Idle,
     Walk
 }
 
 //PlayerAttack
-public enum PlayerState //控制状态
-{
+public enum PlayerState
+{//控制状态
     ControlWalk,
     NormalAttack,
     SkillAttack,
     Death
 }
 
-public enum PlayerAttackState   //攻击状态
-{
+public enum PlayerAttackState
+{//攻击状态
     Moving,
     Idle,
     Attack
 }
 
 //Skill
-public enum ApplyType{
+public enum ApproRole
+{//适合角色
+    Swordman,
+    Magician,
+    Archer
+}
+
+public enum ApplyType
+{//作用类型  
     Passive,
     Buff,
     SingleTarget,
     MultiTarget
+}
+
+public enum ApplyProperty
+{//作用属性
+    Attack,
+    Def,
+    Speed,
+    AttackSpeed,
+    HP,
+    MP
+}
+
+public enum ReleaseType
+{//释放类型
+    Self,
+    Enemy,
+    Position
+}
+
+//UIShutCut
+public enum ShutCutType
+{//快捷键类型
+    Skill,
+    Drug,
+    None
+}
+
+//PlayerStatus
+public enum RoleType
+{//角色类型
+    Mage,
+    Warrior,
+    Archer
 }

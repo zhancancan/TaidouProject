@@ -75,6 +75,7 @@ public class UIMain:UIBase{
         UIManager.Instance.PushUIPanel(ConstDates.UIGemstoneCompose);
         UIManager.Instance.PushUIPanel(ConstDates.UIPlayerProperty);
         UIManager.Instance.PushUIPanel(ConstDates.UITask);
+        UIManager.Instance.PushUIPanel(ConstDates.UISkill);
         UIManager.Instance.PushUIPanel(ConstDates.UIStore);
         UIManager.Instance.PushUIPanel(ConstDates.UISystemSetting);
         UIManager.Instance.PushUIPanel(ConstDates.UIRecharge);
@@ -95,6 +96,7 @@ public class UIMain:UIBase{
         composeBtn.onClick.AddListener(OnComposeBtnClick);
         playerPropertyBtn.onClick.AddListener(OnPlayerPropertyBtnClick);
         taskBtn.onClick.AddListener(OnTaskBtnBtnClick);
+        skillBtn.onClick.AddListener(OnSkillBtnBtnClick);
         storeBtn.onClick.AddListener(OnStoreBtnClick);
         bagBtn.onClick.AddListener(OnBagBtnClick);
         settingBtn.onClick.AddListener(OnSettingBtnClick);
@@ -155,6 +157,14 @@ public class UIMain:UIBase{
     void OnTaskBtnBtnClick()
     {
         UIManager.Instance.PushUIPanel(ConstDates.UITask);
+    }
+
+    /// <summary>
+    /// 点击技能按钮
+    /// </summary>
+    void OnSkillBtnBtnClick()
+    {
+        UIManager.Instance.PushUIPanel(ConstDates.UISkill);
     }
 
     /// <summary>

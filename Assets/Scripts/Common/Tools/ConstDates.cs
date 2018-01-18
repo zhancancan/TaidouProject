@@ -77,6 +77,9 @@ public class ConstDates {
     //swl
     public const string UISelectPlayer = "UISelectPlayer";
     public const string UICreatePlayer = "UICreatePlayer";
+    public const string UISkill = "UISkill";
+    public const string UISkillItem = "UISkillItem";
+    public const string UISkillPic = "UISkillPic";
     //zcc
     public const string UIMain = "UIMain";
     public const string UIPlayerProperty = "UIPlayerProperty";
@@ -115,28 +118,31 @@ public class ConstDates {
 
     //人物角色预制体
     //swl
-    public const string ArcherFemale = "/Archer_Female";
-    public const string ArcherMale = "/Archer_Male";
-    public const string MageFemale = "/Mage_Female";
-    public const string MageMale = "/Mage_Male";
-    public const string WarriorFemale = "/Warrior_Female";
-    public const string WarriorMale = "/Warrior_Male";
+    public const string ArcherFemale = "Archer_Female";
+    public const string ArcherMale = "Archer_Male";
+    public const string MageFemale = "Mage_Female";
+    public const string MageMale = "Mage_Male";
+    public const string WarriorFemale = "Warrior_Female";
+    public const string WarriorMale = "Warrior_Male";
 
     //技能特效预制体
     //swl
-    public const string BloodSpray = "/BloodSpray/BloodSpray";
-    public const string Crack = "/Crack/Crack";
-    public const string Fire = "/FireAndIce/Fire";
-    public const string Ice = "/FireAndIce/Ice";
-    public const string FireDragon = "/FireDragon/FireDragon";
-    public const string FireDragonRoll = "/FireDragonRoll/FireDragonRoll";
-    public const string IceArrow = "/IceArrow/IceArrow";
-    public const string IceMake = "/IceMake/IceMake";
-    public const string MageAttack = "/MageAttack/MageAttack";
-    public const string MonsterRaids = "/MonsterRaids/MonsterRaids";
-    public const string MuzzleFlash = "/Perfab/MuzzleFlash";
-    public const string Shock_Bomb = "/Perfab/Shock_Bomb";
-    public const string Tonado_Electro = "/Perfab/Tonado_Electro";
+    //战士
+    public const string BloodSpray = "BloodSpray/BloodSpray";//大吼
+    public const string Crack = "Crack/Crack";//地裂斩
+    public const string IceMake = "IceMake/IceMake";//冰
+    public const string Shock_Bomb = "Perfab/Shock_Bomb";//爆炸
+    //法师
+    public const string MageAttack = "MageAttack/MageAttack";//普攻
+    public const string Fire = "FireAndIce/Fire";//地圈火
+    public const string Ice = "FireAndIce/Ice";//地圈冰
+    public const string FireDragonRoll = "FireDragonRoll/FireDragonRoll";//火龙卷风
+    public const string MonsterRaids = "MonsterRaids/MonsterRaids";//召唤怪物攻击
+    //射手
+    public const string FireDragon = "FireDragon/FireDragon";//火龙
+    public const string IceArrow = "IceArrow/IceArrow";//冰雨
+    public const string MuzzleFlash = "Perfab/MuzzleFlash";//普攻
+    public const string Tonado_Electro = "Perfab/Tonado_Electro";//电龙卷风
 
     //人物状态机
     public const string WarriorAnimator = "/WarriorAnim";

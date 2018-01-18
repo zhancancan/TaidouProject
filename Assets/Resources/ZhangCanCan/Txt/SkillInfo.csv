@@ -1,0 +1,13 @@
+﻿编号,名字,图片名字,描述,类型,作用属性,作用值,持续时间,,冷却时间,适合角色,适合等级,释放类型,释放距离,特效名字,动画名字,动画时间
+4001,战嚎1,icon_技能1,防御 +130%,Buff,Def,130,5,3,5,Swordman,3,Self,0,null,null,0
+4002,战嚎2,icon_技能2,攻击速度 +200%,Buff,AttackSpeed,200,20,20,30,Swordman,7,Self,0,null,null,0
+4003,战嚎3,icon_技能3,攻击 +150%,Buff,Attack,150,60,15,60,Swordman,3,Self,0,null,null,0
+4004,地裂斩,icon_技能4,伤害 +250%,SingleTarget,Attack,250,0,6,1,Swordman,1,Enemy,1.5,null,null,0
+4005,冰,icon_技能5,伤害 +200%所有敌人,MultiTarget,Attack,200,0,10,20,Swordman,6,Self,0,null,null,0
+4006,爆炸,icon_技能6,伤害 +400%所有敌人,MultiTarget,Attack,400,0,20,20,Swordman,10,Position,7,null,null,0
+5001,恢复血量,icon_技能13,治愈 +30HP,Passive,HP,30,0,10,20,Magician,2,Self,0,null,null,0
+5002,恢复魔法,icon_技能13,魔法 +20MP,Passive,MP,20,0,0,30,Magician,5,Self,0,null,null,0
+5003,怪物攻击,icon_技能13,技能冷却 -200%持续30秒,Buff,AttackSpeed,200,30,30,30,Magician,8,Self,0,null,null,0
+5004,地圈火,icon_技能14,伤害 +350%,SingleTarget,Attack,350,0,20,10,Magician,1,Enemy,5,null,null,0
+5005,地圈冰,icon_技能15,伤害 +350%,SingleTarget,Attack,350,0,20,10,Magician,1,Enemy,5,null,null,0
+5006,火龙卷风,icon_技能16,伤害 +400%所有敌人,MultiTarget,Attack,400,0,50,40,Magician,9,Position,10,null,null,0

@@ -30,6 +30,7 @@ public class UISelectPlayer : UIBase {
     private void Start()
     {
         PlayerSelect._instance.ShowChar(PlayerSelect._instance.rolelist[0]);
+        selectplayer[0].SendMessage("UpdateShow");
     }
     public override void OnPausing()
     {

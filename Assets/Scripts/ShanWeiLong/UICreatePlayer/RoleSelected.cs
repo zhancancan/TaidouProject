@@ -36,47 +36,44 @@ public class RoleSelected : MonoBehaviour {
     GameObject showrole;
     void UpdateShow()
     {
+       
         if (GameObject.FindGameObjectWithTag("Role"))
         {
             showrole = GameObject.FindGameObjectWithTag("Role");
             Destroy(showrole);
         }
-
-
         if (profession.text.Contains("战士"))
         {
-            if (!GameObject.FindGameObjectWithTag("Role"))
-            {
                 if (seximg.sprite.name.Contains("女性"))
                 {
-                    Instantiate(go[4], born.transform.position, Quaternion.Euler(0, -180, 0));
+                   showrole= Instantiate(go[4], born.transform.position, Quaternion.Euler(0, -180, 0));
                 }
                 else
                 {
-                    Instantiate(go[5], born.transform.position, Quaternion.Euler(0, -180, 0));
+                    showrole = Instantiate(go[5], born.transform.position, Quaternion.Euler(0, -180, 0));
                 }
-            }
+           
         }
         else if(profession.text.Contains("法师") )
         {
             if (seximg.sprite.name.Contains("女性"))
             {
-                Instantiate(go[2], born.transform.position, Quaternion.Euler(0, -180, 0));
+                showrole = Instantiate(go[2], born.transform.position, Quaternion.Euler(0, -180, 0));
             }
             else
             {
-             Instantiate(go[3], born.transform.position, Quaternion.Euler(0, -180, 0));
+                showrole = Instantiate(go[3], born.transform.position, Quaternion.Euler(0, -180, 0));
             }
         }
         else if(profession.text.Contains("弓箭手") )
         {
             if (seximg.sprite.name.Contains("女性"))
             {
-              Instantiate(go[0], born.transform.position, Quaternion.Euler(0, -180, 0));
+                showrole = Instantiate(go[0], born.transform.position, Quaternion.Euler(0, -180, 0));
             }
             else
             {
-               Instantiate(go[1], born.transform.position, Quaternion.Euler(0, -180, 0));
+                showrole = Instantiate(go[1], born.transform.position, Quaternion.Euler(0, -180, 0));
             }
         }
         else

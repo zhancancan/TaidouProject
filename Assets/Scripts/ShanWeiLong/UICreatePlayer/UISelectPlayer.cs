@@ -54,7 +54,10 @@ public class UISelectPlayer : UIBase {
         
         SceneManager.LoadSceneAsync(ConstDates.CreatePlayerSceneIndex);
     }
-
-  
+    public void change()
+    {
+        SceneManager.LoadSceneAsync(ConstDates.MainScene);
+    }
+    
   
 }

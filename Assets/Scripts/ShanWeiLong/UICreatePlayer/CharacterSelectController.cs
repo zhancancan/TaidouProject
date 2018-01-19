@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using System;
 using TaidouCommon.Model;
 using System.Text.RegularExpressions;
+using UnityEngine.EventSystems;
 
 public enum ProfessionType
 {
@@ -16,7 +17,8 @@ public enum ProfessionType
     弓箭手
 }
 
-public class CharacterSelectController : MonoBehaviour {
+public class CharacterSelectController : MonoBehaviour
+{
 
     //返回按键
     Button returnBtn;
@@ -35,7 +37,7 @@ public class CharacterSelectController : MonoBehaviour {
     //输入创建人物名称文本框
     InputField createNameField;
     [HideInInspector]
-    public  Text nametxt;
+    public Text nametxt;
     //战士介绍
     GameObject warriorTXT;
     //刺客介绍
@@ -87,14 +89,14 @@ public class CharacterSelectController : MonoBehaviour {
         mageMaleObj = Resources.Load<GameObject>(ConstDates.ResourcePlayerPrefabDirSwl + ConstDates.MageMale);
         archerFemaleObj = Resources.Load<GameObject>(ConstDates.ResourcePlayerPrefabDirSwl + ConstDates.ArcherFemale);
         archerMaleObj = Resources.Load<GameObject>(ConstDates.ResourcePlayerPrefabDirSwl + ConstDates.ArcherMale);
-      
+
         //生成，展示点
         bornPointFemale = GameObject.Find("BornPointFemale");
         bornPointMale = GameObject.Find("BornPointMale");
         showPoint = GameObject.Find("ShowPoint");
 
         returnBtn = transform.Find("ReturnBTN").GetComponent<Button>();
-        createPersonBtn=transform.Find("CreatePersonBTN").GetComponent<Button>();
+        createPersonBtn = transform.Find("CreatePersonBTN").GetComponent<Button>();
         maleBtn = transform.Find("MaleBTN").GetComponent<Button>();
         femaleBtn = transform.Find("FemaleBTN").GetComponent<Button>();
         warriorBtn = transform.Find("WarriorBTN").GetComponent<Button>();
@@ -117,12 +119,15 @@ public class CharacterSelectController : MonoBehaviour {
     private void Start()
     {
         //状态机
-        /*RuntimeAnimatorController*/ warriorAnimatorController
-            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.WarriorAnimator);
-        /*RuntimeAnimatorController*/ mageAnimatorController
-            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.MageAnimator);
-        /*RuntimeAnimatorController*/ archerAnimatorController
-            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.ArcherAnimator);
+        /*RuntimeAnimatorController*/
+        warriorAnimatorController
+= Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.WarriorAnimator);
+        /*RuntimeAnimatorController*/
+        mageAnimatorController
+= Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.MageAnimator);
+        /*RuntimeAnimatorController*/
+        archerAnimatorController
+= Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.ArcherAnimator);
 
         //人物Animator获取
         warriorFemaleAnim = warriorFemaleObj.GetComponent<Animator>();
@@ -177,7 +182,8 @@ public class CharacterSelectController : MonoBehaviour {
         });
 
         //法师按钮
-        mageBtn.onClick.AddListener(() => {
+        mageBtn.onClick.AddListener(() =>
+        {
             mageTXT.SetActive(true);
             goWarriorFemale.SetActive(false);
             goWarriorMale.SetActive(false);
@@ -191,7 +197,8 @@ public class CharacterSelectController : MonoBehaviour {
         });
 
         //弓箭手按钮
-        archerBtn.onClick.AddListener(() => {
+        archerBtn.onClick.AddListener(() =>
+        {
             archerTXT.SetActive(true);
             goWarriorFemale.SetActive(false);
             goWarriorMale.SetActive(false);
@@ -205,174 +212,77 @@ public class CharacterSelectController : MonoBehaviour {
         });
 
         //男按钮
-        maleBtn.onClick.AddListener(() => {
-            femaleBtn.interactable = false;
-            if (goWarriorMale.activeSelf == true)
-            {
-                goWarriorMale.transform.LookAt(showPoint.transform.position);
-                warriorMaleAnim.SetBool("Walk", true);
-                goWarriorMale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
-                    goWarriorMale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    femaleBtn.interactable = true;
-                    warriorMaleAnim.SetBool("Walk", false);
-                    warriorMaleAnim.SetTrigger("Skill1");
-                });
-            }
-            else if (goMageMale.activeSelf == true)
-            {
-                goMageMale.transform.LookAt(showPoint.transform.position);
-                mageMaleAnim.SetBool("Walk", true);
-                goMageMale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
-                    goMageMale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    femaleBtn.interactable = true;
-                    mageMaleAnim.SetTrigger("Skill1");
-                });
-            }
-            else if (goArcherMale.activeSelf == true)
-            {
-                goArcherMale.transform.LookAt(showPoint.transform.position);
-                archerMaleAnim.SetBool("Walk", true);
-                goArcherMale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
-                    goArcherMale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    femaleBtn.interactable = true;
-                    archerMaleAnim.SetTrigger("Skill3");
-                });
-            }
-
-            if (Vector3.Distance(goWarriorFemale.transform.position, showPoint.transform.position) <= 0.01f)
-            {
-                goWarriorFemale.transform.LookAt(bornPointFemale.transform.position);
-                warriorFemaleAnim.SetBool("Walk", true);
-                goWarriorFemale.transform.DOMove(bornPointFemale.transform.position, 2).OnComplete(() => {
-                    goWarriorFemale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x - 2,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    warriorFemaleAnim.SetBool("Walk", false);
-                });
-            }
-            else if(Vector3.Distance(goMageFemale.transform.position, showPoint.transform.position) <= 0.01f)
-            {
-                goMageFemale.transform.LookAt(bornPointFemale.transform.position);
-                mageFemaleAnim.SetBool("Walk", true);
-                goMageFemale.transform.DOMove(bornPointFemale.transform.position, 2).OnComplete(() => {
-                    goMageFemale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x - 2,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    mageFemaleAnim.SetBool("Walk", false);
-                });
-            }
-            else if (Vector3.Distance(goArcherFemale.transform.position, showPoint.transform.position) <= 0.01f)
-            {
-                goArcherFemale.transform.LookAt(bornPointFemale.transform.position);
-                archerFemaleAnim.SetBool("Walk", true);
-                goArcherFemale.transform.DOMove(bornPointFemale.transform.position, 2).OnComplete(() => {
-                    goArcherFemale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x - 2,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    archerFemaleAnim.SetBool("Walk", false);
-                });
-            }
-            isman = true;
-        });
-
+        EventTriggerListener.GetListener(maleBtn.gameObject).onPointerClick += OnSelectPlayerBtnClick;
         //女按钮
-        femaleBtn.onClick.AddListener(() => {
-            maleBtn.interactable = false;
-            if (goWarriorFemale.activeSelf == true)
-            {
-                goWarriorFemale.transform.LookAt(showPoint.transform.position);
-                goWarriorFemale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
-                    goWarriorFemale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    maleBtn.interactable = true;
-                    warriorFemaleAnim.SetTrigger("Skill1");
-                });
-            }
-            else if (goMageFemale.activeSelf == true)
-            {
-                goMageFemale.transform.LookAt(showPoint.transform.position);
-                goMageFemale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
-                    goMageFemale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    maleBtn.interactable = true;
-                    mageFemaleAnim.SetTrigger("Skill1");
-                });
-            }
-            else if (goArcherFemale.activeSelf == true)
-            {
-                goArcherFemale.transform.LookAt(showPoint.transform.position);
-                goArcherFemale.transform.DOMove(showPoint.transform.position, 2).OnComplete(() => {
-                    goArcherFemale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                    maleBtn.interactable = true;
-                    archerFemaleAnim.SetTrigger("Skill3");
-                });
-            }
-
-            if (Vector3.Distance(goWarriorMale.transform.position, showPoint.transform.position) <= 0.01f)
-            {
-                goWarriorMale.transform.LookAt(bornPointMale.transform.position);
-                goWarriorMale.transform.DOMove(bornPointMale.transform.position, 2).OnComplete(() => {
-                    goWarriorMale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x + 2,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                });
-            }
-            else if (Vector3.Distance(goMageMale.transform.position, showPoint.transform.position) <= 0.01f)
-            {
-                goMageMale.transform.LookAt(bornPointMale.transform.position);
-                goMageMale.transform.DOMove(bornPointMale.transform.position, 2).OnComplete(() => {
-                    goMageMale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x + 2,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                });
-            }
-            else if (Vector3.Distance(goArcherMale.transform.position, showPoint.transform.position) <= 0.01f)
-            {
-                goArcherMale.transform.LookAt(bornPointMale.transform.position);
-                goArcherMale.transform.DOMove(bornPointMale.transform.position, 2).OnComplete(() => {
-                    goArcherMale.transform.LookAt(new Vector3(
-                         Camera.main.transform.position.x + 2,
-                         Camera.main.transform.position.y - 2,
-                         Camera.main.transform.position.z
-                        ));
-                });
-            }
-            isman = false;
-        });
-
+        EventTriggerListener.GetListener(femaleBtn.gameObject).onPointerClick += OnSelectPlayerBtnClick;
     }
+
+    void OnSelectPlayerBtnClick(GameObject obj, PointerEventData eventData)
+    {
+        Button playerBtn = obj.GetComponent<Button>();
+        playerBtn.interactable = false;
+        GameObject player = null;
+        GameObject playerTemp = null;
+        GameObject playerMale = null;
+        GameObject playerFaMale = null;
+        Vector3 cameraPos = Camera.main.transform.position;
+        Vector3 dirction=Vector3.zero;
+        Vector3 palyerPos;
+
+        if (goMageMale.activeSelf) playerMale = goMageMale;
+        if (goWarriorMale.activeSelf) playerMale  = goWarriorMale;
+        if (goArcherMale.activeSelf) playerMale = goArcherMale;
+        if (goMageFemale.activeSelf) playerFaMale = goMageFemale;
+        if (goWarriorFemale.activeSelf) playerFaMale = goWarriorFemale;
+        if (goArcherFemale.activeSelf) playerFaMale  = goArcherFemale;
+
+        if (obj.name.Equals("MaleBTN"))
+        {
+            player = playerMale;
+            playerTemp = playerFaMale;
+            palyerPos = bornPointFemale.transform.position;
+            dirction = new Vector3(cameraPos.x - 2, cameraPos.y - 2, cameraPos.z);
+        }
+        else
+        {
+            player = playerFaMale;
+            playerTemp = playerMale;
+            palyerPos = bornPointMale.transform.position;
+            dirction =  new Vector3(cameraPos.x + 2, cameraPos.y - 2, cameraPos.z);
+        }
+
+        if (player.activeSelf == true)
+        {
+            player.transform.LookAt(showPoint.transform.position);
+            Animator anima = player.GetComponent<Animator>();
+            anima.SetBool("Walk", true);
+            player.transform.DOMove(showPoint.transform.position, 2).OnComplete(() =>
+            {
+                player.transform.LookAt(new Vector3(
+                        Camera.main.transform.position.x,
+                        Camera.main.transform.position.y - 2,
+                        Camera.main.transform.position.z
+                    ));
+                playerBtn.interactable = true;
+                anima.SetBool("Walk", false);
+                //anima.SetTrigger("Skill1");
+            });
+        }
+
+        if (Vector3.Distance(playerTemp.transform.position, showPoint.transform.position) <= 0.01f)
+        {
+            playerTemp.transform.LookAt(palyerPos);
+            Animator anima = player.GetComponent<Animator>();
+            anima.SetBool("Walk", true);
+            playerTemp.transform.DOMove(palyerPos, 2).OnComplete(() =>
+            {
+                playerTemp.transform.LookAt(dirction);
+                anima.SetBool("Walk", false);
+            });
+        }
+        isman = true;
+    }
+
     Role role;
     public List<Role> rolelist = null;
     Regex reg = new Regex(@"^.{4,10}$");
@@ -380,7 +290,7 @@ public class CharacterSelectController : MonoBehaviour {
     {
         if (nametxt.text != "" && reg.IsMatch(nametxt.text))
         {
-                PlayerSelect._instance.ShowRole(role);
+            PlayerSelect._instance.ShowRole(role);
         }
         else
         {
@@ -388,3 +298,7 @@ public class CharacterSelectController : MonoBehaviour {
         }
     }
 }
+
+
+
+          

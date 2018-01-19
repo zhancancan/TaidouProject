@@ -11,7 +11,7 @@ public class ConstDates {
     public const string ResourcePrefabDirHj = "HuJian/Prefabs/UI";
     //swl
     public const string ResourcePrefabDirSwl = "ShanWeiLong/Prefabs/UI";
-    public const string ResourcePlayerPrefabDirSwl = "ShanWeiLong/Prefabs/Player";
+    public const string ResourcePlayerPrefabDirSwl = "ShanWeiLong/Prefabs/Player/";
     public const string ResourceAnimatorPrefabDirSwl = "ShanWeiLong/Prefabs/Animators";
     public const string ResourceEffectPrefabDirSwl = "ShanWeiLong/Prefabs/MyEffect";
     //zcc

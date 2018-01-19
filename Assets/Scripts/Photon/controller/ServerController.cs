@@ -99,9 +99,6 @@ public class ServerController : ControllerBase {
     void OnServerSelect(GameObject serverGo)
     {
         seleserver = UIStart.transform.Find("StartBG/TotalList/SelectSeverBtn").gameObject;
-        Debug.Log(seleserver);
-        Debug.Log(11);
-        Debug.Log(seleserver.transform.Find("Text"));
         seleserver.transform.Find("Text").GetComponent<Text>().text = serverGo.transform.Find("SeverNameTxt").GetComponent<Text>().text;
         seleserver.transform.Find("Text").GetComponent<Text>().color = serverGo.transform.Find("SeverNameTxt").GetComponent<Text>().color;
     }

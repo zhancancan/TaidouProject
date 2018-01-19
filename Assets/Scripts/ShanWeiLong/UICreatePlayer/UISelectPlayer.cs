@@ -11,13 +11,11 @@ public class UISelectPlayer : UIBase {
     Image seximg;
     public List<RoleSelected> selectplayer;
     public static UISelectPlayer _instance;
-    RoleController rolecontroller;
     private void Awake()
     {
         _instance = this;
         PersonName = transform.Find("LoginBg/PersonInformationControl/PersonInformationPanel/PersonName").GetComponent<Text>();
         profession = transform.Find("LoginBg/PersonInformationControl/PersonInformationPanel/PersonPosition").GetComponent<Text>();
-        rolecontroller = transform.GetComponent<RoleController>();
     }
     private void OnDestroy()
     {
@@ -31,6 +29,7 @@ public class UISelectPlayer : UIBase {
     {
         PlayerSelect._instance.ShowChar(PlayerSelect._instance.rolelist[0]);
         selectplayer[0].SendMessage("UpdateShow");
+        
     }
     public override void OnPausing()
     {

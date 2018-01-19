@@ -40,7 +40,7 @@ public class SkillInfoData
     {
         TextAsset skillAsset = Resources.Load("ZhangCanCan/Txt/SkillInfo", typeof(TextAsset)) as TextAsset;
         Skill skill;
-        Debug.Log(skillAsset);
+        //Debug.Log(skillAsset);
         string str = skillAsset.text;
         string tempStr = str.Replace("\r\n", "\n");
         string[] skillInfoList = tempStr.Split('\n');

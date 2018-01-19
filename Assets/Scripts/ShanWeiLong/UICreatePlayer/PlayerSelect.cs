@@ -48,13 +48,39 @@ public class PlayerSelect : MonoBehaviour
                 UISelectPlayer._instance.selectplayer[index].level.text = "<color=#00FF7FFF>" + rolelist[index].Level + "</color>";
                 if (rolelist[index].IsMan == true)
                 {
-                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/男性", typeof(Sprite)) as Sprite;
-                    UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                    if (rolelist[index].Profession == "战士")
+                    {
+                       UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/男战士", typeof(Sprite)) as Sprite;
+                       UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                     }
+                    else if(rolelist[index].Profession == "法师")
+                    {
+                       UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/男法师", typeof(Sprite)) as Sprite;
+                       UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                    }
+                   else
+                   {
+                      UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/男弓箭手", typeof(Sprite)) as Sprite;
+                      UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                   }
                 }
                 else
                 {
-                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/女性", typeof(Sprite)) as Sprite;
+                   if (rolelist[index].Profession == "战士")
+                   {
+                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/女战士", typeof(Sprite)) as Sprite;
                     UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                   }
+                   else if (rolelist[index].Profession == "法师")
+                   {
+                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/女法师", typeof(Sprite)) as Sprite;
+                    UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                   }
+                   else
+                   {
+                    UISelectPlayer._instance.selectplayer[index].seximg.sprite = Resources.Load("TanTianJun/Image/女弓箭手", typeof(Sprite)) as Sprite;
+                    UISelectPlayer._instance.selectplayer[index].seximg.DOFade(1, 0);
+                   }
                 }
             }
          

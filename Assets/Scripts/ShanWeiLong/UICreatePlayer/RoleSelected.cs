@@ -46,36 +46,36 @@ public class RoleSelected : MonoBehaviour {
         }
         if (profession.text.Contains("战士"))
         {
-                if (seximg.sprite.name.Contains("女性"))
+                if (seximg.sprite.name.Contains("女"))
                 {
-                   Instantiate(go[4], born.transform.position, Quaternion.Euler(0, -180, 0));
+                   Instantiate(go[4], born.transform.position, Quaternion.Euler(0, -168, 0));
                 }
                 else
                 {
-                    Instantiate(go[5], born.transform.position, Quaternion.Euler(0, -180, 0));
+                    Instantiate(go[5], born.transform.position, Quaternion.Euler(0, -168, 0));
                 }
            
         }
         else if(profession.text.Contains("法师") )
         {
-            if (seximg.sprite.name.Contains("女性"))
+            if (seximg.sprite.name.Contains("女"))
             {
-                Instantiate(go[2], born.transform.position, Quaternion.Euler(0, -180, 0));
+                Instantiate(go[2], born.transform.position, Quaternion.Euler(0, -168, 0));
             }
             else
             {
-                Instantiate(go[3], born.transform.position, Quaternion.Euler(0, -180, 0));
+                Instantiate(go[3], born.transform.position, Quaternion.Euler(0, -168, 0));
             }
         }
         else if(profession.text.Contains("弓箭手") )
         {
-            if (seximg.sprite.name.Contains("女性"))
+            if (seximg.sprite.name.Contains("女"))
             {
-                Instantiate(go[0], born.transform.position, Quaternion.Euler(0, -180, 0));
+                Instantiate(go[0], born.transform.position, Quaternion.Euler(0, -168, 0));
             }
             else
             {
-                 Instantiate(go[1], born.transform.position, Quaternion.Euler(0, -180, 0));
+                 Instantiate(go[1], born.transform.position, Quaternion.Euler(0, -168, 0));
             }
         }
         else

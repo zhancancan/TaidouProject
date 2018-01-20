@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIShutCut : MonoBehaviour
+public class UIShortCut : MonoBehaviour
 {
     private GameObject player;
     private PlayerStatus playerStatus;
@@ -12,8 +12,8 @@ public class UIShutCut : MonoBehaviour
     private Transform shuCutGroup1;
     private Transform shuCutGroup2;
 
-    private List<ShutCutItem> shuCutItemList = new List<ShutCutItem>();//存储每个快捷键的Item
-    private Dictionary<KeyCode, ShutCutItem> shutCutDict = new Dictionary<KeyCode, ShutCutItem>();  //保存快捷键对应的按键，快捷键的Item
+    private List<ShortCutItem> shuCutItemList = new List<ShortCutItem>();//存储每个快捷键的Item
+    private Dictionary<KeyCode, ShortCutItem> shutCutDict = new Dictionary<KeyCode, ShortCutItem>();  //保存快捷键对应的按键，快捷键的Item
 
     void Awake()
     {
@@ -21,11 +21,11 @@ public class UIShutCut : MonoBehaviour
         shuCutGroup2 = transform.Find("ShutCutGroup2").transform;
         foreach (Transform temp in shuCutGroup1)
         {
-            shuCutItemList.Add(temp.GetComponent<ShutCutItem>());
+            shuCutItemList.Add(temp.GetComponent<ShortCutItem>());
         }
         foreach (Transform temp in shuCutGroup2)
         {
-            shuCutItemList.Add(temp.GetComponent<ShutCutItem>());
+            shuCutItemList.Add(temp.GetComponent<ShortCutItem>());
         }
 
         shutCutDict.Add(KeyCode.Alpha1, shuCutItemList[0]);
@@ -58,7 +58,7 @@ public class UIShutCut : MonoBehaviour
         if (playerAttack.state == PlayerState.Death) return;
         foreach (var key in shutCutDict.Keys)//遍历 0-9 按键是否按下
         {
-            ShutCutItem shuCutItem;
+            ShortCutItem shuCutItem;
             shutCutDict.TryGetValue(key, out shuCutItem);
             if (Input.GetKeyDown(key))//按键按下
             {
@@ -68,7 +68,7 @@ public class UIShutCut : MonoBehaviour
     }
 
     //使用快捷键技能
-    void UseShutCutSkill(ShutCutItem shutCutItem)
+    void UseShutCutSkill(ShortCutItem shutCutItem)
     {
         if (shutCutItem.shutCutType == ShutCutType.Skill)
         {

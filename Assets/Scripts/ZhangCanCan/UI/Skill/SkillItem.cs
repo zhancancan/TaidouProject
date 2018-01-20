@@ -75,7 +75,7 @@ public class SkillItem : MonoBehaviour
         if (null != point && point.tag == Tags.ShutCut)//判断是否放在了技能背景框上
         {
             //CanvasGroup shutCutCanvaGroup = point.GetComponent<CanvasGroup>();//获取点击到快捷键图片上的CanvasGroup
-            point.transform.parent.GetComponent<ShutCutItem>().AddSkillIcon(this.SkillId);//添加技能到快捷键
+            point.transform.parent.GetComponent<ShortCutItem>().AddSkillIcon(this.SkillId);//添加技能到快捷键
         }
         Destroy(skillImgObj);//销毁跟随鼠标的技能图片对象
     }

@@ -76,12 +76,12 @@ GameObject:
   - component: {fileID: 222971819863529540}
   - component: {fileID: 114381017853748360}
   m_Layer: 5
-  m_Name: UIShutCat
+  m_Name: UIShortCut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1086331634690768
 GameObject:
   m_ObjectHideFlags: 1
@@ -2339,7 +2339,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 51466d7e7889429419d80fdd93ff99c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2890da7d92f84d249baab246eaa01cef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3818,9 +3818,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: c7c95cb4fb6b2d3459278d0107aa0580,
+    m_HighlightedSprite: {fileID: 21300000, guid: d18e02416ea74b847b9a0a08ca94656b,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 1bcc9f0ac66345e41b8f03ec806d9934, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 2890da7d92f84d249baab246eaa01cef, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -5457,7 +5457,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224112612507513300
 RectTransform:

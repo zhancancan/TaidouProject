@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShutCutItem : MonoBehaviour {
+public class ShortCutItem : MonoBehaviour {
     private Transform uiTop;//UI界面的最上层
 
     public CanvasGroup canvasGroup;
@@ -89,7 +89,7 @@ public class ShutCutItem : MonoBehaviour {
         if (null != point && point.tag == Tags.ShutCut)//判断是否放在了技能背景框上
         {
             CanvasGroup groupOther = point.GetComponent<CanvasGroup>();//获取点击到快捷键图片上的CanvasGroup
-            ShutCutItem otherShutCutItem = point.transform.parent.GetComponent<ShutCutItem>(); //获取快捷键上的ShutCutItem脚本
+            ShortCutItem otherShutCutItem = point.transform.parent.GetComponent<ShortCutItem>(); //获取快捷键上的ShutCutItem脚本
             if (0 == groupOther.alpha)//当前快捷键为空，将之前快捷键移到现在的位置
             {
                 otherShutCutItem.AddSkillIcon(this.shutCutGoodsId);//显示快捷

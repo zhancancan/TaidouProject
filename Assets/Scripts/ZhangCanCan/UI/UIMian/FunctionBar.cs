@@ -23,24 +23,14 @@ public class FunctionBar : MonoBehaviour {
     private Button prizeBtn;            //奖励
     private Button signBtn;             //签到
 
-    private Button showFcBtn;  //显示功能按钮条的按钮
+    private Toggle showFcDownTog;  //显示功能按钮条的按钮
+    private Toggle showShortCutTog;  //显示快捷键的按钮
     private GameObject uiShortCut;
-    private Transform functionBg;
 
-    private List<Transform> functionBtnList = new List<Transform>();
-    private bool isBottomFubctionBarShow = true;
-
-    Transform showFcBtnParent;
-    RectTransform rec1;//显示功能条按钮的父层级Rect
-    float w1; //控件宽度
-    float h1; //控件高度
-
-    RectTransform rec2;//功能条按钮的Rect
-    float w2; //控件宽度
-    float h2; //控件高度
-
-    private Action hideShortCut1;
-    private Action showShortCut1;
+    private Action fcDownHide;
+    private Action fcDownShow;
+    private Action shortCutHide;
+    private Action shortCutShow;
 
     void Awake()
     {
@@ -72,34 +62,24 @@ public class FunctionBar : MonoBehaviour {
         prizeBtn = transform.parent.Find("RechargeSignPrize/PrizeBtn").GetComponent<Button>();
         signBtn = transform.parent.Find("RechargeSignPrize/SignBtn").GetComponent<Button>();
 
-        showFcBtn = transform.parent.Find("ShowFunctionBarBtnBg/ShowFunctionBarBtn").GetComponent<Button>();
-        functionBg = transform.Find("FbBg").transform;
+        showFcDownTog = transform.parent.Find("ShowFunctionBarBtnBg/ShowDownFunctionBarBtn").GetComponent<Toggle>();
+        showShortCutTog = transform.parent.Find("UIShortCut/ShowShutCutBtn").GetComponent<Toggle>();
         uiShortCut = transform.parent.Find("UIShortCut").gameObject;
-        
-        foreach (Transform temp in functionBg)
-        {
-            functionBtnList.Add(temp);
-        }
 
-        hideShortCut1 = HideShortCut1;
-        showShortCut1 = ShowShortCut1;
+        fcDownHide = FCDownHide;
+        fcDownShow = FCDownShow;
+        shortCutHide = ShortCutHide;
+        shortCutShow = ShortCutShow;
 
-        showFcBtnParent = showFcBtn.transform.parent;
-        rec1 = showFcBtnParent.GetComponent<RectTransform>();//显示功能条按钮的父层级Rect
-        w1 = rec1.rect.width; //控件宽度
-        h1 = rec1.rect.height; //控件高度
-
-        rec2 = GetComponent<RectTransform>();//功能条按钮的Rect
-        w2 = rec2.rect.width; //控件宽度
-        h2 = rec2.rect.height; //控件高度
-
-        InitFunctionBarPos();
+        showFcDownTog.isOn = false;
+        DoTweenEffectManager.MoveComponet(showFcDownTog.isOn, gameObject, showFcDownTog, DoTweenMoveDirection.Down, 0, 0, fcDownHide, fcDownShow);
     }
 
     //注册button事件
     void RigisterListener()
     {
-        showFcBtn.onClick.AddListener(OnBottomFunctionbarShowBtnClick);
+        showFcDownTog.onValueChanged.AddListener(OnBottomFunctionbarShowBtnClick);
+        showShortCutTog.onValueChanged.AddListener(OnShortCutShowBtnClick);
 
         petBtn.onClick.AddListener(OnPetBtnClick);
         composeBtn.onClick.AddListener(OnComposeBtnClick);
@@ -111,26 +91,21 @@ public class FunctionBar : MonoBehaviour {
         settingBtn.onClick.AddListener(OnSettingBtnClick);
 
         rechargeBtn.onClick.AddListener(OnRechargeBtnClick);
-        prizeBtn.onClick.AddListener(PrizeClick);
+        prizeBtn.onClick.AddListener(OnPrizeBtnClick);
         signBtn.onClick.AddListener(OnSignBtnClick);
     }
 
     #region OnClick
     //点击显示下面功能条按钮
-    void OnBottomFunctionbarShowBtnClick()
+    void OnShortCutShowBtnClick(bool isShow)
     {
-        if (isRight)//从右边出来
-        {
-            DoTweenEffectManager.MoveFronInScreen(gameObject, showFcBtn, DoTweenMoveDirection.Right,0.5f,true);
-        }
-        else
-        {
-            DoTweenEffectManager.MoveFronInScreen(gameObject, showFcBtn, DoTweenMoveDirection.Down, 0.5f);
-        }
+        DoTweenEffectManager.MoveComponet(isShow, uiShortCut, showShortCutTog, DoTweenMoveDirection.Down, 0.5f, 0, shortCutHide, shortCutShow);
     }
 
-    private bool isRight = true;
-
+    void OnBottomFunctionbarShowBtnClick(bool isShow)
+    {
+        DoTweenEffectManager.MoveComponet(isShow, gameObject, showFcDownTog, DoTweenMoveDirection.Down, 0.5f,0, fcDownHide, fcDownShow);
+    }
     #endregion
 
     #region OnClick
@@ -202,95 +177,34 @@ public class FunctionBar : MonoBehaviour {
     }
     #endregion
 
-    private bool isShow = true;
-    void PrizeClick()
+    private void ShortCutHide()
     {
-        DoTweenEffectManager.MoveFronInScreen(uiShortCut, prizeBtn, DoTweenMoveDirection.Down, 0.5f, false,hideShortCut1, showShortCut1);
+        showShortCutTog.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
     }
 
-    private void HideShortCut1()
+    private void ShortCutShow()
     {
-        isShow = false;
-        if (isRight)
+        showShortCutTog.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+        if (showFcDownTog.isOn)
         {
-            isRight = false;
-            DoTweenEffectManager.ClearInfo(gameObject);
-            UpdateFunctionBarPos();
-            DoTweenEffectManager.ClearInfo(gameObject);
+            showFcDownTog.isOn = false;
+            DoTweenEffectManager.MoveComponet(showFcDownTog.isOn, gameObject, showFcDownTog, DoTweenMoveDirection.Down, 0.5f, 0, fcDownHide, fcDownShow);
         }
+       
     }
 
-    private void ShowShortCut1()
+    private void FCDownHide()
     {
-        isShow = true;
-        if (!isRight)
-        {
-            isRight = true;
-            DoTweenEffectManager.ClearInfo(gameObject);
-            UpdateFunctionBarPos();
-            DoTweenEffectManager.ClearInfo(gameObject);
-        }
     }
 
-    void InitFunctionBarPos()
+    private void FCDownShow()
     {
-        if (isRight)//如果快捷键显示，将功能条Z旋转-90，计算功能条位置的时候宽和高需要调换
+        if (showShortCutTog.isOn) 
         {
-            float fcY = showFcBtnParent.localPosition.y+ h1 / 2 + w2/2;//功能条Y坐标
-            float fcX = Screen.width/2 - h2 / 2;//功能条X坐标
-
-            transform.localRotation = Quaternion.Euler(0,0,-90);
-            foreach (Transform fcBtn  in functionBtnList)
-            {
-                fcBtn.localRotation = Quaternion.Euler(new Vector3(0,0,90));
-            }
-            transform.localPosition = new Vector3(fcX,fcY,transform.localPosition.z);
-        }
-        else
-        {
-            float fcX = showFcBtnParent.localPosition.x - w1 / 2 - w2 / 2;//功能条Y坐标
-            float fcY = -Screen.height / 2 + h2 / 2;//功能条X坐标
-
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            foreach (Transform fcBtn in functionBtnList)
-            {
-                fcBtn.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            }
-            transform.localPosition = new Vector3(fcX, fcY, transform.localPosition.z);
+            showShortCutTog.isOn = false;
+            DoTweenEffectManager.MoveComponet(showShortCutTog.isOn, uiShortCut, showShortCutTog, DoTweenMoveDirection.Down, 0.5f, 0, shortCutHide, shortCutShow);
+            
         }
     }
-
-    void UpdateFunctionBarPos()
-    {
-        if (isRight)//如果快捷键显示，将功能条Z旋转-90，计算功能条位置的时候宽和高需要调换
-        {
-            float fcY = showFcBtnParent.localPosition.y + h1 / 2 + w2 / 2;//功能条Y坐标
-            float fcX = Screen.width / 2 +h2 / 2;//功能条X坐标
-
-            transform.localRotation = Quaternion.Euler(0, 0, -90);
-            foreach (Transform fcBtn in functionBtnList)
-            {
-                fcBtn.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
-            }
-            transform.localPosition = new Vector3(fcX, fcY, transform.localPosition.z);
-
-            Vector2 v = new Vector2(Screen.width / 2 - h2 / 2, showFcBtnParent.localPosition.y + h1 / 2 + w2 / 2);
-            DoTweenEffectManager.MoveFromOutScreen(gameObject,showFcBtn,DoTweenMoveDirection.Left,v,0.5f,true);
-        }
-        else
-        {
-            float fcX = showFcBtnParent.localPosition.x - w1 / 2 - w2 / 2;//功能条Y坐标
-            float fcY = -Screen.height / 2 - h2 / 2;//功能条X坐标
-
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            foreach (Transform fcBtn in functionBtnList)
-            {
-                fcBtn.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            }
-            transform.localPosition = new Vector3(fcX, fcY, transform.localPosition.z);
-
-            Vector2 v = new Vector2(showFcBtnParent.localPosition.x - w1 / 2 - w2 / 2, -Screen.height / 2 + h2 / 2);
-            DoTweenEffectManager.MoveFromOutScreen(gameObject, showFcBtn, DoTweenMoveDirection.Down, v, 0.5f);
-        }
-    }
+        
 }

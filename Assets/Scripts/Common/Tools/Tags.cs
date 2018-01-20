@@ -14,6 +14,7 @@ public class Tags {
     public const string Enemy = "Enemy";
     public const string ShutCut = "ShutCut";
     public const string UITop = "UITop";
+    public const string Pet = "Pet";
     //ttj
     //zpf
 

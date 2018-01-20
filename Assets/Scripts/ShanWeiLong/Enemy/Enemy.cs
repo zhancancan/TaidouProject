@@ -5,35 +5,41 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    private Transform player;
+    private GameObject player;
+    private GameObject pet;
+    private GameObject target;
+    private Vector3 enemyPos;
     private CharacterController cc;
     private int hp = 200;
     private int hpTotal = 0;  //记录血量
     private int attackRate = 2;  //攻击速率
     private int damage = 20;  //攻击力
     private float playerDistance = 15;   //人物跟怪物的距离
-    private float attackDistance = 2;
-    private float distance = 0;
+    private float attackDistance = 2;    //攻击距离
+    private float distance = 0;          
     private float attackTimer = 0; //计时
 
     private Animation anim;
 
-    private GameObject bloodBar;
-    private GameObject bloodGo;
+    private GameObject bloodBar;   //血条
+    private GameObject bloodGo;    //生成的血条
     private Slider bloodSlider;
 
     void Start ()
-	{
+    {
+        enemyPos = transform.position;
         hpTotal = hp;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag(Tags.Player);
+        pet = GameObject.FindGameObjectWithTag(Tags.Pet);
         cc = GetComponent<CharacterController>();
 	    anim = GetComponent<Animation>();
-	    InvokeRepeating("CalcDistance", 0, 0.1f);
-        bloodBar = Resources.Load<GameObject>("BloodBg");
+	    InvokeRepeating("PlayerOrPet", 0, 0.1f);
+        bloodBar = Resources.Load<GameObject>("ShanWeiLong/Prefabs/Enemys/BloodBg");
 	    Transform bloodPoint = transform.Find("BloodPoint");
 	    bloodSlider = bloodBar.transform.Find("Blood").GetComponent<Slider>();
         bloodGo = Instantiate(bloodBar, bloodPoint.position, Quaternion.identity);
 	    bloodGo.transform.parent = bloodPoint;
+        
 	}
 	
 	
@@ -45,19 +51,29 @@ public class Enemy : MonoBehaviour
 	        Destroy(gameObject, 3);
 	        return;
 	    }
-        distance = Vector3.Distance(player.transform.position, transform.position);
+	    PlayerOrPet();
         if (distance > playerDistance)
-	    {
-	        return;
-	    }
-	    else
+        {
+            if (Vector3.Distance(transform.position, enemyPos) <= 0.1f)
+            {
+                anim.CrossFade("idle");
+            }
+            else
+            {
+                transform.LookAt(enemyPos);
+                transform.position += transform.forward * 1f * Time.deltaTime;
+                anim.Play("walk");
+            }
+        }
+	    else 
 	    {
 	        if (distance < attackDistance)
 	        {
 	            attackTimer += Time.deltaTime;
 	            if (attackTimer > attackRate)
 	            {
-                    Vector3 targetPos = player.position;
+	                PlayerOrPet();
+                    Vector3 targetPos = target.transform.position;
                     targetPos.y = transform.position.y;
                     transform.LookAt(targetPos);
                     //攻击
@@ -78,14 +94,15 @@ public class Enemy : MonoBehaviour
 	    bloodGo.transform.LookAt(Camera.main.transform.position);
 	}
 
-    void CalcDistance()
-    {
-        distance = Vector3.Distance(player.transform.position, transform.position);
-    }
+    //void CalcDistance()
+    //{
+    //    PlayerOrPet();
+    //}
 
     void Move()
     {
-        Vector3 targetPos = player.position;
+        PlayerOrPet();
+        Vector3 targetPos = target.transform.position;
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);
         cc.SimpleMove(transform.forward*1f);
@@ -103,14 +120,32 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Attack()
+    void PlayerOrPet()
     {
-        distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance < attackDistance)
+        //找宠物
+        if (Vector3.Distance(pet.transform.position, transform.position) < playerDistance)
         {
-            player.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+            target = pet;
+        }
+        //找玩家
+        if (Vector3.Distance(player.transform.position, transform.position)<playerDistance)
+        {
+            target = player;
+        }
+        if (target == player || target == pet)
+        {
+            distance = Vector3.Distance(target.transform.position, transform.position);
         }
     }
+
+    //void Attack()
+    //{
+    //    distance = Vector3.Distance(player.transform.position, transform.position);
+    //    if (distance < attackDistance)
+    //    {
+    //        player.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+    //    }
+    //}
 
     void Dead()
     {

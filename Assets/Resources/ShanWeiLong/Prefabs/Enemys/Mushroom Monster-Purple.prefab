@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 11100000}
   - component: {fileID: 143661740505521552}
-  - component: {fileID: 114242173727391400}
+  - component: {fileID: 114359868594350264}
   m_Layer: 0
   m_Name: Mushroom Monster-Purple
   m_TagString: Untagged
@@ -405,7 +405,7 @@ Transform:
   m_Father: {fileID: 400000}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114242173727391400
+--- !u!114 &114359868594350264
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9942715eaf4dbb04a830647d83e2f470, type: 3}
+  m_Script: {fileID: 11500000, guid: 4701cc3f144741f4c9072c7463df6909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!143 &143661740505521552

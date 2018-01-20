@@ -11,6 +11,8 @@ TagManager:
   - Role
   - Road
   - Block
+  - Ground
+  - Pet
   layers:
   - Default
   - TransparentFX

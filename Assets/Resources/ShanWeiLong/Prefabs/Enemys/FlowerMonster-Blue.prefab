@@ -144,8 +144,8 @@ GameObject:
   m_Component:
   - component: {fileID: 400018}
   - component: {fileID: 11100000}
-  - component: {fileID: 114695768643817908}
   - component: {fileID: 143942057964481316}
+  - component: {fileID: 114015107706923310}
   m_Layer: 0
   m_Name: FlowerMonster-Blue
   m_TagString: Untagged
@@ -916,7 +916,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 822afce55ca9ac84eb855c97c10f9aeb, type: 3}
   m_Animations:
   - {fileID: 7400000, guid: 2e0f0ff56efedc743bd598627d14ac47, type: 3}
-  - {fileID: 7400000, guid: 822afce55ca9ac84eb855c97c10f9aeb, type: 3}
+  - {fileID: 7400000, guid: 74b16772e4359ee4ea160f94d426b015, type: 3}
   - {fileID: 7400000, guid: 492d57fa725d2a140a04d699bab31076, type: 3}
   - {fileID: 7400000, guid: 889924d5482c27c4f8fd5a59f4f8d5df, type: 3}
   - {fileID: 7400000, guid: ee6c43afb3f99cb4aa72b5a23f2f3f73, type: 3}
@@ -1033,7 +1033,7 @@ Transform:
   m_Father: {fileID: 400018}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114695768643817908
+--- !u!114 &114015107706923310
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9942715eaf4dbb04a830647d83e2f470, type: 3}
+  m_Script: {fileID: 11500000, guid: 4701cc3f144741f4c9072c7463df6909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!143 &143942057964481316

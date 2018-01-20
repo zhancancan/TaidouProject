@@ -11,8 +11,8 @@ public class UIGemstoneCompose : UIBase
 
     private void Awake()
     {
-        inLay = transform.Find("GemBG/ListImg/InlayBtn/Inlay").gameObject;
-        comPound = transform.Find("GemBG/ListImg/CompoundBtn/Compound").gameObject;
+        inLay = transform.Find("GemBG/InlayBtn/Inlay").gameObject;
+        comPound = transform.Find("GemBG/CompoundBtn/Compound").gameObject;
         exit = transform.Find("GemBG/EscBtn").GetComponent<Button>();
         comPound.gameObject.SetActive(false);
     }

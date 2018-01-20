@@ -119,15 +119,12 @@ public class CharacterSelectController : MonoBehaviour
     private void Start()
     {
         //状态机
-        /*RuntimeAnimatorController*/
         warriorAnimatorController
-= Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.WarriorAnimator);
-        /*RuntimeAnimatorController*/
+            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.WarriorAnimator);
         mageAnimatorController
-= Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.MageAnimator);
-        /*RuntimeAnimatorController*/
+            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.MageAnimator);
         archerAnimatorController
-= Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.ArcherAnimator);
+            = Resources.Load<AnimatorController>(ConstDates.ResourceAnimatorPrefabDirSwl + ConstDates.ArcherAnimator);
 
         //人物Animator获取
         warriorFemaleAnim = warriorFemaleObj.GetComponent<Animator>();

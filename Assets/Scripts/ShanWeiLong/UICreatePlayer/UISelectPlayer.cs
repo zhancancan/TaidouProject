@@ -23,8 +23,6 @@ public class UISelectPlayer : UIBase{
         profession = transform.Find("LoginBg/PersonInformationControl/PersonInformationPanel/PersonPosition").GetComponent<Text>();
         right = transform.Find("LoginBg/Panel/rightbtn").GetComponent<Button>();
         left = transform.Find("LoginBg/Panel/leftbtn").GetComponent<Button>();
-        right.onClick.AddListener(rightrotate);
-        left.onClick.AddListener(leftrotate);
         EventTriggerListener.GetListener(left.gameObject).onPointerDown += onleftdown;
         EventTriggerListener.GetListener(left.gameObject).onPointerUp += onleftup;
         EventTriggerListener.GetListener(right.gameObject).onPointerDown += onrightdown;

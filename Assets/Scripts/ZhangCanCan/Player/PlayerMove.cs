@@ -35,10 +35,7 @@ public class PlayerMove : MonoBehaviour
                 isMoving = false;
                 playerMoveState = PlayerMoveState.Idle;
             }
-        }
-	    else
-	    {
-	    }
+        }	   
     }
 
     public void SimpleMove(Vector3 targetPos)

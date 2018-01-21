@@ -14,6 +14,7 @@ public class PetFairyRecall : MonoBehaviour {
     }
     void FRecall()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         transform.gameObject.SetActive(false);
         GameObject.Find("Fairy(Clone)").transform.Find("Fairymid").gameObject.SetActive(false);
     }

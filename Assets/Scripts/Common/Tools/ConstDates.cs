@@ -41,6 +41,11 @@ public class ConstDates {
     public const string ResourceSpritesDirSwl = "ShanWeiLong/Sprites";
 
     //背景音频
+    //common
+    public const string CloseSound = "关闭";
+    public const string OpenSound = "打开菜单";
+    public const string ButtonSound = "按钮";
+    public const string ErrorSound = "错误";   
     //hj
     public const string Bgm_1 = "UIStartBGM";
 

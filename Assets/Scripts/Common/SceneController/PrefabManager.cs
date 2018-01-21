@@ -27,7 +27,7 @@ public class PrefabManager : MonoBehaviour {
         //宠物特效预制体
         AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.LionEffect);
         AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.ElfEffect);
-        AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.FairyEffect);
+        AddPrefabs(ConstDates.ResourcePetPrefabEffectZpf, ConstDates.FairyEffect);      
     }
 
     /// <summary>

@@ -40,7 +40,7 @@ public class PetMoveAndAttack : MonoBehaviour
             if (NoMeetEnemy)
             {
                 //宠物与英雄距离超过一定距离后，宠物开始向英雄移动
-                if (Vector3.Distance(hero.transform.position, transform.position) > 4f)
+                if (Vector3.Distance(hero.transform.position, transform.position) > 20f)
                 {
                     //调用宠物移动方法
                     PetToMove();

@@ -4244,9 +4244,9 @@ GameObject:
   - component: {fileID: 114257095165921166}
   - component: {fileID: 114587025399854260}
   - component: {fileID: 114714175192744284}
-  - component: {fileID: 114247747761189700}
   - component: {fileID: 114511944329451018}
   - component: {fileID: 114324533827512630}
+  - component: {fileID: 114629881486175402}
   m_Layer: 5
   m_Name: UIPet
   m_TagString: Untagged
@@ -5353,7 +5353,6 @@ GameObject:
   - component: {fileID: 222626985624299046}
   - component: {fileID: 114926288698084558}
   - component: {fileID: 114517900538981414}
-  - component: {fileID: 114017565856656038}
   m_Layer: 5
   m_Name: PetInvoke
   m_TagString: Untagged
@@ -11221,17 +11220,6 @@ MonoBehaviour:
   m_Text: 'Elf
 
 '
---- !u!114 &114017565856656038
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1822006206620750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fa4cffa34d63642962836784631908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114025258534407798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11852,17 +11840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateVector: {x: 0, y: 0, z: 360}
   rotateSpace: 0
---- !u!114 &114247747761189700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652241509341176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114250846653454576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13005,6 +12982,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114629881486175402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652241509341176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66fa4cffa34d63642962836784631908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114632365865336386
 MonoBehaviour:
   m_ObjectHideFlags: 1

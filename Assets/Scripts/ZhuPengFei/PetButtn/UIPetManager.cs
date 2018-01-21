@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class UIPetManager : MonoBehaviour {
 
     public static UIPetManager _uiPetManager;
+    [HideInInspector]
     public bool isHaveLion;     //是否已经存在狮子UI模型
+    [HideInInspector]
     public bool isHaveFairy;    //是否已经存在仙女UI模型
+    [HideInInspector]
     public bool isHaveElf;      //是否已经存在精灵UI模型
 
     GameObject UILionPrefab;          //狮子UI预设体
@@ -18,8 +21,11 @@ public class UIPetManager : MonoBehaviour {
     GameObject UIFairyText;           //小仙女按钮Text
 
     //防止UI中出现多个宠物叠加出现在同一界面
+    [HideInInspector]
     public bool lion = false;
+    [HideInInspector]
     public bool fairy = false;
+    [HideInInspector]
     public bool elf = false;
 
     //宠物UI面板的三个点击宠物按钮
@@ -51,6 +57,7 @@ public class UIPetManager : MonoBehaviour {
     //-------------------------------------------按钮触发方法--------------------------------------------
     void Lion()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         lion = true;                                                                 //
         CreatPet();
         UIFairyPrefab.SetActive(false);
@@ -58,6 +65,7 @@ public class UIPetManager : MonoBehaviour {
     }
     void Fairy()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         fairy = true;
         CreatPet();
         UILionPrefab.SetActive(false);
@@ -65,6 +73,7 @@ public class UIPetManager : MonoBehaviour {
     }
     void Elf()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         elf = true;
         CreatPet();
         UILionPrefab.SetActive(false);

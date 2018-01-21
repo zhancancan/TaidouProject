@@ -14,6 +14,7 @@ public class PetElfRecall : MonoBehaviour {
     }
     void ERecall()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         transform.gameObject.SetActive(false);
         GameObject.Find("Elf(Clone)").transform.Find("Elfmid").gameObject.SetActive(false);
     }

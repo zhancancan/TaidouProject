@@ -35,6 +35,7 @@ public class PetInvokeAndRecall : MonoBehaviour {
     //宠物召出（如果当宠物面板点击狮子的时候，通过判断狮子UI是存在的即判断当前页面是召唤狮子的页面，然后在来生成狮子）
     public void InvokePet()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         l = GameObject.Find("UILion");
         e = GameObject.Find("UIElf");
         f = GameObject.Find("UIFairy");
@@ -45,6 +46,7 @@ public class PetInvokeAndRecall : MonoBehaviour {
 
         if (l != null && Lionmid == null)      //如果宠物UI面板是狮子  
         {
+            SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
             //如果召出次数大于1
             if (i >= 1)
             {
@@ -97,6 +99,7 @@ public class PetInvokeAndRecall : MonoBehaviour {
     //宠物召回
     public void RecallPet()
     {
+        SoundManager.Instance.PlayAudio(ConstDates.ButtonSound);
         l = GameObject.Find("UILion");
         e = GameObject.Find("UIElf");
         f = GameObject.Find("UIFairy");

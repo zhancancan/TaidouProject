@@ -177,7 +177,7 @@ public class PetInfo : MonoBehaviour {
         InitPetHpDamagePower();
 
 
-        OnPetInfoChanged(PetInfoType.All);
+        //OnPetInfoChanged(PetInfoType.All);
     }
 
     void InitPetHpDamagePower()

@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     private Animation anim;
 
+    Animator Lion;
+
     private GameObject bloodBar;   //血条
     private GameObject bloodGo;    //生成的血条
     private Slider bloodSlider;
@@ -39,8 +41,10 @@ public class Enemy : MonoBehaviour
 	    bloodSlider = bloodBar.transform.Find("Blood").GetComponent<Slider>();
         bloodGo = Instantiate(bloodBar, bloodPoint.position, Quaternion.identity);
 	    bloodGo.transform.parent = bloodPoint;
-        
-	}
+
+        Lion = GameObject.Find("Lion").GetComponent<Animator>();
+
+    }
 	
 	
 	void Update ()
@@ -78,8 +82,8 @@ public class Enemy : MonoBehaviour
                     transform.LookAt(targetPos);
                     //攻击
                     anim.Play("attack01");
-	                attackTimer = 0;
-	            }
+                    attackTimer = 0;
+                }
                 if (!anim.Play("attack01"))
                 {
                     anim.CrossFade("idle");

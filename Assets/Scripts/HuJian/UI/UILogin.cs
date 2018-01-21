@@ -22,7 +22,8 @@ public class UILogin : UIBase {
         username = transform.Find("UIBG/LoginBG/AccountTxt/InputAccount/Text").GetComponent<Text>();
         password = transform.Find("UIBG/LoginBG/PassWordTxt /InputAccount").GetComponent<InputField>();
         LoginBtn =transform.Find("UIBG/LoginBG/LoginBtn") .GetComponent<Button>();
-        LoginBtn.onClick.AddListener(() => { PlayerSelect._instance.Login(); });
+//        LoginBtn.onClick.AddListener(() => { PlayerSelect._instance.Login(); });
+        LoginBtn.onClick.AddListener(() => { SceneManager.LoadSceneAsync(ConstDates.MainSceneIndex); });
     }
     public override void OnEntering()
     {

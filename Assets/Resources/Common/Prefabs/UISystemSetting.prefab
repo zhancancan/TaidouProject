@@ -1108,8 +1108,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 87392b10974dc92469a52d2074004e59, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: eea9d5119094d0d48b23d8a2ad686e3d, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1202,10 +1202,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 4a9d3b66aeba0904cb162dd90408d866,
-      type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: e1363b78b8cad8042a51219ea6954dbf, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 6a32ede3479fb914c9a554d83af9d338, type: 3}
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 14f5d386aed229b42942369f42dd0884, type: 3}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1729,7 +1728,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a1ff91e44f4d1044fb9095c754a459bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af08e748eeda6d947aa0c69d883fa422, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2538,7 +2537,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1562926646744676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223.4, y: 242.8, z: 0}
+  m_LocalPosition: {x: 217.49997, y: 237.50002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224955239302012980}
@@ -2546,7 +2545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 223.4, y: 242.8}
+  m_AnchoredPosition: {x: 217.49997, y: 237.50002}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224882534635502108

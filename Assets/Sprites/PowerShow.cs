@@ -57,6 +57,7 @@ public class PowerShow : MonoBehaviour {
                 }
             }
         }
+       
     }
     public void ShowPowerChange(int startvalue,int endvalue)
     {
@@ -73,6 +74,7 @@ public class PowerShow : MonoBehaviour {
             isup = false;
         }
         isstart = true;
+        EquipPopup._equipPopUp.psText.text = endvalue.ToString();
     }
   
 }

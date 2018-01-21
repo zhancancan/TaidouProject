@@ -15,7 +15,9 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
     InventoryItemUI itUI;
     KnapsackRoleEquip roleEquip;
     Image equipimg;
-    Text equipText, qualityText, damageText, hpText, desText, powerText,levelText;
+    Text equipText, qualityText, damageText, hpText, desText, powerText, levelText;
+    [HideInInspector]
+    public Text psText;
     Button closebtn;  //关闭
     Button equipbtn;   //装备
     Button upgradebtn;  //升级
@@ -42,6 +44,7 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         desText = transform.Find("EquiptInf/Introduction/DesText").GetComponent<Text>();
         powerText = transform.Find("EquiptInf/Introduction/PowerText/Text").GetComponent<Text>();
         levelText = transform.Find("EquiptInf/Introduction/LevelText/Text").GetComponent<Text>();
+        psText = transform.root.Find("Knapsack/Equipt/Property/ATTACK/PSText").GetComponent<Text>();
         btntxt = transform.Find("EquiptInf/equipbtn/Text").GetComponent<Text>();
         closebtn = transform.Find("EquiptInf/Close").GetComponent<Button>();
         closebtn.onClick.AddListener(close);
@@ -56,6 +59,10 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         equipbtn = transform.Find("EquiptInf/equipbtn").GetComponent<Button>();
         equipbtn.onClick.AddListener(onequip);
 
+    }
+    private void Update()
+    {
+        psText.text = PlayInfo._instance.GetOverallPower().ToString();
     }
     public void Show(InventoryItem it,InventoryItemUI itUI,KnapsackRoleEquip roleEquip,bool isleft=true)     //物品的显示
     {
@@ -84,6 +91,7 @@ public class EquipPopup : MonoBehaviour, IDragHandler{
         powerText.text = it.Inventory.Power.ToString();
         desText.text = it.Inventory.Des;
         levelText.text = it.Level.ToString();
+        
        
     }
     public   void close()

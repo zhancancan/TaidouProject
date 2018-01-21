@@ -1,0 +1,47 @@
+﻿1001,Equip,Weapon,烈焰剑,Icon_武器1,Att +50,买 1000G,卖 500G,在地火中锻造而出，烈焰附体的利器
+1002,Equip,Weapon,冰雪剑,Icon_武器2,Att +50,买 1000G,卖 500G,极北之地生成，轻薄凛冽寒气逼人
+1003,Equip,Weapon,暗灭仗,Icon_武器3,Att +50,买 1000G,卖 500G,暗光流转，恶魔身体的一部分所造
+1004,Equip,Weapon,流星弓,Icon_武器4,Att +50,买 1000G,卖 500G,星光绕体，箭光快如流星，不可直视
+1005,Equip,Helmet,暴雪头盔,男性头盔1,Del +40,买 500G,卖 250G,头很硬
+1006,Equip,Helmet,秀丽头盔,女性头盔1,Del +40,买 500G,卖 250G,英姿飒爽
+1007,Equip,Necklace,暴击项链,男性项链1,Att +30,买 600G,卖 300G,带上它的人都会很暴力
+1008,Equip,Necklace,穿刺项链,女性项链1,Att +30,买 600G,卖 300G,穿刺效果很好
+1009,Equip,Ring,卓越指环,男性戒指1,Att +20,买 600G,卖 300G,宝石光芒闪烁
+1010,Equip,Ring,法神之手,女性戒指1,Att +20,买 600G,卖 300G,魔法气息弥漫
+1011,Equip,Bracelet,金刚镯,男性手镯1,Att +40,买 600G,卖 300G,金光四射
+1012,Equip,Bracelet,七彩镯,女性手镯1,Att +40,买 600G,卖 300G,七彩光芒闪耀
+1013,Equip,Armor,强袭装甲,男性盔甲1,Del +80,买 800G,卖 400G,坚如磐石，不可撼动
+1014,Equip,Armor,希瓦的守护,女性盔甲1,Del +80,买 800G,卖 400G,传说女神祝福过得衣服，会有女神庇护
+1015,Equip,Shoes,远行鞋,男性靴子1,Del +30,买 400G,卖 200G,听说穿上可以走很远
+1016,Equip,Shoes,相位鞋,女性靴子1,Del +30,买 400G,卖 200G,速度很快，容易跑丢
+1017,Equip,Wing,恶魔之翼,男性翅膀1,Att +100,买 2000G,卖 1000G,某勇士取恶魔翅膀所做
+1018,Equip,Wing,天空之翼,女性翅膀1,Att +100,买 2000G,卖 1000G,云端自主生成
+1019,Drugs,Hp,小血瓶,Icon_小血瓶,Hp +50,买 10G,卖 1G,回血较少
+1020,Drugs,Hp,中血瓶,Icon_中血瓶,Hp +100,买 20G,卖 1G,比小的好那么一点
+1021,Drugs,Hp,大血瓶,Icon_大血瓶,Hp +150,买 50G,卖 1G,比小的更好那么一点
+1022,Drugs,Mp,小蓝瓶,Icon_小蓝瓶,Mp +50,买 10G,卖 1G,回蓝较少
+1023,Drugs,Mp,中蓝瓶,Icon_中蓝瓶,Mp +100,买 20G,卖 1G,比小的好那么一点
+1024,Drugs,Mp,大蓝瓶,Icon_大蓝瓶,Mp +150,买 50G,卖 1G,比小的更好那么一点
+1025,Material,Iron,铁矿石,Icon_铁,,买 100G,卖 50G,一种矿石听说可以强化装备
+1026,Material,Copper,铜矿石,Icon_铜,,买 100G,卖 50G,一种矿石听说可以强化装备
+1027,Material,Rock,岩石矿,Icon_岩石,,买 100G,卖 50G,一种矿石听说可以强化装备
+1028,Material,Silver,银矿,Icon_银矿,,买 100G,卖 50G,一种矿石听说可以强化装备
+1029,Material,Gold,金矿,Icon_金矿,,买 100G,卖 50G,一种矿石听说可以强化装备
+1030,Material,Jinsha,金沙,Icon_金沙,,买 100G,卖 50G,一种矿石听说可以强化装备
+1031,Material,FelIron,魔铁,Icon_魔铁,,买 100G,卖 50G,一种矿石听说可以强化装备
+1032,Artifact,Sword,倚天剑,Icon_倚天剑,Att +1000,买 1000元宝,无法出售,杀过神的宝剑，只有恨强大的英雄才能拥有它
+1033,Artifact,Staff,焚天仗,Icon_焚天仗,Att +1000,买 1000元宝,无法出售,威力无匹，可焚天煮海
+1034,Artifact,Bow,射日弓,Icon_射日弓,Att +1000,买 1000元宝,无法出售,传说可以射下太阳的神弓，失传已久
+1035,LatestFashion,LatestFashion,,Icon_男时装,,买 100G,卖 50G,穿上秒变高富帅
+1036,LatestFashion,LatestFashion,,Icon_女时装,,买 100G,卖 50G,穿上秒变白富美
+1037,Pet,Pet,烈焰狂狮,Icon_烈焰狂狮,,买 1000G,卖 500G,一直普通的狮子，误吃了一直果子拥有了控制火焰的能力
+1038,Pet,Pet,小精灵,Icon_小精灵,,买 1000G,卖 500G,花修炼成的精灵
+1039,Pet,Pet,小仙女,Icon_小仙女,,买 1000G,卖 500G,来历神秘无人知晓
+1040,GemStone,FlameStone,火焰石,Icon_火焰石,物理攻击+50,买 100G,卖 50G,一种用于镶嵌的宝石
+1041,GemStone,Topaz,黄玉,Icon_黄玉,法力+500,买 100G,卖 50G,一种用于镶嵌的宝石
+1042,GemStone,IceJade,冰玉,Icon_冰玉,法术攻击+50,买 100G,卖 50G,一种用于镶嵌的宝石
+1043,GemStone,Ruby,红宝石,Icon_红宝石,生命+500,买 100G,卖 50G,一种用于镶嵌的宝石
+1044,GemStone,Emerald,翡翠,Icon_翡翠,暴击+1%,买 100G,卖 50G,一种用于镶嵌的宝石
+1045,GemStone,Diamond,钻石,Icon_钻石,破甲+1%,买 100G,卖 50G,一种用于镶嵌的宝石
+1046,GemStone,Pearl,珍珠,Icon_珍珠,物理防御+50,买 100G,卖 50G,一种用于镶嵌的宝石
+1047,GemStone,Opal,猫眼石,Icon_猫眼石,法术防御+50,买 100G,卖 50G,一种用于镶嵌的宝石

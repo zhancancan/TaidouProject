@@ -131,6 +131,28 @@ public class UISelectPlayer : UIBase{
         SceneManager.LoadSceneAsync(ConstDates.MainScene);
         
     }
+    #region 鼠标滑动人物旋转
+    Vector3 first = Vector3.zero;
+    Vector3 second = Vector3.zero;
+    private void OnGUI()
+    {
+        if (Event.current.type == EventType.MouseDown)
+        {
+            first = Event.current.mousePosition;
+        }
+        if (Event.current.type == EventType.MouseDrag)
+        {
+            second = Event.current.mousePosition;
+            if (second.x < first.x)
+            {
+                leftrotate();
+            }
+            else
+            {
+                rightrotate();
+            }
+        }
+    }
+    #endregion
 
-   
 }

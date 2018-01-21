@@ -33,8 +33,11 @@ public class PlayerAttack : MonoBehaviour
     public float normalAttackTime;
     private float normalAttackRate;
     private float timer = 0;
-    public float minDistance = 5;
+    public float minDistance = 10;
     private float missRate = 0.25f;
+
+    private bool isSkillAttack = false;//是否从技能锁定状态中点击攻击
+    private Vector3 skillReleasePos;//AOE技能释放位置
 
     void Awake()
     {
@@ -64,6 +67,49 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
 
+    }
+
+    //技能快捷键按下时调用
+    public void UseSkill(Skill skill)
+    {
+        targetEnemy = null;
+        skillReleasePos = Vector3.zero;
+        switch (skill.applyType)
+        {
+            case ApplyType.Passive:
+                StartCoroutine(UsePassiveSkill(skill));
+                break;
+            case ApplyType.Buff:
+                StartCoroutine(UseBuffSkill(skill));
+                break;
+            case ApplyType.SingleTarget:
+                skilTemp = skill;
+                OnSingleTargetSkillUse(skill);
+                break;
+            case ApplyType.MultiTarget:
+                skilTemp = skill;
+                OnMultiTargetSkillUse(skill);
+                break;
+        }
+
+    }
+
+    //使用单体攻击技能，改变鼠标为锁定状态
+    void OnSingleTargetSkillUse(Skill skill)
+    {
+        state = PlayerState.SkillAttack;
+        CursorManager.Instance.SetCursorLookTarget();
+        isLockingTarget = true;
+        this.skilTemp = skill;
+    }
+
+    //使用AOE技能，改变鼠标为锁定状态
+    void OnMultiTargetSkillUse(Skill skill)
+    {
+        state = PlayerState.SkillAttack;
+        CursorManager.Instance.SetCursorLookTarget();
+        isLockingTarget = true;
+        this.skilTemp = skill;
     }
 
     void Update()
@@ -106,6 +152,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (distance <= minDistance) //距离范围内，进行攻击
             {
+
                 print(4);
                 attackState = PlayerAttackState.Attack;  //攻击状态设置为攻击
 
@@ -146,11 +193,113 @@ public class PlayerAttack : MonoBehaviour
             // anima.CrossFade(anima_death);
         }
 
-        if (isLockingTarget && Input.GetMouseButtonDown(0))
+//        if (isLockingTarget && Input.GetMouseButtonDown(0))
+//        {
+//            OnLockTarget();
+////            OnLockMultiTarget();
+//        }
+//--------------------------------------------------------------------
+        if (state == PlayerState.SkillAttack)
         {
-            OnLockTarget();
-            OnLockMultiTarget();
+            print("111111111111111111111111");
+            if (isLockingTarget && Input.GetMouseButtonDown(0))
+            {
+                print("222222222222222222222222222");
+                isLockingTarget = false;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hitInfo;
+                if (Physics.Raycast(ray, out hitInfo))
+                {
+                    
+                    if (hitInfo.collider.CompareTag(Tags.Enemy))
+                    {
+                        print("333333333333333333333333333333333");
+                        targetEnemy = hitInfo.collider.transform;
+                        print(targetEnemy.position+ "targetEnemy");
+                    }
+                    else if (hitInfo.collider.CompareTag(Tags.Ground))
+                    {
+                        print("44444444444444444444444444444444444");
+                        skillReleasePos = hitInfo.point;
+                        print(skillReleasePos + "skillReleasePos");
+                    }
+                    isSkillAttack = true;
+                }
+
+            }
         }
+
+        if (isSkillAttack)
+        {
+            print("55555555555555555555555555555555555");
+            switch (skilTemp.applyType)
+            {
+                case ApplyType.SingleTarget:
+                    print("66666666666666666666666666666");
+                    if (targetEnemy!=null)
+                    {
+                        CursorManager.Instance.SetCursorAttack();
+                        float distance1 = Vector3.Distance(transform.position, targetEnemy.position);    //玩家和点击地方距离
+                        Vector3 targetDirection1 = new Vector3(targetEnemy.position.x, transform.position.y, targetEnemy.position.z);   //人物方向
+                        transform.LookAt(targetDirection1);  //玩家朝向敌人
+
+                        if (distance1 <= minDistance) //距离范围内，进行攻击
+                        {
+                            isSkillAttack = false;
+                            attackState = PlayerAttackState.Attack;  //攻击状态设置为技能攻击
+                            StartCoroutine(OnLockSingleTarget(targetEnemy)); //播放特效计算伤害等
+                        }
+                        else //走向敌人
+                        {
+                            attackState = PlayerAttackState.Moving; //攻击状态设置为移动
+//                            playerDir.targetPositon = transform.position;//记录打怪的时候人物的位置，不然怪物打死的时候会跑回去，之前CharacterDir记录了人物初始的位置
+                            playerMove.SimpleMove(targetEnemy.position);
+                        }
+                    }
+                    else
+                    {
+                        CursorManager.Instance.SetCursorNormal();
+                        state = PlayerState.ControlWalk;//控制状态设置为行走
+                        isSkillAttack = false;//是否技能攻击为false
+                        targetEnemy = null; //敌人置空
+                    }
+                    break;
+                case ApplyType.MultiTarget:
+                    print("77777777777777777777777777777777777");
+                    if (skillReleasePos != Vector3.zero)
+                    {
+                        print("8888888888888888888888888888888888888");
+                        CursorManager.Instance.SetCursorNormal();
+                        float distance = Vector3.Distance(transform.position, skillReleasePos);    //玩家和点击地方距离
+                        Vector3 targetDirection = new Vector3(skillReleasePos.x, transform.position.y, skillReleasePos.z);   //人物方向
+                        transform.LookAt(targetDirection);  //玩家朝向敌人
+
+                        if (distance <= minDistance) //距离范围内，进行攻击
+                        {
+                            print("99999999999999999999999999999999");
+                            isSkillAttack = false;
+                            attackState = PlayerAttackState.Attack;  //攻击状态设置为技能攻击
+                            StartCoroutine(OnLockMultiTarget(skillReleasePos));
+                        }
+                        else //走向敌人
+                        {
+                            print("10101010101010101010101010101010");
+                            attackState = PlayerAttackState.Moving; //攻击状态设置为移动
+//                            playerDir.targetPositon = transform.position;//记录打怪的时候人物的位置，不然怪物打死的时候会跑回去，之前CharacterDir记录了人物初始的位置
+                            playerMove.SimpleMove(targetDirection);
+                        }
+                    }
+                    else
+                    {
+                        print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+                        CursorManager.Instance.SetCursorNormal();
+                        state = PlayerState.ControlWalk;//控制状态设置为行走
+                        isSkillAttack = false;//是否技能攻击为false
+                        targetEnemy = null; //敌人置空
+                    }
+                    break;
+                }
+         }
     }
 
     //当UseSkill技能键按下的时候，改变鼠标为锁定状态，这时候等待锁定目标后，执行技能攻击
@@ -161,115 +310,126 @@ public class PlayerAttack : MonoBehaviour
         switch (skilTemp.applyType)
         {
             case ApplyType.SingleTarget:
-                StartCoroutine(OnLockSingleTarget());
+//                StartCoroutine(OnLockSingleTarget());
                 break;
             case ApplyType.MultiTarget:
-                StartCoroutine(OnLockMultiTarget());
+//                StartCoroutine(OnLockMultiTarget());
                 break;
         }
     }
 
-    //锁定目标，释放单体技能
-    IEnumerator OnLockSingleTarget()
-    {
-        print(7);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo = new RaycastHit();
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            if (hitInfo.collider.tag == Tags.Enemy)
-            {
-                print(8);
-                CursorManager.Instance.SetCursorAttack();
-//                anima.CrossFade(skilTemp.aniname);
-                yield return new WaitForSeconds(skilTemp.anitime);
-                //isLockingTarget = false;
-                state = PlayerState.NormalAttack;
-                print(9);
-                GameObject skillEffPrefab = null;
-                skillEffectDictionary.TryGetValue(skilTemp.efx_name, out skillEffPrefab);
-                if (hitInfo.collider != null)
-                    Instantiate(skillEffPrefab, hitInfo.collider.transform.position, Quaternion.identity);
+    //    //锁定目标，释放单体技能
+    //    IEnumerator OnLockSingleTarget()
+    //    {
+    //        print(7);
+    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        RaycastHit hitInfo = new RaycastHit();
+    //        if (Physics.Raycast(ray, out hitInfo))
+    //        {
+    //            if (hitInfo.collider.tag == Tags.Enemy)
+    //            {
+    //                print(8);
+    //                CursorManager.Instance.SetCursorAttack();//设置鼠标为攻击
+    //                animator.SetBool(skilTemp.aniname,true);//播放技能动画
+    //                yield return new WaitForSeconds(skilTemp.anitime);//等待动画结束播放
+    ////                isLockingTarget = false;
+    //                state = PlayerState.NormalAttack;//将控制状态设置为攻击状态（这时候可以技能结束的时候自动攻击）
+    //                print(9);
+    //                if (hitInfo.collider != null) //当敌人任然在攻击距离内
+    //                {
+    //                    PrefabManager.Instance.GetPrefabInstance(skilTemp.effectName, targetEnemy.position,Quaternion.identity, targetEnemy);//播放感觉特效
+    //                }
+    ////                hitInfo.collider.GetComponent<Wolf>().TakeDemage(characterSataus.attack * skilTemp.applyValue / 100f);
+    //            }
+    //            else
+    //            {
+    //                print(10);
+    //                state = PlayerState.ControlWalk;
+    //                CursorManager.Instance.SetCursorNormal();
+    //            }
+    //        }
+    //    }
+    //
+    //    //锁定地点，释放AOE技能
+    //    IEnumerator OnLockMultiTarget()
+    //    {
+    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        RaycastHit hitInfo = new RaycastHit();
+    //        bool isColider = Physics.Raycast(ray, out hitInfo);
+    //        if (isColider && hitInfo.collider.CompareTag(Tags.Ground))
+    //        {
+    //            CursorManager.Instance.SetCursorNormal();
+    //            animator.SetBool(skilTemp.aniname, true);//播放技能动画
+    //            yield return new WaitForSeconds(skilTemp.anitime);
+    ////            isLockingTarget = false;
+    //            state = PlayerState.ControlWalk;
+    //
+    //            PrefabManager.Instance.GetPrefabInstance(skilTemp.effectName, hitInfo.point, Quaternion.identity);//播放感觉特效
+    ////            go.GetComponent<MagicSphere>().attack = characterSataus.attack * skilTemp.applyValue / 100f;
+    //        }
+    //        else
+    //        {
+    //            state = PlayerState.ControlWalk;
+    //            CursorManager.Instance.SetCursorNormal();
+    //        }
+    //    }
 
-//                hitInfo.collider.GetComponent<Wolf>().TakeDemage(characterSataus.attack * skilTemp.applyValue / 100f);
-            }
-            else
-            {
-                print(10);
+    //锁定目标，释放单体技能
+    IEnumerator OnLockSingleTarget(Transform target)
+    {
+//        print(7);
+//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//        RaycastHit hitInfo = new RaycastHit();
+//        if (Physics.Raycast(ray, out hitInfo))
+//        {
+//            if (hitInfo.collider.tag == Tags.Enemy)
+//            {
+//                print(8);
+                CursorManager.Instance.SetCursorAttack();//设置鼠标为攻击
+                animator.SetBool(skilTemp.aniname, true);//播放技能动画
+                yield return new WaitForSeconds(skilTemp.anitime);//等待动画结束播放
+                                                                  //                isLockingTarget = false;
+//                state = PlayerState.NormalAttack;//将控制状态设置为攻击状态（这时候可以技能结束的时候自动攻击）
+//                print(9);
+//                if (hitInfo.collider != null) //当敌人任然在攻击距离内
+//                {
+                    PrefabManager.Instance.GetPrefabInstance(skilTemp.effectName, target.position, Quaternion.identity, targetEnemy);//播放感觉特效
+//                }
+//       //                hitInfo.collider.GetComponent<Wolf>().TakeDemage(characterSataus.attack * skilTemp.applyValue / 100f);
+//            }
+//            else
+//            {
+//                print(10);
                 state = PlayerState.ControlWalk;
                 CursorManager.Instance.SetCursorNormal();
-            }
-        }
+//            }
+//        }
     }
 
     //锁定地点，释放AOE技能
-    IEnumerator OnLockMultiTarget()
+    IEnumerator OnLockMultiTarget(Vector3 target)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo = new RaycastHit();
-        bool isColider = Physics.Raycast(ray, out hitInfo);
-        if (isColider && hitInfo.collider.CompareTag(Tags.Ground))
-        {
-            CursorManager.Instance.SetCursorNormal();
-//            anima.CrossFade(skilTemp.aniname);
+        print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//        RaycastHit hitInfo = new RaycastHit();
+//        bool isColider = Physics.Raycast(ray, out hitInfo);
+//        if (isColider && hitInfo.collider.CompareTag(Tags.Ground))
+//        {
+//            CursorManager.Instance.SetCursorNormal();
+            animator.SetBool(skilTemp.aniname, true);//播放技能动画
             yield return new WaitForSeconds(skilTemp.anitime);
-            //isLockingTarget = false;
-            state = PlayerState.ControlWalk;
+        print("ccccccccccccccccccccccccccccccccccccccccccccccccc");
+            //            isLockingTarget = false;
+//            state = PlayerState.ControlWalk;
 
-            GameObject skillEffPrefab = null;
-            skillEffectDictionary.TryGetValue(skilTemp.efx_name, out skillEffPrefab);
-            if (hitInfo.collider != null)
-            {
-                GameObject go = Instantiate(skillEffPrefab, hitInfo.point + Vector3.up, Quaternion.identity) as GameObject;
-//                go.GetComponent<MagicSphere>().attack = characterSataus.attack * skilTemp.applyValue / 100f;
-            }
-        }
-        else
-        {
+            PrefabManager.Instance.GetPrefabInstance(skilTemp.effectName, target, Quaternion.identity);//播放感觉特效
+//            go.GetComponent<MagicSphere>().attack = characterSataus.attack * skilTemp.applyValue / 100f;
+//        }
+//        else
+//        {
             state = PlayerState.ControlWalk;
             CursorManager.Instance.SetCursorNormal();
-        }
-    }
-
-    //技能快捷键按下时调用
-    public void UseSkill(Skill skill)
-    {
-        switch (skill.applyType)
-        {
-            case ApplyType.Passive:
-                StartCoroutine(UsePassiveSkill(skill));
-                break;
-            case ApplyType.Buff:
-                StartCoroutine(UseBuffSkill(skill));
-                break;
-            case ApplyType.SingleTarget:
-                skilTemp = skill;
-                OnSingleTargetSkillUse(skill);
-                break;
-            case ApplyType.MultiTarget:
-                skilTemp = skill;
-                OnMultiTargetSkillUse(skill);
-                break;
-        }
-
-    }
-
-    //使用单体攻击技能，改变鼠标为锁定状态
-    void OnSingleTargetSkillUse(Skill skill)
-    {
-        state = PlayerState.SkillAttack;
-        CursorManager.Instance.SetCursorLookTarget();
-        isLockingTarget = true;
-        this.skilTemp = skill;
-    }
-
-    //使用AOE技能，改变鼠标为锁定状态
-    void OnMultiTargetSkillUse(Skill skill)
-    {
-        state = PlayerState.SkillAttack;
-        CursorManager.Instance.SetCursorLookTarget();
-        isLockingTarget = true;
-        this.skilTemp = skill;
+//        }
     }
 
     //使用增益技能
@@ -277,6 +437,10 @@ public class PlayerAttack : MonoBehaviour
     {
         state = PlayerState.SkillAttack;
 //        anima.CrossFade(skill.aniname);
+        while (animator.GetCurrentAnimatorStateInfo(0).IsName(skill.aniname))
+        {
+            
+        }
         yield return new WaitForSeconds(skill.anitime);
         if (targetEnemy == null)
             state = PlayerState.ControlWalk;
@@ -294,10 +458,7 @@ public class PlayerAttack : MonoBehaviour
             mp = skill.applyValue;
             playerStatus.AddHpMp(0, mp);
         }
-
-        GameObject skillEffPrefab = null;
-        skillEffectDictionary.TryGetValue(skill.efx_name, out skillEffPrefab);
-        Instantiate(skillEffPrefab, transform.position, Quaternion.identity);
+        PrefabManager.Instance.GetPrefabInstance(skill.effectName, transform.position, Quaternion.identity,transform);
     }
 
     //使用buff技能
@@ -329,10 +490,7 @@ public class PlayerAttack : MonoBehaviour
                     playerStatus.attackSpeed = 1;
                 break;
         }
-
-        GameObject skillEffPrefab = null;
-        skillEffectDictionary.TryGetValue(skill.efx_name, out skillEffPrefab);
-        Instantiate(skillEffPrefab, transform.position, Quaternion.identity);
+        PrefabManager.Instance.GetPrefabInstance(skill.effectName, transform.position, Quaternion.identity,transform);
     }
 
     public void TakeDemage(float attackEnemy)

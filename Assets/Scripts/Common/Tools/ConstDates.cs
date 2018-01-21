@@ -137,22 +137,24 @@ public class ConstDates {
 
     //技能特效预制体
     //swl
+    public const string HP = "HP";//加血
+    public const string MP = "MP";//加蓝
     //战士
-    public const string BloodSpray = "BloodSpray/BloodSpray";//大吼
-    public const string Crack = "Crack/Crack";//地裂斩
-    public const string IceMake = "IceMake/IceMake";//冰
-    public const string Shock_Bomb = "Perfab/Shock_Bomb";//爆炸
+    public const string BloodSpray = "BloodSpray";//大吼
+    public const string Crack = "Crack";//地裂斩
+    public const string IceMake = "IceMake";//冰
+    public const string Shock_Bomb = "ShockBomb";//爆炸
     //法师
-    public const string MageAttack = "MageAttack/MageAttack";//普攻
-    public const string Fire = "FireAndIce/Fire";//地圈火
-    public const string Ice = "FireAndIce/Ice";//地圈冰
-    public const string FireDragonRoll = "FireDragonRoll/FireDragonRoll";//火龙卷风
-    public const string MonsterRaids = "MonsterRaids/MonsterRaids";//召唤怪物攻击
+    public const string MageAttack = "MageAttack";//普攻
+    public const string Fire = "Fire";//地圈火
+    public const string Ice = "Ice";//地圈冰
+    public const string FireDragonRoll = "FireDragonRoll";//火龙卷风
+    public const string MonsterRaids = "MonsterRaids";//召唤怪物攻击
     //射手
-    public const string FireDragon = "FireDragon/FireDragon";//火龙
-    public const string IceArrow = "IceArrow/IceArrow";//冰雨
-    public const string MuzzleFlash = "Perfab/MuzzleFlash";//普攻
-    public const string Tonado_Electro = "Perfab/Tonado_Electro";//电龙卷风
+    public const string FireDragon = "FireDragon";//火龙
+    public const string IceArrow = "IceArrow";//冰雨
+    public const string MuzzleFlash = "MuzzleFlash";//普攻
+    public const string Tonado_Electro = "TonadoElectro";//电龙卷风
 
     //人物状态机
     public const string WarriorAnimator = "/WarriorAnim";

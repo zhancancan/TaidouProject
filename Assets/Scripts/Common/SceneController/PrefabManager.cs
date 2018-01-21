@@ -18,7 +18,15 @@ public class PrefabManager : MonoBehaviour {
         _instance = this;
         //zcc
         AddPrefabs(ConstDates.ResourceEffectPrefabDirZcc,ConstDates.Effect_MouseClick_Green);
+        //人物技能特效预制体
+        AddPrefabs(ConstDates.ResourceEffectPrefabDirSwl,ConstDates.HP);
+        AddPrefabs(ConstDates.ResourceEffectPrefabDirSwl,ConstDates.MP);
 
+        AddPrefabs(ConstDates.ResourceEffectPrefabDirSwl, ConstDates.MonsterRaids);
+        AddPrefabs(ConstDates.ResourceEffectPrefabDirSwl,ConstDates.Fire);
+        AddPrefabs(ConstDates.ResourceEffectPrefabDirSwl,ConstDates.Ice);
+        AddPrefabs(ConstDates.ResourceEffectPrefabDirSwl,ConstDates.FireDragonRoll);
+        
         //zpf
         //宠物UI预制体
         AddPrefabs(ConstDates.ResourcePetPrefabDirZpf, ConstDates.Lion);

@@ -18,13 +18,13 @@ public class Skill {
     public int level;
     public ReleaseType releaseType;
     public float distance;
-    public string efx_name;
+    public string effectName;
     public string aniname;
     public float anitime = 0;
 
     public Skill(int id, string name, string iconName, string des, ApplyType applyType,
         ApplyProperty applyProperty, int applyValue, int applyTime, int mp, int coldTime,
-        ApproRole approRole, int level, ReleaseType releaseType, float distance, string efx_name, string aniname, float anitime)
+        ApproRole approRole, int level, ReleaseType releaseType, float distance, string effectName, string aniname, float anitime)
     {
         this.id = id;
         this.name = name;
@@ -40,7 +40,7 @@ public class Skill {
         this.level = level;
         this.releaseType = releaseType;
         this.distance = distance;
-        this.efx_name = efx_name;
+        this.effectName = effectName;
         this.aniname = aniname;
         this.anitime = anitime;
     }
@@ -51,6 +51,6 @@ public class Skill {
                              "ApplyValue: {6}, ApplyTime: {7}, Mp: {8}, ColdTime: {9}, ApproRole: {10}, Level: {11}," +
                              " ReleaseType: {12}, Distance: {13}, EfxName: {14}, Aniname: {15}, Anitime: {16}",
             id, name, iconName, des, applyType, applyProperty, applyValue, applyTime, mp, coldTime,
-            approRole, level, releaseType, distance, efx_name, aniname, anitime);
+            approRole, level, releaseType, distance, effectName, aniname, anitime);
     }
 }

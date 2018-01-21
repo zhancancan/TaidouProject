@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     private CharacterController playerCtr;
     private PlayerDir playerDir;
     private PlayerAttack playerAttack;
+    private Animator playerAnimator;
 
     public PlayerMoveState playerMoveState;
     private float speed = 4;
@@ -21,14 +22,23 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-	    if (playerAttack.state == PlayerState.ControlWalk)
+        if (playerAttack.state == PlayerState.ControlWalk)
 	    {
             float distance = Vector3.Distance(playerDir.targetPositon, transform.position);
             if (distance > 0.1f)
             {
                 isMoving = true;
                 playerCtr.SimpleMove(transform.forward * speed);
-                playerMoveState = PlayerMoveState.Walk;
+                
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    playerMoveState = PlayerMoveState.Run;
+                }
+                else
+                {
+                    playerMoveState = PlayerMoveState.Walk;
+                }
+                print(playerMoveState);
             }
             else
             {
@@ -42,5 +52,11 @@ public class PlayerMove : MonoBehaviour
     {
         transform.LookAt(targetPos);
         playerCtr.SimpleMove(transform.forward * speed);
+    }
+
+    //人物奔跑
+    void PlayerRun()
+    {
+       
     }
 }

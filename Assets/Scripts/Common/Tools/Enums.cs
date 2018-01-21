@@ -47,7 +47,8 @@ public enum PoolObjectType
 public enum PlayerMoveState
 {//移动状态
     Idle,
-    Walk
+    Walk,
+    Run
 }
 
 //PlayerAttack
@@ -69,8 +70,8 @@ public enum PlayerAttackState
 //Skill
 public enum ApproRole
 {//适合角色
-    Swordman,
-    Magician,
+    Warrior,
+    Male,
     Archer
 }
 

@@ -44,7 +44,7 @@ public class SkillInfoData
         string str = skillAsset.text;
         string tempStr = str.Replace("\r\n", "\n");
         string[] skillInfoList = tempStr.Split('\n');
-        for (int i = 1; i < skillInfoList.Length-1; i++)
+        for (int i = 1; i < skillInfoList.Length; i++)
         {
             string[] skillInfo = skillInfoList[i].Split(',');
             //技能类型
@@ -91,12 +91,12 @@ public class SkillInfoData
             ApproRole approRoleTemp = 0;
             switch (skillInfo[10].Trim())
             {
-                case "Magician":
-                    approRoleTemp = ApproRole.Magician;
+                case "Male":
+                    approRoleTemp = ApproRole.Male;
                     mageSkillIdArr.Add(int.Parse(skillInfo[0].Trim()));
                     break;
-                case "Swordman":
-                    approRoleTemp = ApproRole.Swordman;
+                case "Warrior":
+                    approRoleTemp = ApproRole.Warrior;
                     warriorSkillIdArr.Add(int.Parse(skillInfo[0].Trim()));
                     break;
                 case "":

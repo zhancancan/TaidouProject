@@ -4,38 +4,49 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private PlayerMove move;
-    private Animator animator;
-//    private PlayerAttack attack;
+    private PlayerMove playerMove;
+    private PlayerAttack playerAttack;
+    private Animator playerAnimator;
 
     void Start ()
 	{
-	    move = GetComponent<PlayerMove>();
-//	    attack = GetComponent<PlayerAttack>();
-        animator = GetComponent<Animator>();
+	    playerMove = GetComponent<PlayerMove>();
+	    playerAttack = GetComponent<PlayerAttack>();
+        playerAnimator = GetComponent<Animator>();
 	}
 	 
-	void LateUpdate () {
-//	    if (attack.state == PlayerState.ControlWalk)
-//	    {
-	    if (move.playerMoveState == PlayerMoveState.Idle)
+    void LateUpdate () {
+     
+	    if (playerAttack.state == PlayerState.ControlWalk)
 	    {
-             animator.SetBool("Walk", false);
-             animator.SetBool("Idle",true);
-        }
-        else if (move.playerMoveState == PlayerMoveState.Walk)
-	    {
-	        animator.SetBool("Idle", false);
-	        animator.SetBool("Walk",true);
-	    }
-//      }
-//      else if (attack.state == PlayerState.NormalAttack)
-//	    {
-//	        if (attack.attack_state == AttackState.Moving)
-//	        {
-//	            PlayAnim("Run");
-//	        }
-//	    }
+	        if (playerMove.playerMoveState == PlayerMoveState.Idle)
+	        {
+                playerAnimator.SetBool("PlayerMove",false);
+            }
+            else if (playerMove.playerMoveState == PlayerMoveState.Walk)
+	        {
+	            playerAnimator.SetBool("PlayerMove", true);
+	            //playerAnimator.SetFloat("PlayerMoveTree", 0);
+	            playerAnimator.SetFloat("PlayerMoveTree", 1);
+            }
+	        else if (playerMove.playerMoveState == PlayerMoveState.Run)
+	        {
+	            playerAnimator.SetBool("PlayerMove", true);
+	            playerAnimator.SetFloat("PlayerMoveTree", 1);
+            }
+       }
+       else if (playerAttack.state == PlayerState.NormalAttack)
+	   {
+	        if (playerAttack.attackState == PlayerAttackState.Moving)
+	        {
+	            playerAnimator.SetBool("PlayerMove", true);
+	            playerAnimator.SetFloat("PlayerMoveTree", 1);
+            }
+            else if(playerAttack.attackState == PlayerAttackState.Attack && playerAttack.attackState == PlayerAttackState.Idle)
+	        {
+	            playerAnimator.SetBool("PlayerMove", false);
+            }
+	   }
 	}
 
 }

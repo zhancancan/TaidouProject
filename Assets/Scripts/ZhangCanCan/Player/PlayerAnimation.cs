@@ -17,6 +17,9 @@ public class PlayerAnimation : MonoBehaviour
 	 
     void LateUpdate () {
      
+        print("zcccccccccccccccccccc"+ "playerAttack.state         "+ playerAttack.state);
+        print("zcccccccccccccccccccc"+ "playerAttack.attackState         " + playerAttack.attackState);
+
 	    if (playerAttack.state == PlayerState.ControlWalk)
 	    {
 	        if (playerMove.playerMoveState == PlayerMoveState.Idle)
@@ -34,19 +37,33 @@ public class PlayerAnimation : MonoBehaviour
 	            playerAnimator.SetBool("PlayerMove", true);
 	            playerAnimator.SetFloat("PlayerMoveTree", 1);
             }
-       }
-       else if (playerAttack.state == PlayerState.NormalAttack)
-	   {
+        }
+        else if (playerAttack.state == PlayerState.NormalAttack || playerAttack.state == PlayerState.SkillAttack)
+	    {
 	        if (playerAttack.attackState == PlayerAttackState.Moving)
 	        {
+                print("dfsasasasasasasasasasasasasasasasasasasasasasasa111111111");
 	            playerAnimator.SetBool("PlayerMove", true);
 	            playerAnimator.SetFloat("PlayerMoveTree", 1);
             }
-            else if(playerAttack.attackState == PlayerAttackState.Attack && playerAttack.attackState == PlayerAttackState.Idle)
+            else if(playerAttack.attackState == PlayerAttackState.Attack || playerAttack.attackState == PlayerAttackState.Idle)
 	        {
-	            playerAnimator.SetBool("PlayerMove", false);
+	            print("dfsasasasasasasasasasasasasasasasasasasasasasasa222222222");
+                playerAnimator.SetBool("PlayerMove", false);
             }
-	   }
-	}
+	    }
+//	    else if (useGUILayout)
+//	    {
+//	        if (playerAttack.attackState == PlayerAttackState.Moving)
+//	        {
+//	            playerAnimator.SetBool("PlayerMove", true);
+//	            playerAnimator.SetFloat("PlayerMoveTree", 1);
+//	        }
+//	        else if (playerAttack.attackState == PlayerAttackState.Attack && playerAttack.attackState == PlayerAttackState.Idle)
+//	        {
+//	            playerAnimator.SetBool("PlayerMove", false);
+//	        }
+//        }
+    }
 
 }

@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
         if (playerAttack.state == PlayerState.ControlWalk)
 	    {
             float distance = Vector3.Distance(playerDir.targetPositon, transform.position);
+//            float distance = Vector3.Distance(transform.position,playerDir.targetPositon);
             if (distance > 0.1f)
             {
                 isMoving = true;
@@ -50,6 +51,23 @@ public class PlayerMove : MonoBehaviour
 
     public void SimpleMove(Vector3 targetPos)
     {
+
+//        float distance = Vector3.Distance(transform.position,targetPos);
+//        if (distance > 0.1f)
+//        {
+//            isMoving = true;
+//            transform.LookAt(targetPos);
+//            playerCtr.SimpleMove((targetPos-transform.forward).normalized * speed);
+//        }
+//        else
+//        {
+//            isMoving = false;
+//            playerMoveState = PlayerMoveState.Idle;
+//        }
+
+
+
+
         transform.LookAt(targetPos);
         playerCtr.SimpleMove(transform.forward * speed);
     }

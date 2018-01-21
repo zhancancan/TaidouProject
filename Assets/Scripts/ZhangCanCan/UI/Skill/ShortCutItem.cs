@@ -16,6 +16,7 @@ public class ShortCutItem : MonoBehaviour {
     {
         uiTop = GameObject.FindGameObjectWithTag(Tags.UITop).transform;
         shutCutImg = transform.Find("ShutCut").GetComponent<Image>();
+        shutCutImg.gameObject.tag = Tags.ShutCut;
         canvasGroup = shutCutImg.GetComponent<CanvasGroup>();
        
         EventTriggerListener.GetListener(shutCutImg.gameObject).onBeginDrag += OnBeginDrag;

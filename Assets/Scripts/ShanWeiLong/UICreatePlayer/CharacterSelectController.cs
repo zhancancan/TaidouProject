@@ -235,6 +235,8 @@ public class CharacterSelectController : MonoBehaviour
 
         if (obj.name.Equals("MaleBTN"))
         {
+            maleBtn.interactable = false;
+            femaleBtn.interactable = false;
             player = playerMale;
             playerTemp = playerFaMale;
             palyerPos = bornPointFemale.transform.position;
@@ -243,6 +245,8 @@ public class CharacterSelectController : MonoBehaviour
         }
         else
         {
+            maleBtn.interactable = false;
+            femaleBtn.interactable = false;
             player = playerFaMale;
             playerTemp = playerMale;
             palyerPos = bornPointMale.transform.position;

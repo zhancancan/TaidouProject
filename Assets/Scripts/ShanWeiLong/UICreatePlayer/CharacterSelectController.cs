@@ -239,6 +239,7 @@ public class CharacterSelectController : MonoBehaviour
             playerTemp = playerFaMale;
             palyerPos = bornPointFemale.transform.position;
             dirction = new Vector3(cameraPos.x - 2, cameraPos.y - 2, cameraPos.z);
+            isman = true;
         }
         else
         {
@@ -246,6 +247,7 @@ public class CharacterSelectController : MonoBehaviour
             playerTemp = playerMale;
             palyerPos = bornPointMale.transform.position;
             dirction =  new Vector3(cameraPos.x + 2, cameraPos.y - 2, cameraPos.z);
+            isman = false;
         }
 
         if (player.activeSelf == true)
@@ -277,7 +279,7 @@ public class CharacterSelectController : MonoBehaviour
                 anima.SetBool("Walk", false);
             });
         }
-        isman = true;
+      
     }
 
     Role role;
